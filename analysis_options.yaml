@@ -1,3 +1,0 @@
-# Removed flutter_lints include to avoid missing package warning during analysis.
-# You can re-enable linting by adding flutter_lints to dev_dependencies and
-# restoring the include line.
