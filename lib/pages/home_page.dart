@@ -19,9 +19,15 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeroBanner(
-            title: 'Innovative & Fun',
+            title: 'KikiBytes Labs',
             subtitle: 'Indie Games and Apps',
             assetPath: 'assets/images/illustration.svg',
+            titleStyle: const TextStyle(
+              fontSize: 58,
+              fontWeight: FontWeight.w800,
+              height: 1.1,
+              letterSpacing: -1,
+            ),
           ),
 
           const SizedBox(height: 40),

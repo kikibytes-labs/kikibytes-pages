@@ -8,6 +8,7 @@ class HeroBanner extends StatelessWidget {
   final String ctaText;
   final String assetPath;
   final VoidCallback? onCtaPressed;
+  final TextStyle? titleStyle;
 
   const HeroBanner({
     super.key,
@@ -16,6 +17,7 @@ class HeroBanner extends StatelessWidget {
     this.ctaText = '',
     required this.assetPath,
     this.onCtaPressed,
+    this.titleStyle,
   });
 
   @override
@@ -65,7 +67,8 @@ class HeroBanner extends StatelessWidget {
       children: [
         Text(
           title,
-          style: theme.textTheme.displayLarge?.copyWith(color: Colors.white),
+          style: titleStyle?.copyWith(color: Colors.white) ??
+              theme.textTheme.displayLarge?.copyWith(color: Colors.white),
         ),
         if (subtitle != null && subtitle!.isNotEmpty) ...[
           const SizedBox(height: 10),

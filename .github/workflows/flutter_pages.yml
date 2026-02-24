@@ -1,107 +1,47 @@
-name: Build and Deploy Flutter Web to Cloudflare Pages
+name: Build and Deploy to Cloudflare Pages
 
 concurrency:
-  group: refs-${{ github.ref }}
+  group: ${{ github.ref }}
   cancel-in-progress: true
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
-    name: Build Web
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
-    outputs:
-      web-path: build/web
+    permissions:
+      contents: read
+      deployments: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Flutter 3.13.0 (deterministic)
-        run: |
-          set -eux
-          FLUTTER_VERSION=3.41.2-stable
-          ARCHIVE=flutter_linux_${FLUTTER_VERSION}.tar.xz
-          curl -sSLO https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/${ARCHIVE}
-          mkdir -p "$RUNNER_TEMP"
-          tar -xf ${ARCHIVE} -C "$RUNNER_TEMP"
-          # Ensure CI uses this SDK (override any preinstalled toolcache)
-          echo "FLUTTER_ROOT=$RUNNER_TEMP/flutter" >> $GITHUB_ENV
-          echo "$RUNNER_TEMP/flutter/bin" >> $GITHUB_PATH
-          echo "PATH=$RUNNER_TEMP/flutter/bin:$PATH" >> $GITHUB_ENV
-
-      - name: Show Flutter version
-        run: flutter --version
-
-      - name: Check Flutter health
-        run: |
-          flutter doctor -v
-          flutter analyze
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.2'
+          channel: 'stable'
+          cache: true
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build web (release)
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Build web
         run: flutter build web --release
 
-      - name: Upload web build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: web-build
-          path: build/web
-
-  deploy:
-    name: Deploy to Cloudflare Pages
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: web-build
-          path: build/web
-
-      - name: Verify Cloudflare project name
-        run: |
-          TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}"
-          EMAIL="${{ secrets.CLOUDFLARE_EMAIL }}"
-          ACC="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
-          echo "Checking project slug: '${{ secrets.CLOUDFLARE_PROJECT_NAME }}'"
-          echo "Using account ID: $ACC"
-          echo "Listing accounts accessible with token..."
-          resp_accounts=$(curl -s -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/accounts")
-          if [ "$(echo "$resp_accounts" | jq -r .success)" != "true" ]; then
-            echo "Bearer auth failed, retrying with X-Auth-Key"
-            if [ -n "$EMAIL" ]; then
-              resp_accounts=$(curl -s -H "X-Auth-Key: $TOKEN" -H "X-Auth-Email: $EMAIL" "https://api.cloudflare.com/client/v4/accounts")
-            else
-              resp_accounts=$(curl -s -H "X-Auth-Key: $TOKEN" "https://api.cloudflare.com/client/v4/accounts")
-            fi
-          fi
-          echo "$resp_accounts" | jq
-          echo "Listing projects in account $ACC"
-          resp=$(curl -s -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/accounts/$ACC/pages/projects")
-          if [ "$(echo "$resp" | jq -r .success)" != "true" ]; then
-            echo "Bearer projects request failed, retrying with X-Auth-Key"
-            if [ -n "$EMAIL" ]; then
-              resp=$(curl -s -H "X-Auth-Key: $TOKEN" -H "X-Auth-Email: $EMAIL" "https://api.cloudflare.com/client/v4/accounts/$ACC/pages/projects")
-            else
-              resp=$(curl -s -H "X-Auth-Key: $TOKEN" "https://api.cloudflare.com/client/v4/accounts/$ACC/pages/projects")
-            fi
-          fi
-          echo "$resp" | jq
-          echo "$resp" | grep -q "\"name\":\"${{ secrets.CLOUDFLARE_PROJECT_NAME }}\"" || {
-            echo "ERROR: secret CLOUDFLARE_PROJECT_NAME does not match any project."
-            echo "Available projects:" $(echo "$resp" | jq -r '.result[].name')
-            exit 1
-          }
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-          directory: 'build/web'
+          directory: build/web
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
