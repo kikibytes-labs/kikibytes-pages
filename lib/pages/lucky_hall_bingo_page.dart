@@ -262,6 +262,7 @@ class _StatusCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ElevatedButton(
                       onPressed: () => onNavigate(Routes.download),

@@ -208,12 +208,12 @@ class _ContactPageState extends State<ContactPage> {
 class _ContactInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
+        return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _ContactTile(icon: Icons.email_outlined, label: contactEmail, color: kikiOrange),
         const SizedBox(height: 12),
-        const _ContactTile(icon: Icons.location_on_outlined, label: 'Gameville, CA', color: Color(0xFF6B7280)),
+        const _ContactTile(icon: Icons.location_on_outlined, label: 'New York, NY', color: Color(0xFF6B7280)),
       ],
     );
   }

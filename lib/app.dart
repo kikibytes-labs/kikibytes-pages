@@ -5,6 +5,8 @@ import 'pages/home_page.dart';
 import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
 import 'pages/lucky_hall_bingo_page.dart';
+import 'pages/privacy_page.dart';
+import 'pages/terms_page.dart';
 import 'widgets/navbar.dart';
 import 'widgets/footer.dart';
 
@@ -38,11 +40,16 @@ class MainShell extends StatefulWidget {
 class _MainShellState extends State<MainShell> {
   final GlobalKey<NavigatorState> _innerNavKey = GlobalKey<NavigatorState>();
   String _currentRoute = Routes.home;
+  late final NavigatorObserver _innerObserver;
 
   @override
   void initState() {
     super.initState();
     _currentRoute = widget.initialRoute;
+    _innerObserver = _InnerNavObserver((routeName) {
+      if (routeName == _currentRoute) return;
+      setState(() => _currentRoute = routeName ?? Routes.home);
+    });
   }
 
   void _handleNavigate(String route) {
@@ -64,6 +71,10 @@ class _MainShellState extends State<MainShell> {
       page = const ContactPage();
     } else if (settings.name == Routes.luckyHallBingo) {
       page = LuckyHallBingoPage(onNavigate: _handleNavigate);
+    } else if (settings.name == Routes.privacy) {
+      page = const PrivacyPage();
+    } else if (settings.name == Routes.terms) {
+      page = const TermsPage();
     } else {
       page = HomePage(onNavigate: _handleNavigate);
     }
@@ -93,11 +104,42 @@ class _MainShellState extends State<MainShell> {
               key: _innerNavKey,
               initialRoute: widget.initialRoute,
               onGenerateRoute: _onGenerateInner,
+              observers: [_innerObserver],
             ),
           ),
           const Footer(),
         ],
       ),
     );
+  }
+
+}
+
+class _InnerNavObserver extends NavigatorObserver {
+  final void Function(String? routeName) onRouteChanged;
+  _InnerNavObserver(this.onRouteChanged);
+
+  void _notify(Route<dynamic>? route) {
+    try {
+      onRouteChanged(route?.settings.name);
+    } catch (_) {}
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    super.didPop(route, previousRoute);
+    _notify(previousRoute);
+  }
+
+  @override
+  void didPush(Route route, Route? previousRoute) {
+    super.didPush(route, previousRoute);
+    _notify(route);
+  }
+
+  @override
+  void didReplace({Route? newRoute, Route? oldRoute}) {
+    super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    _notify(newRoute);
   }
 }

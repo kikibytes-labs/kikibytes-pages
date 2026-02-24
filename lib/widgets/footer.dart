@@ -3,6 +3,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../theme.dart';
 import 'site_container.dart';
 import 'safe_svg.dart';
+import '../routes.dart';
+import '../contact_config.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -28,19 +30,19 @@ class Footer extends StatelessWidget {
             Row(
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).pushNamed(Routes.privacy),
                   style: TextButton.styleFrom(foregroundColor: const Color(0xFF6B7280)),
                   child: const Text('Privacy Policy'),
                 ),
                 const SizedBox(width: 4),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).pushNamed(Routes.terms),
                   style: TextButton.styleFrom(foregroundColor: const Color(0xFF6B7280)),
                   child: const Text('Terms'),
                 ),
                 const SizedBox(width: 8),
                 IconButton(
-                  onPressed: () => launchUrlString('https://facebook.com/kikibytes'),
+                  onPressed: () => launchUrlString('https://www.facebook.com/profile.php?id=61588637222576'),
                   icon: SizedBox(width: 20, height: 20, child: SafeSvg.asset('assets/images/facebook.svg')),
                   color: kikiOrange,
                   tooltip: 'Facebook',
@@ -53,7 +55,7 @@ class Footer extends StatelessWidget {
                   tooltip: 'Instagram (@kiki.bytes)',
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () => launchUrlString('mailto:$contactEmail'),
                   icon: const Icon(Icons.email_outlined),
                   color: const Color(0xFF6B7280),
                   tooltip: 'Email',

@@ -4,4 +4,6 @@ class Routes {
   static const contact = '/contact';
   static const luckyHallBingo = '/games/lucky-hall-bingo';
   static const download = '/download';
+  static const privacy = '/privacy';
+  static const terms = '/terms';
 }
