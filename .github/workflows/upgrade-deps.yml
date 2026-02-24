@@ -24,7 +24,7 @@ jobs:
       - name: Install Flutter 3.13.0 (deterministic)
         run: |
           set -eux
-          FLUTTER_VERSION=3.13.0-stable
+          FLUTTER_VERSION=3.41.2-stable
           ARCHIVE=flutter_linux_${FLUTTER_VERSION}.tar.xz
           curl -sSLO https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/${ARCHIVE}
           mkdir -p "$RUNNER_TEMP"
