@@ -1,7 +1,7 @@
 name: PR Build
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: refs-${{ github.ref }}
   cancel-in-progress: true
 
 on:
@@ -16,11 +16,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Flutter 3.13.0
+      - name: Install Flutter 3.13.0 (deterministic)
         run: |
-          curl -sSLO https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.0-stable.tar.xz
-          tar xf flutter_linux_3.13.0-stable.tar.xz
-          echo "${{ github.workspace }}/flutter/bin" >> $GITHUB_PATH
+          set -eux
+          FLUTTER_VERSION=3.13.0-stable
+          ARCHIVE=flutter_linux_${FLUTTER_VERSION}.tar.xz
+          curl -sSLO https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/${ARCHIVE}
+          mkdir -p "$RUNNER_TEMP"
+          tar -xf ${ARCHIVE} -C "$RUNNER_TEMP"
+          echo "FLUTTER_ROOT=$RUNNER_TEMP/flutter" >> $GITHUB_ENV
+          echo "$RUNNER_TEMP/flutter/bin" >> $GITHUB_PATH
+          echo "PATH=$RUNNER_TEMP/flutter/bin:$PATH" >> $GITHUB_ENV
 
       - name: Show Flutter version
         run: flutter --version
