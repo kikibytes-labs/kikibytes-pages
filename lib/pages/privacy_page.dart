@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../widgets/site_scaffold.dart';
-import '../theme.dart';
 import '../contact_config.dart';
 
 class PrivacyPage extends StatelessWidget {
