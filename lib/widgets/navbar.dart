@@ -1,61 +1,129 @@
 import 'package:flutter/material.dart';
-import 'safe_svg.dart';
+import '../theme.dart';
 import '../routes.dart';
+import 'safe_svg.dart';
 import 'site_container.dart';
 
 class Navbar extends StatelessWidget {
   final void Function(String route) onNavigate;
+  final String currentRoute;
 
-  const Navbar({super.key, required this.onNavigate});
+  const Navbar({super.key, required this.onNavigate, required this.currentRoute});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 14),
-      color: Colors.white,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(bottom: BorderSide(color: Color(0xFFE5E7EB))),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: SiteContainer(
         child: Row(
           children: [
-            InkWell(
-              onTap: () => onNavigate(Routes.home),
-              child: Row(
-                children: [
-                  // Use SafeSvg for robust loading
-                  SafeSvg.asset('assets/images/logo.svg', width: 48, height: 48),
-                  const SizedBox(width: 10),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => onNavigate(Routes.home),
+                child: Row(
+                  children: [
+                    SafeSvg.asset('assets/images/logo.svg', width: 40, height: 40),
+                    const SizedBox(width: 10),
+                    RichText(
+                      text: const TextSpan(
+                        children: [
+                          TextSpan(
                             text: 'Kiki',
-                            style: theme.textTheme.bodyLarge?.copyWith(
-                                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.deepOrange)),
-                        TextSpan(
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: kikiOrange,
+                            ),
+                          ),
+                          TextSpan(
                             text: 'Bytes Labs',
-                            style: theme.textTheme.bodyLarge?.copyWith(
-                                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87)),
-                      ],
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: kikiDeep,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const Spacer(),
-            _nav('Home', Routes.home),
-            _nav('About', Routes.about),
-            _nav('Contact', Routes.contact),
+            _NavLink(label: 'Home', route: Routes.home, currentRoute: currentRoute, onNavigate: onNavigate),
+            _NavLink(label: 'About', route: Routes.about, currentRoute: currentRoute, onNavigate: onNavigate),
+            _NavLink(label: 'Contact', route: Routes.contact, currentRoute: currentRoute, onNavigate: onNavigate),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _nav(String label, String route) {
-    return TextButton(
-      onPressed: () => onNavigate(route),
-      child: Text(label, style: const TextStyle(color: Colors.black87)),
+class _NavLink extends StatefulWidget {
+  final String label;
+  final String route;
+  final String currentRoute;
+  final void Function(String) onNavigate;
+
+  const _NavLink({
+    required this.label,
+    required this.route,
+    required this.currentRoute,
+    required this.onNavigate,
+  });
+
+  @override
+  State<_NavLink> createState() => _NavLinkState();
+}
+
+class _NavLinkState extends State<_NavLink> {
+  bool _hovered = false;
+
+  bool get _isActive => widget.currentRoute == widget.route;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = _isActive
+        ? kikiOrange
+        : _hovered
+            ? kikiDeep
+            : const Color(0xFF6B7280);
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: () => widget.onNavigate(widget.route),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: _isActive ? kikiOrange : Colors.transparent,
+                width: 2,
+              ),
+            ),
+          ),
+          child: AnimatedDefaultTextStyle(
+            duration: const Duration(milliseconds: 150),
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: _isActive ? FontWeight.w600 : FontWeight.w500,
+              color: color,
+            ),
+            child: Text(widget.label),
+          ),
+        ),
+      ),
     );
   }
 }

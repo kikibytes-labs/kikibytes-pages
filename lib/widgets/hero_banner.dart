@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme.dart';
 import 'safe_svg.dart';
 
 class HeroBanner extends StatelessWidget {
@@ -6,38 +7,83 @@ class HeroBanner extends StatelessWidget {
   final String subtitle;
   final String ctaText;
   final String assetPath;
+  final VoidCallback? onCtaPressed;
 
-  const HeroBanner({super.key, required this.title, required this.subtitle, required this.ctaText, required this.assetPath});
+  const HeroBanner({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.ctaText,
+    required this.assetPath,
+    this.onCtaPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isNarrow = screenWidth < 600;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.all(24),
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        gradient: const LinearGradient(colors: [Color(0xFF7C3AED), Color(0xFF0EA5E9)]),
+        borderRadius: BorderRadius.circular(16),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF1E1B4B), kikiOrange],
+        ),
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
+      child: isNarrow
+          ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: theme.textTheme.displayLarge?.copyWith(color: Colors.white)),
-                const SizedBox(height: 8),
-                Text(subtitle, style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white70)),
-                const SizedBox(height: 16),
-                ElevatedButton(onPressed: () {}, child: Text(ctaText)),
+                _textContent(theme),
+                const SizedBox(height: 24),
+                Center(child: SafeSvg.asset(assetPath, width: 180, height: 130)),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(child: _textContent(theme)),
+                const SizedBox(width: 24),
+                SafeSvg.asset(assetPath, width: 220, height: 160),
               ],
             ),
+    );
+  }
+
+  Widget _textContent(ThemeData theme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: theme.textTheme.displayLarge?.copyWith(color: Colors.white),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          subtitle,
+          style: theme.textTheme.headlineMedium?.copyWith(
+            color: Colors.white.withAlpha(204),
+            fontWeight: FontWeight.w400,
           ),
-          const SizedBox(width: 12),
-          SizedBox(width: 220, child: SafeSvg.asset(assetPath, width: 220, height: 160)),
-        ],
-      ),
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: onCtaPressed,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            foregroundColor: kikiOrange,
+            elevation: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          ),
+          child: Text(ctaText),
+        ),
+      ],
     );
   }
 }

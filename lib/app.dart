@@ -4,6 +4,7 @@ import 'theme.dart';
 import 'pages/home_page.dart';
 import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
+import 'pages/lucky_hall_bingo_page.dart';
 import 'widgets/navbar.dart';
 import 'widgets/footer.dart';
 
@@ -16,7 +17,7 @@ class KikiBytesApp extends StatelessWidget {
       title: 'KikiBytes Labs',
       debugShowCheckedModeBanner: false,
       theme: kikiTheme,
-      home: MainShell(),
+      home: const MainShell(),
     );
   }
 }
@@ -30,9 +31,11 @@ class MainShell extends StatefulWidget {
 
 class _MainShellState extends State<MainShell> {
   final GlobalKey<NavigatorState> _innerNavKey = GlobalKey<NavigatorState>();
+  String _currentRoute = Routes.home;
 
   void _handleNavigate(String route) {
     if (_innerNavKey.currentState == null) return;
+    setState(() => _currentRoute = route);
     if (route == Routes.home) {
       _innerNavKey.currentState!.pushNamedAndRemoveUntil(Routes.home, (r) => false);
     } else {
@@ -41,27 +44,26 @@ class _MainShellState extends State<MainShell> {
   }
 
   Route<dynamic> _onGenerateInner(RouteSettings settings) {
-    late Widget page;
+    final Widget page;
     switch (settings.name) {
       case Routes.about:
-        page = const AboutPage();
-        break;
+        page = AboutPage(onNavigate: _handleNavigate);
       case Routes.contact:
         page = const ContactPage();
-        break;
-      case Routes.home:
+      case Routes.luckyHallBingo:
+        page = LuckyHallBingoPage(onNavigate: _handleNavigate);
       default:
-        page = const HomePage();
+        page = HomePage(onNavigate: _handleNavigate);
     }
 
     return PageRouteBuilder(
       settings: settings,
       pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionDuration: const Duration(milliseconds: 360),
-      reverseTransitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: const Duration(milliseconds: 300),
+      reverseTransitionDuration: const Duration(milliseconds: 250),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return FadeTransition(
-          opacity: CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+          opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
           child: child,
         );
       },
@@ -73,7 +75,7 @@ class _MainShellState extends State<MainShell> {
     return Scaffold(
       body: Column(
         children: [
-          Navbar(onNavigate: _handleNavigate),
+          Navbar(onNavigate: _handleNavigate, currentRoute: _currentRoute),
           Expanded(
             child: Navigator(
               key: _innerNavKey,
