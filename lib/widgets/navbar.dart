@@ -33,7 +33,7 @@ class Navbar extends StatelessWidget {
                 onTap: () => onNavigate(Routes.home),
                 child: Row(
                   children: [
-                    SafeSvg.asset('assets/images/logo.svg', width: 34, height: 34),
+                    Image.asset('assets/images/logo.png', width: 34, height: 34, fit: BoxFit.contain),
                     const SizedBox(width: 10),
                     RichText(
                       text: const TextSpan(

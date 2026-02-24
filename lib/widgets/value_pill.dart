@@ -4,9 +4,10 @@ import '../theme.dart';
 class ValuePill extends StatelessWidget {
   final String title;
   final String subtitle;
-  final IconData icon;
+  final IconData? icon;
+  final String? imageAsset;
 
-  const ValuePill({super.key, required this.title, required this.subtitle, required this.icon});
+  const ValuePill({super.key, required this.title, required this.subtitle, this.icon, this.imageAsset});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +24,20 @@ class ValuePill extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 44,
-            height: 44,
+            // triple the container to accommodate triple-sized images
+            width: 132,
+            height: 132,
             decoration: BoxDecoration(
               color: kikiOrange.withAlpha(20),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(36),
             ),
-            child: Icon(icon, color: kikiOrange, size: 22),
+            child: imageAsset != null
+                ? Padding(
+                    // center a 66x66 image (22 * 3)
+                    padding: const EdgeInsets.all(33),
+                    child: Image.asset(imageAsset!, width: 66, height: 66, fit: BoxFit.contain),
+                  )
+                : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 66),
           ),
           const SizedBox(height: 14),
           Text(title, style: theme.textTheme.titleMedium),

@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           HeroBanner(
             title: 'KikiBytes Labs',
             subtitle: 'Indie Games and Apps',
-            assetPath: 'assets/images/illustration.svg',
+            assetPath: 'assets/images/cat_computer.png',
             titleStyle: const TextStyle(
               fontSize: 58,
               fontWeight: FontWeight.w800,

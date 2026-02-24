@@ -88,13 +88,13 @@ class AboutPage extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: const [
-                Expanded(child: ValuePill(title: 'Creativity', subtitle: 'We thrive on original ideas.', icon: Icons.lightbulb_outline_rounded)),
+                Expanded(child: ValuePill(title: 'Creativity', subtitle: 'We thrive on original ideas.', imageAsset: 'assets/images/lightbulb.png')),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Quality', subtitle: 'Thoughtful engineering and polish.', icon: Icons.verified_outlined)),
+                Expanded(child: ValuePill(title: 'Quality', subtitle: 'Thoughtful engineering and polish.', imageAsset: 'assets/images/gears.png')),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Fun', subtitle: 'Playful spirit and charm.', icon: Icons.celebration_outlined)),
+                Expanded(child: ValuePill(title: 'Fun', subtitle: 'Playful spirit and charm.', imageAsset: 'assets/images/joystick.png')),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Community', subtitle: 'An inclusive player base.', icon: Icons.people_outline_rounded)),
+                Expanded(child: ValuePill(title: 'Community', subtitle: 'An inclusive player base.', imageAsset: 'assets/images/handshake.png')),
               ],
             ),
           ),

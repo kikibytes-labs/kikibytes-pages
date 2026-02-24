@@ -25,6 +25,12 @@ class HeroBanner extends StatelessWidget {
     final theme = Theme.of(context);
     final screenWidth = MediaQuery.of(context).size.width;
     final isNarrow = screenWidth < 600;
+    final isSvg = assetPath.toLowerCase().endsWith('.svg');
+    // Use the same sizes as the original dummy images
+    final double baseWidth = isNarrow ? 180.0 : 220.0;
+    final double baseHeight = isNarrow ? 130.0 : 160.0;
+    final double imageWidth = baseWidth;
+    final double imageHeight = baseHeight;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
@@ -48,14 +54,21 @@ class HeroBanner extends StatelessWidget {
               children: [
                 _textContent(theme),
                 const SizedBox(height: 24),
-                Center(child: SafeSvg.asset(assetPath, width: 180, height: 130)),
+                const SizedBox(height: 24),
+                Center(
+                  child: isSvg
+                      ? SafeSvg.asset(assetPath, width: imageWidth, height: imageHeight)
+                      : Image.asset(assetPath, width: imageWidth, height: imageHeight, fit: BoxFit.contain),
+                ),
               ],
             )
           : Row(
               children: [
                 Expanded(child: _textContent(theme)),
                 const SizedBox(width: 24),
-                SafeSvg.asset(assetPath, width: 220, height: 160),
+                isSvg
+                  ? SafeSvg.asset(assetPath, width: imageWidth, height: imageHeight)
+                  : Image.asset(assetPath, width: imageWidth, height: imageHeight, fit: BoxFit.contain),
               ],
             ),
     );
