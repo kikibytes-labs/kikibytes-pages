@@ -67,6 +67,10 @@ jobs:
       - name: Verify Cloudflare project name
         run: |
           echo "Checking project slug: '${{ secrets.CLOUDFLARE_PROJECT_NAME }}'"
+          echo "Using account ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+          echo "Listing all accounts accessible with token..."
+          curl -s -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            "https://api.cloudflare.com/client/v4/accounts" | jq
           resp=$(curl -s -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
             "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/pages/projects")
           echo "API response: $resp"
