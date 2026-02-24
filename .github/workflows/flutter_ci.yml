@@ -17,7 +17,13 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
+          # Use an explicit SDK version instead of the channel name to avoid
+          # the action failing to resolve the channel in some environments.
+          # Update this value if you want a newer Flutter SDK in CI.
+          flutter-version: '3.10.6'
+
+      - name: Flutter version
+        run: flutter --version
 
       - name: Install dependencies
         run: flutter pub get
