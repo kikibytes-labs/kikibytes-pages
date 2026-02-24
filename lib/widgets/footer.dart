@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../theme.dart';
 import 'site_container.dart';
+import 'safe_svg.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -38,10 +40,17 @@ class Footer extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.facebook),
+                  onPressed: () => launchUrlString('https://facebook.com/kikibytes'),
+                  icon: SizedBox(width: 20, height: 20, child: SafeSvg.asset('assets/images/facebook.svg')),
                   color: kikiOrange,
                   tooltip: 'Facebook',
+                ),
+                const SizedBox(width: 6),
+                IconButton(
+                  onPressed: () => launchUrlString('https://instagram.com/kiki.bytes'),
+                  icon: SizedBox(width: 20, height: 20, child: SafeSvg.asset('assets/images/instagram.svg')),
+                  color: kikiOrange,
+                  tooltip: 'Instagram (@kiki.bytes)',
                 ),
                 IconButton(
                   onPressed: () {},

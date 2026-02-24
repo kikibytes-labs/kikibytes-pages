@@ -64,7 +64,7 @@ class LuckyHallBingoPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: () => onNavigate(Routes.contact),
+                        onPressed: () => onNavigate(Routes.download),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: kikiOrange,
@@ -73,7 +73,7 @@ class LuckyHallBingoPage extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                         ),
-                        child: const Text('Get in Touch'),
+                        child: const Text('Download the App'),
                       ),
                     ],
                   ),
@@ -134,7 +134,7 @@ class LuckyHallBingoPage extends StatelessWidget {
           const SizedBox(height: 8),
           const Divider(),
           const SizedBox(height: 16),
-          _StatusCard(theme: theme),
+          _StatusCard(theme: theme, onNavigate: onNavigate),
 
           const SizedBox(height: 40),
 
@@ -234,7 +234,8 @@ class _FeatureTile extends StatelessWidget {
 
 class _StatusCard extends StatelessWidget {
   final ThemeData theme;
-  const _StatusCard({required this.theme});
+  final void Function(String route) onNavigate;
+  const _StatusCard({required this.theme, required this.onNavigate});
 
   @override
   Widget build(BuildContext context) {
@@ -258,6 +259,23 @@ class _StatusCard extends StatelessWidget {
                 Text(
                   'Lucky Hall Bingo is live and available to play. Stay tuned for updates, new themes, and seasonal events.',
                   style: theme.textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => onNavigate(Routes.download),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: kikiOrange,
+                        elevation: 0,
+                        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                      ),
+                      child: const Text('Download the App'),
+                    ),
+                  ],
                 ),
               ],
             ),

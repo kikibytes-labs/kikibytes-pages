@@ -17,13 +17,19 @@ class KikiBytesApp extends StatelessWidget {
       title: 'KikiBytes Labs',
       debugShowCheckedModeBanner: false,
       theme: kikiTheme,
-      home: const MainShell(),
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => MainShell(initialRoute: settings.name ?? Routes.home),
+        );
+      },
     );
   }
 }
 
 class MainShell extends StatefulWidget {
-  const MainShell({super.key});
+  final String initialRoute;
+  const MainShell({super.key, this.initialRoute = Routes.home});
 
   @override
   State<MainShell> createState() => _MainShellState();
@@ -33,27 +39,33 @@ class _MainShellState extends State<MainShell> {
   final GlobalKey<NavigatorState> _innerNavKey = GlobalKey<NavigatorState>();
   String _currentRoute = Routes.home;
 
+  @override
+  void initState() {
+    super.initState();
+    _currentRoute = widget.initialRoute;
+  }
+
   void _handleNavigate(String route) {
-    if (_innerNavKey.currentState == null) return;
+    if (route == _currentRoute) return;
     setState(() => _currentRoute = route);
+    final rootNav = Navigator.of(context);
     if (route == Routes.home) {
-      _innerNavKey.currentState!.pushNamedAndRemoveUntil(Routes.home, (r) => false);
+      rootNav.pushNamedAndRemoveUntil(Routes.home, (r) => false);
     } else {
-      _innerNavKey.currentState!.pushNamed(route);
+      rootNav.pushNamed(route);
     }
   }
 
   Route<dynamic> _onGenerateInner(RouteSettings settings) {
     final Widget page;
-    switch (settings.name) {
-      case Routes.about:
-        page = AboutPage(onNavigate: _handleNavigate);
-      case Routes.contact:
-        page = const ContactPage();
-      case Routes.luckyHallBingo:
-        page = LuckyHallBingoPage(onNavigate: _handleNavigate);
-      default:
-        page = HomePage(onNavigate: _handleNavigate);
+    if (settings.name == Routes.about) {
+      page = AboutPage(onNavigate: _handleNavigate);
+    } else if (settings.name == Routes.contact) {
+      page = const ContactPage();
+    } else if (settings.name == Routes.luckyHallBingo) {
+      page = LuckyHallBingoPage(onNavigate: _handleNavigate);
+    } else {
+      page = HomePage(onNavigate: _handleNavigate);
     }
 
     return PageRouteBuilder(
@@ -79,7 +91,7 @@ class _MainShellState extends State<MainShell> {
           Expanded(
             child: Navigator(
               key: _innerNavKey,
-              initialRoute: Routes.home,
+              initialRoute: widget.initialRoute,
               onGenerateRoute: _onGenerateInner,
             ),
           ),
