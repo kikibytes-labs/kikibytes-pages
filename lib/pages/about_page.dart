@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../routes.dart';
+import '../theme.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/value_pill.dart';
@@ -26,26 +27,63 @@ class AboutPage extends StatelessWidget {
           ),
 
           const SizedBox(height: 32),
-          Text('Who We Are', style: theme.textTheme.headlineMedium),
-          const SizedBox(height: 8),
-          const Divider(),
-          const SizedBox(height: 12),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(
+                  color: kikiOrange,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Text('Who We Are', style: theme.textTheme.headlineMedium),
+            ],
+          ),
+          const SizedBox(height: 14),
           Text(
             "KikiBytes Labs is a small indie development studio dedicated to crafting playful, thoughtfully engineered apps and games. We're a passionate team of creative minds and experienced developers who love to experiment and create delightful digital experiences.",
             style: theme.textTheme.bodyLarge,
           ),
 
-          const SizedBox(height: 28),
-          Text('Our Mission', style: theme.textTheme.headlineMedium),
-          const SizedBox(height: 8),
-          const Divider(),
-          const SizedBox(height: 12),
+          const SizedBox(height: 32),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(
+                  color: kikiOrange,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Text('Our Mission', style: theme.textTheme.headlineMedium),
+            ],
+          ),
+          const SizedBox(height: 14),
           Text(
             'Our mission is to bring joy and creativity into the digital world. We strive to develop applications and games that are not only fun but also thoughtfully designed and engineered.',
             style: theme.textTheme.bodyLarge,
           ),
 
-          const SizedBox(height: 36),
+          const SizedBox(height: 32),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(
+                  color: kikiOrange,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Text('Our Values', style: theme.textTheme.headlineMedium),
+            ],
+          ),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,

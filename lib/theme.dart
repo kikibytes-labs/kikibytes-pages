@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 const kikiOrange = Color(0xFFFF8A00);
 const kikiDeep = Color(0xFF0F1724);
-const _kikiBackground = Color(0xFFF7F8FA);
+const _kikiBackground = Color(0xFFF8F9FC);
 const _kikiSurface = Color(0xFFFFFFFF);
-const _kikiInputFill = Color(0xFFF1F3F5);
+const _kikiInputFill = Color(0xFFF1F3F6);
 
 final kikiTheme = ThemeData(
   useMaterial3: true,
@@ -19,6 +19,7 @@ final kikiTheme = ThemeData(
   textTheme: const TextTheme(
     displayLarge: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: kikiDeep, height: 1.2),
     headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: kikiDeep, height: 1.3),
+    headlineSmall: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: kikiDeep, height: 1.4),
     titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: kikiDeep),
     bodyLarge: TextStyle(fontSize: 16, color: kikiDeep, height: 1.6),
     bodyMedium: TextStyle(fontSize: 14, color: Color(0xFF4B5563), height: 1.5),
@@ -32,14 +33,15 @@ final kikiTheme = ThemeData(
       foregroundColor: Colors.white,
       elevation: 0,
       shadowColor: Colors.transparent,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-      textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.3),
+      textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.2),
     ).copyWith(
       elevation: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.hovered)) return 2;
+        if (states.contains(WidgetState.hovered)) return 3;
         return 0;
       }),
+      shadowColor: WidgetStateProperty.all(kikiOrange.withAlpha(60)),
     ),
   ),
 
@@ -75,8 +77,8 @@ final kikiTheme = ThemeData(
     elevation: 0,
     color: _kikiSurface,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16),
-      side: const BorderSide(color: Color(0xFFE5E7EB)),
+      borderRadius: BorderRadius.circular(14),
+      side: const BorderSide(color: Color(0xFFE8EAED)),
     ),
     margin: EdgeInsets.zero,
   ),

@@ -20,9 +20,17 @@ class KikiBytesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: kikiTheme,
       onGenerateRoute: (settings) {
-        return MaterialPageRoute(
+        return PageRouteBuilder(
           settings: settings,
-          builder: (_) => MainShell(initialRoute: settings.name ?? Routes.home),
+          pageBuilder: (_, __, ___) => MainShell(initialRoute: settings.name ?? Routes.home),
+          transitionDuration: const Duration(milliseconds: 220),
+          reverseTransitionDuration: const Duration(milliseconds: 180),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(
+              opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+              child: child,
+            );
+          },
         );
       },
     );
@@ -55,6 +63,9 @@ class _MainShellState extends State<MainShell> {
   void _handleNavigate(String route) {
     if (route == _currentRoute) return;
     setState(() => _currentRoute = route);
+    // Use the root navigator so URLs update and browser back/forward work.
+    // The root transition is a fade, so the crossfade looks seamless since
+    // Navbar and Footer are identical on every page.
     final rootNav = Navigator.of(context);
     if (route == Routes.home) {
       rootNav.pushNamedAndRemoveUntil(Routes.home, (r) => false);
@@ -72,9 +83,9 @@ class _MainShellState extends State<MainShell> {
     } else if (settings.name == Routes.luckyHallBingo) {
       page = LuckyHallBingoPage(onNavigate: _handleNavigate);
     } else if (settings.name == Routes.privacy) {
-      page = const PrivacyPage();
+      page = PrivacyPage(onNavigate: _handleNavigate);
     } else if (settings.name == Routes.terms) {
-      page = const TermsPage();
+      page = TermsPage(onNavigate: _handleNavigate);
     } else {
       page = HomePage(onNavigate: _handleNavigate);
     }
@@ -107,7 +118,7 @@ class _MainShellState extends State<MainShell> {
               observers: [_innerObserver],
             ),
           ),
-          const Footer(),
+          Footer(onNavigate: _handleNavigate),
         ],
       ),
     );

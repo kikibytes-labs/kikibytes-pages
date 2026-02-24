@@ -13,18 +13,31 @@ class ValuePill extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Column(
-      children: [
-        CircleAvatar(
-          backgroundColor: kikiOrange.withAlpha(20),
-          radius: 36,
-          child: SafeSvg.asset(assetPath, width: 40, height: 40),
-        ),
-        const SizedBox(height: 10),
-        Text(title, style: theme.textTheme.titleMedium),
-        const SizedBox(height: 4),
-        Text(subtitle, textAlign: TextAlign.center, style: theme.textTheme.bodyMedium),
-      ],
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: kikiOrange.withAlpha(20),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(child: SafeSvg.asset(assetPath, width: 24, height: 24)),
+          ),
+          const SizedBox(height: 14),
+          Text(title, style: theme.textTheme.titleMedium),
+          const SizedBox(height: 6),
+          Text(subtitle, style: theme.textTheme.bodyMedium),
+        ],
+      ),
     );
   }
 }

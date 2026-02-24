@@ -7,62 +7,130 @@ import '../routes.dart';
 import '../contact_config.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({super.key});
+  final void Function(String route) onNavigate;
+
+  const Footer({super.key, required this.onNavigate});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(top: BorderSide(color: Color(0xFFE5E7EB))),
       ),
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 14),
       child: SiteContainer(
         child: Row(
           children: [
-            Text(
-              '© 2026 KikiBytes LLC. All rights reserved.',
-              style: theme.textTheme.bodySmall,
+            const Text(
+              '© 2026 KikiBytes LLC',
+              style: TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
             ),
             const Spacer(),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pushNamed(Routes.privacy),
-                  style: TextButton.styleFrom(foregroundColor: const Color(0xFF6B7280)),
-                  child: const Text('Privacy Policy'),
-                ),
-                const SizedBox(width: 4),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pushNamed(Routes.terms),
-                  style: TextButton.styleFrom(foregroundColor: const Color(0xFF6B7280)),
-                  child: const Text('Terms'),
-                ),
-                const SizedBox(width: 8),
-                IconButton(
-                  onPressed: () => launchUrlString('https://www.facebook.com/profile.php?id=61588637222576'),
-                  icon: SizedBox(width: 20, height: 20, child: SafeSvg.asset('assets/images/facebook.svg')),
-                  color: kikiOrange,
-                  tooltip: 'Facebook',
-                ),
-                const SizedBox(width: 6),
-                IconButton(
-                  onPressed: () => launchUrlString('https://instagram.com/kiki.bytes'),
-                  icon: SizedBox(width: 20, height: 20, child: SafeSvg.asset('assets/images/instagram.svg')),
-                  color: kikiOrange,
-                  tooltip: 'Instagram (@kiki.bytes)',
-                ),
-                IconButton(
-                  onPressed: () => launchUrlString('mailto:$contactEmail'),
-                  icon: const Icon(Icons.email_outlined),
-                  color: const Color(0xFF6B7280),
-                  tooltip: 'Email',
-                ),
-              ],
+            _FooterLink(label: 'Privacy', onTap: () => onNavigate(Routes.privacy)),
+            const _Separator(),
+            _FooterLink(label: 'Terms', onTap: () => onNavigate(Routes.terms)),
+            const SizedBox(width: 20),
+            _SocialButton(
+              tooltip: 'Facebook',
+              onTap: () => launchUrlString('https://www.facebook.com/profile.php?id=61588637222576'),
+              child: SafeSvg.asset('assets/images/facebook.svg', width: 15, height: 15),
+            ),
+            const SizedBox(width: 14),
+            _SocialButton(
+              tooltip: 'Instagram',
+              onTap: () => launchUrlString('https://instagram.com/kiki.bytes'),
+              child: SafeSvg.asset('assets/images/instagram.svg', width: 15, height: 15),
+            ),
+            const SizedBox(width: 14),
+            _SocialButton(
+              tooltip: 'Email us',
+              onTap: () => launchUrlString('mailto:$contactEmail'),
+              child: const Icon(Icons.alternate_email_rounded, size: 15, color: Color(0xFF6B7280)),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _FooterLink extends StatefulWidget {
+  final String label;
+  final VoidCallback onTap;
+  const _FooterLink({required this.label, required this.onTap});
+
+  @override
+  State<_FooterLink> createState() => _FooterLinkState();
+}
+
+class _FooterLinkState extends State<_FooterLink> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          child: AnimatedDefaultTextStyle(
+            duration: const Duration(milliseconds: 120),
+            style: TextStyle(
+              fontSize: 12,
+              color: _hovered ? kikiOrange : const Color(0xFF6B7280),
+            ),
+            child: Text(widget.label),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Separator extends StatelessWidget {
+  const _Separator();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      '·',
+      style: TextStyle(fontSize: 12, color: Color(0xFFD1D5DB)),
+    );
+  }
+}
+
+class _SocialButton extends StatefulWidget {
+  final Widget child;
+  final String tooltip;
+  final VoidCallback onTap;
+  const _SocialButton({required this.child, required this.tooltip, required this.onTap});
+
+  @override
+  State<_SocialButton> createState() => _SocialButtonState();
+}
+
+class _SocialButtonState extends State<_SocialButton> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: widget.tooltip,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _hovered = true),
+        onExit: (_) => setState(() => _hovered = false),
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 120),
+            opacity: _hovered ? 1.0 : 0.45,
+            child: SizedBox(width: 18, height: 18, child: Center(child: widget.child)),
+          ),
         ),
       ),
     );

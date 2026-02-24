@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../routes.dart';
 import '../widgets/site_scaffold.dart';
+import '../widgets/hero_banner.dart';
 
 class LuckyHallBingoPage extends StatelessWidget {
   final void Function(String route) onNavigate;
@@ -16,82 +17,12 @@ class LuckyHallBingoPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Hero
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 12),
-            padding: const EdgeInsets.all(32),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Color(0xFFFF8A00), Color(0xFFFFD700)],
-              ),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Breadcrumb
-                      GestureDetector(
-                        onTap: () => onNavigate(Routes.home),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.arrow_back, color: Colors.white70, size: 16),
-                            SizedBox(width: 6),
-                            Text(
-                              'Back to Home',
-                              style: TextStyle(color: Colors.white70, fontSize: 13),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Lucky Hall Bingo',
-                        style: theme.textTheme.displayLarge?.copyWith(color: Colors.white),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'The classic game of bingo — reimagined for everyone.',
-                        style: theme.textTheme.headlineMedium?.copyWith(
-                          color: Colors.white.withAlpha(220),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () => onNavigate(Routes.download),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: kikiOrange,
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                          textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                        ),
-                        child: const Text('Download the App'),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 24),
-                Container(
-                  width: 160,
-                  height: 160,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withAlpha(30),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: const Center(
-                    child: Icon(Icons.grid_on_rounded, size: 80, color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
+          HeroBanner(
+            title: 'Lucky Hall Bingo',
+            subtitle: 'The classic game of bingo — reimagined for everyone.',
+            ctaText: 'Download the App',
+            assetPath: 'assets/images/illustration.svg',
+            onCtaPressed: () => onNavigate(Routes.download),
           ),
 
           const SizedBox(height: 36),

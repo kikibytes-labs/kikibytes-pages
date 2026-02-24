@@ -4,7 +4,7 @@ import 'safe_svg.dart';
 
 class HeroBanner extends StatelessWidget {
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final String ctaText;
   final String assetPath;
   final VoidCallback? onCtaPressed;
@@ -12,7 +12,7 @@ class HeroBanner extends StatelessWidget {
   const HeroBanner({
     super.key,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     required this.ctaText,
     required this.assetPath,
     this.onCtaPressed,
@@ -26,13 +26,18 @@ class HeroBanner extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 36),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF1E1B4B), kikiOrange],
+          colors: [
+            Color(0xFF0C0A1E),
+            Color(0xFF1E1B4B),
+            kikiOrange,
+          ],
+          stops: [0.0, 0.45, 1.0],
         ),
       ),
       child: isNarrow
@@ -62,14 +67,16 @@ class HeroBanner extends StatelessWidget {
           title,
           style: theme.textTheme.displayLarge?.copyWith(color: Colors.white),
         ),
-        const SizedBox(height: 10),
-        Text(
-          subtitle,
-          style: theme.textTheme.headlineMedium?.copyWith(
-            color: Colors.white.withAlpha(204),
-            fontWeight: FontWeight.w400,
+        if (subtitle != null && subtitle!.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          Text(
+            subtitle!,
+            style: theme.textTheme.headlineMedium?.copyWith(
+              color: Colors.white.withAlpha(204),
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        ),
+        ],
         const SizedBox(height: 20),
         if (onCtaPressed != null && ctaText.isNotEmpty)
           ElevatedButton(

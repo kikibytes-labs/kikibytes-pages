@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../routes.dart';
+import '../theme.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/project_card.dart';
@@ -22,7 +23,7 @@ class HomePage extends StatelessWidget {
             subtitle: 'Indie Games and Apps',
             ctaText: 'Explore Our Games',
             assetPath: 'assets/images/hero.svg',
-            onCtaPressed: null,
+            onCtaPressed: () => onNavigate(Routes.luckyHallBingo),
           ),
 
           const SizedBox(height: 40),
@@ -43,10 +44,21 @@ class HomePage extends StatelessWidget {
           ),
 
           const SizedBox(height: 48),
-          Text('Our Projects', style: theme.textTheme.headlineMedium),
-          const SizedBox(height: 8),
-          const Divider(),
-          const SizedBox(height: 24),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(
+                  color: kikiOrange,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Text('Our Projects', style: theme.textTheme.headlineMedium),
+            ],
+          ),
+          const SizedBox(height: 20),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,14 +86,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 48),
-          Center(
-            child: ElevatedButton(
-              onPressed: () => onNavigate(Routes.about),
-              child: const Text('Learn More About Us'),
-            ),
-          ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
         ],
       ),
     );

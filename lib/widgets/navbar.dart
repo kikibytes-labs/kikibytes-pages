@@ -13,11 +13,17 @@ class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
-        border: Border(bottom: BorderSide(color: Color(0xFFE5E7EB))),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(10),
+            blurRadius: 24,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: SiteContainer(
         child: Row(
           children: [
@@ -27,7 +33,7 @@ class Navbar extends StatelessWidget {
                 onTap: () => onNavigate(Routes.home),
                 child: Row(
                   children: [
-                    SafeSvg.asset('assets/images/logo.svg', width: 40, height: 40),
+                    SafeSvg.asset('assets/images/logo.svg', width: 34, height: 34),
                     const SizedBox(width: 10),
                     RichText(
                       text: const TextSpan(
@@ -35,17 +41,28 @@ class Navbar extends StatelessWidget {
                           TextSpan(
                             text: 'Kiki',
                             style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
                               color: kikiOrange,
+                              letterSpacing: -0.3,
                             ),
                           ),
                           TextSpan(
-                            text: 'Bytes Labs',
+                            text: 'Bytes',
                             style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
                               color: kikiDeep,
+                              letterSpacing: -0.3,
+                            ),
+                          ),
+                          TextSpan(
+                            text: ' Labs',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFFADB5BD),
+                              letterSpacing: 0.2,
                             ),
                           ),
                         ],
@@ -57,7 +74,9 @@ class Navbar extends StatelessWidget {
             ),
             const Spacer(),
             _NavLink(label: 'Home', route: Routes.home, currentRoute: currentRoute, onNavigate: onNavigate),
+            const SizedBox(width: 2),
             _NavLink(label: 'About', route: Routes.about, currentRoute: currentRoute, onNavigate: onNavigate),
+            const SizedBox(width: 2),
             _NavLink(label: 'Contact', route: Routes.contact, currentRoute: currentRoute, onNavigate: onNavigate),
           ],
         ),
@@ -90,12 +109,6 @@ class _NavLinkState extends State<_NavLink> {
 
   @override
   Widget build(BuildContext context) {
-    final color = _isActive
-        ? kikiOrange
-        : _hovered
-            ? kikiDeep
-            : const Color(0xFF6B7280);
-
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),
@@ -104,21 +117,25 @@ class _NavLinkState extends State<_NavLink> {
         onTap: () => widget.onNavigate(widget.route),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
           decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: _isActive ? kikiOrange : Colors.transparent,
-                width: 2,
-              ),
-            ),
+            color: _isActive
+                ? kikiOrange.withAlpha(18)
+                : _hovered
+                    ? const Color(0xFFF3F4F6)
+                    : Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
           ),
           child: AnimatedDefaultTextStyle(
             duration: const Duration(milliseconds: 150),
             style: TextStyle(
               fontSize: 14,
               fontWeight: _isActive ? FontWeight.w600 : FontWeight.w500,
-              color: color,
+              color: _isActive
+                  ? kikiOrange
+                  : _hovered
+                      ? kikiDeep
+                      : const Color(0xFF6B7280),
             ),
             child: Text(widget.label),
           ),

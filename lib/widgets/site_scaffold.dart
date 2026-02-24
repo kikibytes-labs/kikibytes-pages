@@ -8,10 +8,9 @@ class SiteScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SiteContainer(child: child),
-      ),
+    // No nested Scaffold — the outer MainShell already provides one.
+    return SingleChildScrollView(
+      child: SiteContainer(child: child),
     );
   }
 }
