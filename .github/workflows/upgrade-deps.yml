@@ -1,0 +1,44 @@
+name: Upgrade Dependencies
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 3 * * 0' # weekly on Sunday at 03:00 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  upgrade:
+    name: Upgrade Flutter dependencies and create PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.0'
+
+      - name: Show Flutter version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Upgrade dependencies (major versions)
+        run: flutter pub upgrade --major-versions
+
+      - name: Create Pull Request with updated lockfile
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(deps): upgrade dependencies"
+          branch: "upgrade/deps-${{ github.run_id }}"
+          title: "chore: upgrade dependencies"
+          body: |
+            This PR contains dependency upgrades performed automatically by CI.
+            Please review and run tests before merging.
+          labels: automated, dependencies
