@@ -69,6 +69,8 @@ jobs:
           echo "Checking project slug: '${{ secrets.CLOUDFLARE_PROJECT_NAME }}'"
           resp=$(curl -s -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
             "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/pages/projects")
+          echo "API response: $resp"
+          echo "$resp" | jq
           echo "$resp" | grep -q "\"name\":\"${{ secrets.CLOUDFLARE_PROJECT_NAME }}\"" || {
             echo "ERROR: secret CLOUDFLARE_PROJECT_NAME does not match any project."
             echo "Available projects:" $(echo "$resp" | jq -r '.result[].name')
