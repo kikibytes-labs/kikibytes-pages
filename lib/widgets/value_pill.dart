@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
-import 'safe_svg.dart';
 
 class ValuePill extends StatelessWidget {
   final String title;
   final String subtitle;
-  final String assetPath;
+  final IconData icon;
 
-  const ValuePill({super.key, required this.title, required this.subtitle, required this.assetPath});
+  const ValuePill({super.key, required this.title, required this.subtitle, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class ValuePill extends StatelessWidget {
               color: kikiOrange.withAlpha(20),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Center(child: SafeSvg.asset(assetPath, width: 24, height: 24)),
+            child: Icon(icon, color: kikiOrange, size: 22),
           ),
           const SizedBox(height: 14),
           Text(title, style: theme.textTheme.titleMedium),

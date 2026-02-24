@@ -62,10 +62,8 @@ class _MainShellState extends State<MainShell> {
 
   void _handleNavigate(String route) {
     if (route == _currentRoute) return;
-    setState(() => _currentRoute = route);
-    // Use the root navigator so URLs update and browser back/forward work.
-    // The root transition is a fade, so the crossfade looks seamless since
-    // Navbar and Footer are identical on every page.
+    // Do NOT mutate _currentRoute here. Each MainShell owns exactly its
+    // initialRoute — changing it would corrupt the highlight when back is pressed.
     final rootNav = Navigator.of(context);
     if (route == Routes.home) {
       rootNav.pushNamedAndRemoveUntil(Routes.home, (r) => false);

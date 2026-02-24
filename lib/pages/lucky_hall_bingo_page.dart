@@ -20,18 +20,24 @@ class LuckyHallBingoPage extends StatelessWidget {
           HeroBanner(
             title: 'Lucky Hall Bingo',
             subtitle: 'The classic game of bingo — reimagined for everyone.',
-            ctaText: 'Download the App',
             assetPath: 'assets/images/illustration.svg',
-            onCtaPressed: () => onNavigate(Routes.download),
           ),
 
           const SizedBox(height: 36),
 
           // About section
-          Text('About the Game', style: theme.textTheme.headlineMedium),
-          const SizedBox(height: 8),
-          const Divider(),
-          const SizedBox(height: 16),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
+              ),
+              const SizedBox(width: 10),
+              Text('About the Game', style: theme.textTheme.headlineMedium),
+            ],
+          ),
+          const SizedBox(height: 14),
           Text(
             'Lucky Hall Bingo brings the timeless fun of bingo to your fingertips. Whether you\'re a seasoned bingo veteran or brand new to the game, Lucky Hall Bingo offers a welcoming experience packed with charm, vibrant visuals, and satisfying gameplay.',
             style: theme.textTheme.bodyLarge,
@@ -45,9 +51,17 @@ class LuckyHallBingoPage extends StatelessWidget {
           const SizedBox(height: 36),
 
           // Features
-          Text('Features', style: theme.textTheme.headlineMedium),
-          const SizedBox(height: 8),
-          const Divider(),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
+              ),
+              const SizedBox(width: 10),
+              Text('Features', style: theme.textTheme.headlineMedium),
+            ],
+          ),
           const SizedBox(height: 20),
           _FeatureList(
             features: const [
@@ -61,10 +75,18 @@ class LuckyHallBingoPage extends StatelessWidget {
           const SizedBox(height: 36),
 
           // Status
-          Text('Development Status', style: theme.textTheme.headlineMedium),
-          const SizedBox(height: 8),
-          const Divider(),
-          const SizedBox(height: 16),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
+              ),
+              const SizedBox(width: 10),
+              Text('Development Status', style: theme.textTheme.headlineMedium),
+            ],
+          ),
+          const SizedBox(height: 14),
           _StatusCard(theme: theme, onNavigate: onNavigate),
 
           const SizedBox(height: 40),
@@ -111,11 +133,29 @@ class _FeatureList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      children: features.map((f) => _FeatureTile(feature: f, theme: theme)).toList(),
-    );
+    // Split into rows of 2 so IntrinsicHeight can enforce uniform height per row.
+    final rows = <Widget>[];
+    for (var i = 0; i < features.length; i += 2) {
+      if (i > 0) rows.add(const SizedBox(height: 16));
+      final a = features[i];
+      final b = i + 1 < features.length ? features[i + 1] : null;
+      rows.add(
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(child: _FeatureTile(feature: a, theme: theme)),
+              if (b != null) ...[
+                const SizedBox(width: 16),
+                Expanded(child: _FeatureTile(feature: b, theme: theme)),
+              ] else
+                const Expanded(child: SizedBox()),
+            ],
+          ),
+        ),
+      );
+    }
+    return Column(children: rows);
   }
 }
 
@@ -127,7 +167,6 @@ class _FeatureTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 260,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -196,7 +235,7 @@ class _StatusCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ElevatedButton(
-                      onPressed: () => onNavigate(Routes.download),
+                      onPressed: () => onNavigate(Routes.contact),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: kikiOrange,
@@ -205,7 +244,7 @@ class _StatusCard extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                       ),
-                      child: const Text('Download the App'),
+                      child: const Text('Get in Touch'),
                     ),
                   ],
                 ),

@@ -84,18 +84,19 @@ class AboutPage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Expanded(child: ValuePill(title: 'Creativity', subtitle: 'We thrive on original ideas.', assetPath: 'assets/images/icon1.svg')),
-              SizedBox(width: 16),
-              Expanded(child: ValuePill(title: 'Quality', subtitle: 'Thoughtful engineering and polish.', assetPath: 'assets/images/icon2.svg')),
-              SizedBox(width: 16),
-              Expanded(child: ValuePill(title: 'Fun', subtitle: 'Playful spirit and charm.', assetPath: 'assets/images/icon3.svg')),
-              SizedBox(width: 16),
-              Expanded(child: ValuePill(title: 'Community', subtitle: 'An inclusive player base.', assetPath: 'assets/images/icon1.svg')),
-            ],
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
+                Expanded(child: ValuePill(title: 'Creativity', subtitle: 'We thrive on original ideas.', icon: Icons.lightbulb_outline_rounded)),
+                SizedBox(width: 16),
+                Expanded(child: ValuePill(title: 'Quality', subtitle: 'Thoughtful engineering and polish.', icon: Icons.verified_outlined)),
+                SizedBox(width: 16),
+                Expanded(child: ValuePill(title: 'Fun', subtitle: 'Playful spirit and charm.', icon: Icons.celebration_outlined)),
+                SizedBox(width: 16),
+                Expanded(child: ValuePill(title: 'Community', subtitle: 'An inclusive player base.', icon: Icons.people_outline_rounded)),
+              ],
+            ),
           ),
           const SizedBox(height: 16),
         ],

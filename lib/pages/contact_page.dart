@@ -119,17 +119,33 @@ class _ContactPageState extends State<ContactPage> {
           ),
 
           const SizedBox(height: 32),
-          Text('Get in Touch', style: theme.textTheme.headlineMedium),
-          const SizedBox(height: 8),
-          const Divider(),
-          const SizedBox(height: 20),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
+              ),
+              const SizedBox(width: 10),
+              Text('Get in Touch', style: theme.textTheme.headlineMedium),
+            ],
+          ),
+          const SizedBox(height: 14),
 
           _ContactInfo(),
 
           const SizedBox(height: 40),
-          Text('Send a Message', style: theme.textTheme.headlineMedium),
-          const SizedBox(height: 8),
-          const Divider(),
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
+              ),
+              const SizedBox(width: 10),
+              Text('Send a Message', style: theme.textTheme.headlineMedium),
+            ],
+          ),
           const SizedBox(height: 20),
 
           Center(

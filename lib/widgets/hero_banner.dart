@@ -13,7 +13,7 @@ class HeroBanner extends StatelessWidget {
     super.key,
     required this.title,
     this.subtitle,
-    required this.ctaText,
+    this.ctaText = '',
     required this.assetPath,
     this.onCtaPressed,
   });
