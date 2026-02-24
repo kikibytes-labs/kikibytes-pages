@@ -17,6 +17,14 @@ jobs:
         with:
           flutter-version: '3.13.0'
 
+      - name: Show Flutter version
+        run: flutter --version
+
+      - name: Check Flutter health
+        run: |
+          flutter doctor -v
+          flutter analyze
+
       - name: Cache Pub
         uses: actions/cache@v4
         with:

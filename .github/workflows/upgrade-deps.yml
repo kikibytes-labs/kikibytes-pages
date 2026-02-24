@@ -31,6 +31,11 @@ jobs:
       - name: Upgrade dependencies (major versions)
         run: flutter pub upgrade --major-versions
 
+      - name: Check Flutter health
+        run: |
+          flutter doctor -v
+          flutter analyze
+
       - name: Create Pull Request with updated lockfile
         uses: peter-evans/create-pull-request@v5
         with:

@@ -24,6 +24,11 @@ jobs:
       - name: Show Flutter version
         run: flutter --version
 
+      - name: Check Flutter health
+        run: |
+          flutter doctor -v
+          flutter analyze
+
       - name: Install dependencies
         run: flutter pub get
 
