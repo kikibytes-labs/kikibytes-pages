@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- REQUIRED: fixes infinite loading on Cloudflare -->
+    <base href="/" />
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -42,21 +45,27 @@
         border-radius: 50%;
         animation: spin 0.7s linear infinite;
       }
-      @keyframes spin { to { transform: rotate(360deg); } }
-      flt-glass-pane { background: transparent !important; }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      flt-glass-pane {
+        background: transparent !important;
+      }
     </style>
 
-    <!-- REQUIRED for Flutter Web (3.19+) -->
+    <!-- REQUIRED for Flutter Web -->
     <script src="flutter_bootstrap.js" async></script>
   </head>
+
   <body>
     <div id="loading">
       <div class="spinner"></div>
       <span>Loading KikiBytes Labs…</span>
     </div>
+
     <script>
-      window.addEventListener('flutter-first-frame', function() {
-        var el = document.getElementById('loading');
+      window.addEventListener('flutter-first-frame', function () {
+        const el = document.getElementById('loading');
         if (el) el.remove();
       });
     </script>
