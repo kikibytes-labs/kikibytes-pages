@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../theme.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
+import '../contact_config.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -34,8 +36,16 @@ class _ContactPageState extends State<ContactPage> {
 
     setState(() => _isSubmitting = true);
 
-    // Simulate network request
-    await Future.delayed(const Duration(milliseconds: 1200));
+    final to = contactEmail;
+    final subject = Uri.encodeComponent(_subjectController.text.trim());
+    final body = Uri.encodeComponent('Name: ${_nameController.text.trim()}\nEmail: ${_emailController.text.trim()}\n\n${_messageController.text.trim()}');
+    final mailto = 'mailto:$to?subject=$subject&body=$body';
+
+    try {
+      await launchUrlString(mailto);
+    } catch (e) {
+      // ignore - fallback will still show confirmation
+    }
 
     if (!mounted) return;
     setState(() => _isSubmitting = false);
@@ -198,12 +208,12 @@ class _ContactPageState extends State<ContactPage> {
 class _ContactInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 24,
-      runSpacing: 12,
-      children: const [
-        _ContactTile(icon: Icons.email_outlined, label: 'contact@kikibytes.com', color: kikiOrange),
-        _ContactTile(icon: Icons.location_on_outlined, label: 'Gameville, CA', color: Color(0xFF6B7280)),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _ContactTile(icon: Icons.email_outlined, label: contactEmail, color: kikiOrange),
+        const SizedBox(height: 12),
+        const _ContactTile(icon: Icons.location_on_outlined, label: 'Gameville, CA', color: Color(0xFF6B7280)),
       ],
     );
   }

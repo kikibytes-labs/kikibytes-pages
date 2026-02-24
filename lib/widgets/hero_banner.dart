@@ -71,18 +71,19 @@ class HeroBanner extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: onCtaPressed,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            foregroundColor: kikiOrange,
-            elevation: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        if (onCtaPressed != null && ctaText.isNotEmpty)
+          ElevatedButton(
+            onPressed: onCtaPressed,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: kikiOrange,
+              elevation: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            ),
+            child: Text(ctaText),
           ),
-          child: Text(ctaText),
-        ),
       ],
     );
   }

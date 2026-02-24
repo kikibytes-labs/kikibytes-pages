@@ -101,27 +101,27 @@ class _ProjectCardState extends State<ProjectCard> {
                       Text(widget.title, style: theme.textTheme.titleMedium),
                       const SizedBox(height: 6),
                       Text(widget.tagline, style: theme.textTheme.bodyMedium),
-                      if (!_isDisabled) ...[
-                        const SizedBox(height: 14),
-                        Row(
-                          children: [
-                            Text(
-                              'Learn More',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                                color: kikiOrange,
-                              ),
+                      const SizedBox(height: 14),
+                      Row(
+                        children: [
+                          Text(
+                            'Learn More',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: _isDisabled ? Colors.grey : kikiOrange,
                             ),
-                            const SizedBox(width: 4),
-                            AnimatedSlide(
-                              duration: const Duration(milliseconds: 180),
-                              offset: _hovered ? const Offset(0.2, 0) : Offset.zero,
-                              child: Icon(Icons.arrow_forward, size: 14, color: kikiOrange),
-                            ),
-                          ],
-                        ),
-                      ],
+                          ),
+                          const SizedBox(width: 4),
+                          _isDisabled
+                              ? Icon(Icons.arrow_forward, size: 14, color: Colors.grey)
+                              : AnimatedSlide(
+                                  duration: const Duration(milliseconds: 180),
+                                  offset: _hovered ? const Offset(0.2, 0) : Offset.zero,
+                                  child: Icon(Icons.arrow_forward, size: 14, color: kikiOrange),
+                                ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

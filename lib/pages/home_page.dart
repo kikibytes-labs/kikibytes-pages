@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             subtitle: 'Indie Games and Apps',
             ctaText: 'Explore Our Games',
             assetPath: 'assets/images/hero.svg',
-            onCtaPressed: () => onNavigate(Routes.about),
+            onCtaPressed: null,
           ),
 
           const SizedBox(height: 40),
