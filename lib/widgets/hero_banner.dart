@@ -45,17 +45,25 @@ class HeroBanner extends StatelessWidget {
     final banner = Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 36),
+      // the banner now uses a fixed background image, but we keep the
+      // previous gradient underneath as a fallback in case the image
+      // fails to load or is transparent. the gradient is still visible
+      // through any semi‑transparent portions of the PNG.
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFF0C0A1E),
-            Color(0xFF1E1B4B),
-            kikiOrange,
+            Color(0xFF8E2DE2), // purple
+            Color(0xFF4A00E0), // deep blue
+            Color(0xFFFF416C), // pink
           ],
-          stops: [0.0, 0.45, 1.0],
+          stops: [0.0, 0.5, 1.0],
+        ),
+        image: const DecorationImage(
+          image: AssetImage('assets/images/bg.png'),
+          fit: BoxFit.cover,
         ),
       ),
       child: isNarrow
@@ -98,15 +106,15 @@ class HeroBanner extends StatelessWidget {
       children: [
         Text(
           title,
-          style: titleStyle?.copyWith(color: Colors.white) ??
-              theme.textTheme.displayLarge?.copyWith(color: Colors.white),
+          style: titleStyle?.copyWith(color: Colors.black) ??
+              theme.textTheme.displayLarge?.copyWith(color: Colors.black),
         ),
         if (subtitle != null && subtitle!.isNotEmpty) ...[
           const SizedBox(height: 10),
           Text(
             subtitle!,
             style: theme.textTheme.headlineMedium?.copyWith(
-              color: Colors.white.withAlpha(204),
+              color: Colors.black.withAlpha(204),
               fontWeight: FontWeight.w400,
             ),
           ),
