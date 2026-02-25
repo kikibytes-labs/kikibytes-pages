@@ -26,13 +26,20 @@ class HeroBanner extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final isNarrow = screenWidth < 600;
     final isSvg = assetPath.toLowerCase().endsWith('.svg');
-    // Use the same sizes as the original dummy images
+
+    // base sizes (original dummy sizes)
     final double baseWidth = isNarrow ? 180.0 : 220.0;
     final double baseHeight = isNarrow ? 130.0 : 160.0;
     final double imageWidth = baseWidth;
     final double imageHeight = baseHeight;
 
-    return Container(
+    // When rendering for wide layouts we want the image visually larger but
+    // without affecting surrounding layout. We render a scaled image and
+    // position it absolutely using a Positioned widget inside a Stack.
+    const double imageScale = 4.0;
+
+    // Banner container (keeps its size and layout)
+    final banner = Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 36),
       decoration: BoxDecoration(
@@ -54,23 +61,51 @@ class HeroBanner extends StatelessWidget {
               children: [
                 _textContent(theme),
                 const SizedBox(height: 24),
-                const SizedBox(height: 24),
-                Center(
-                  child: isSvg
-                      ? SafeSvg.asset(assetPath, width: imageWidth, height: imageHeight)
-                      : Image.asset(assetPath, width: imageWidth, height: imageHeight, fit: BoxFit.contain),
-                ),
+                // On narrow screens we don't render the small inline image: the
+                // enlarged positioned image is used for all screen sizes so
+                // rendering a centered small image would create duplication.
               ],
             )
           : Row(
               children: [
                 Expanded(child: _textContent(theme)),
                 const SizedBox(width: 24),
-                isSvg
-                  ? SafeSvg.asset(assetPath, width: imageWidth, height: imageHeight)
-                  : Image.asset(assetPath, width: imageWidth, height: imageHeight, fit: BoxFit.contain),
+                // placeholder box to reserve space in the layout — actual image
+                // is positioned absolutely in the Stack so it won't affect layout
+                SizedBox(width: imageWidth, height: imageHeight),
               ],
             ),
+    );
+
+    // Always wrap everything in a full‑width Stack so we can position the
+    // enlarged image at the top‑right corner of the viewport. The banner itself
+    // remains centered and it continues using its fixed max width to avoid
+    // stretching on large screens.
+    // Wrap banner in a Stack so we can render the enlarged image in the
+    // top‑right corner of the banner itself. The banner retains its normal
+    // width/height and the image simply overflows when scaled.
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        banner,
+        Positioned(
+          // fixed offsets keep the scaled image near the banner's top-right
+          // corner. tune these constants for visual positioning.
+          // pushed another two inches rightward (≈192px)
+          // now nudged left by about 1 1/4" (~120px) total
+          right: -232,
+          // raised roughly one more inch (≈96px)
+          // now dropped slightly (~32px) to sit 1/3" lower
+          top: -144,
+          child: Transform.scale(
+            scale: imageScale,
+            alignment: Alignment.topRight,
+            child: isSvg
+                ? SafeSvg.asset(assetPath, width: imageWidth, height: imageHeight)
+                : Image.asset(assetPath, width: imageWidth, height: imageHeight, fit: BoxFit.contain),
+          ),
+        ),
+      ],
     );
   }
 

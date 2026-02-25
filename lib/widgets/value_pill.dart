@@ -24,20 +24,18 @@ class ValuePill extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            // triple the container to accommodate triple-sized images
-            width: 132,
-            height: 132,
+            width: 44,
+            height: 44,
             decoration: BoxDecoration(
               color: kikiOrange.withAlpha(20),
-              borderRadius: BorderRadius.circular(36),
+              borderRadius: BorderRadius.circular(12),
             ),
             child: imageAsset != null
                 ? Padding(
-                    // center a 66x66 image (22 * 3)
-                    padding: const EdgeInsets.all(33),
-                    child: Image.asset(imageAsset!, width: 66, height: 66, fit: BoxFit.contain),
+                    padding: const EdgeInsets.all(6),
+                    child: Image.asset(imageAsset!, width: 32, height: 32, fit: BoxFit.contain),
                   )
-                : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 66),
+                : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 22),
           ),
           const SizedBox(height: 14),
           Text(title, style: theme.textTheme.titleMedium),
