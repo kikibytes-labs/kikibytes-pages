@@ -19,7 +19,13 @@ class TermsPage extends StatelessWidget {
             title: 'Terms of Service',
             ctaText: 'Back to Home',
             assetPath: 'assets/images/illustration.svg',
-            onCtaPressed: () => onNavigate(Routes.home),
+            onCtaPressed: () {
+              if (Navigator.of(context).canPop()) {
+                Navigator.of(context).pop();
+              } else {
+                onNavigate(Routes.home);
+              }
+            },
           ),
 
           const SizedBox(height: 4),

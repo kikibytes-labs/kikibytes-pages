@@ -5,6 +5,7 @@ import 'pages/home_page.dart';
 import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
 import 'pages/lucky_hall_bingo_page.dart';
+import 'pages/projects_page.dart';
 import 'pages/privacy_page.dart';
 import 'pages/terms_page.dart';
 import 'widgets/navbar.dart';
@@ -76,6 +77,8 @@ class _MainShellState extends State<MainShell> {
     final Widget page;
     if (settings.name == Routes.about) {
       page = AboutPage(onNavigate: _handleNavigate);
+    } else if (settings.name == Routes.projects) {
+      page = ProjectsPage(onNavigate: _handleNavigate);
     } else if (settings.name == Routes.contact) {
       page = const ContactPage();
     } else if (settings.name == Routes.luckyHallBingo) {

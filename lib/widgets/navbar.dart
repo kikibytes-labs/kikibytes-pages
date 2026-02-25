@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../routes.dart';
-import 'safe_svg.dart';
 import 'site_container.dart';
 
 class Navbar extends StatelessWidget {
@@ -23,59 +22,55 @@ class Navbar extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.zero,
       child: SiteContainer(
+        // navigation row with logo attached on the left
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => onNavigate(Routes.home),
-                child: Row(
-                  children: [
-                    Image.asset('assets/images/logo.png', width: 34, height: 34, fit: BoxFit.contain),
-                    const SizedBox(width: 10),
-                    RichText(
-                      text: const TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Kiki',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800,
-                              color: kikiOrange,
-                              letterSpacing: -0.3,
-                            ),
+            GestureDetector(
+              onTap: () => onNavigate(Routes.home),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/cat_head.png',
+                    height: 40,
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.high,
+                  ),
+                  const SizedBox(width: 10),
+                  RichText(
+                    text: const TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'KikiBytes',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: kikiOrange,
                           ),
-                          TextSpan(
-                            text: 'Bytes',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800,
-                              color: kikiDeep,
-                              letterSpacing: -0.3,
-                            ),
+                        ),
+                        TextSpan(
+                          text: ' Labs',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: kikiDeep,
                           ),
-                          TextSpan(
-                            text: ' Labs',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFFADB5BD),
-                              letterSpacing: 0.2,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             const Spacer(),
             _NavLink(label: 'Home', route: Routes.home, currentRoute: currentRoute, onNavigate: onNavigate),
             const SizedBox(width: 2),
             _NavLink(label: 'About', route: Routes.about, currentRoute: currentRoute, onNavigate: onNavigate),
+            const SizedBox(width: 2),
+            _NavLink(label: 'Projects', route: Routes.projects, currentRoute: currentRoute, onNavigate: onNavigate),
             const SizedBox(width: 2),
             _NavLink(label: 'Contact', route: Routes.contact, currentRoute: currentRoute, onNavigate: onNavigate),
           ],

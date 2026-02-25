@@ -20,7 +20,7 @@ class AboutPage extends StatelessWidget {
         children: [
           HeroBanner(
             title: 'About KikiBytes Labs',
-            subtitle: 'Innovative apps and games with a touch of fun and whimsy.',
+            subtitle: 'Innovative apps and games\nwith a touch of fun and whimsy.',
             ctaText: 'Get in Touch',
             assetPath: 'assets/images/cat_hiking.png',
             onCtaPressed: () => onNavigate(Routes.contact),

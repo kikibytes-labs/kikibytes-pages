@@ -113,7 +113,7 @@ class _ContactPageState extends State<ContactPage> {
         children: [
           HeroBanner(
             title: 'Contact Us',
-            subtitle: "Get in touch — we'd love to hear from you!",
+            subtitle: "Get in touch — we'd love\nto hear from you!",
             ctaText: 'Send a Message',
             assetPath: 'assets/images/cat_phone.png',
           ),
