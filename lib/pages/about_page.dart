@@ -22,7 +22,7 @@ class AboutPage extends StatelessWidget {
             title: 'About KikiBytes Labs',
             subtitle: 'Innovative apps and games\nwith a touch of fun and whimsy.',
             ctaText: 'Get in Touch',
-            assetPath: 'assets/images/cat_hiking.png',
+            assetPath: 'assets/images/cat_hiking.jpg',
             onCtaPressed: () => onNavigate(Routes.contact),
           ),
 
@@ -88,13 +88,13 @@ class AboutPage extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: const [
-                Expanded(child: ValuePill(title: 'Creativity', subtitle: 'We thrive on original ideas.', imageAsset: 'assets/images/lightbulb.png')),
+                Expanded(child: ValuePill(title: 'Creativity', subtitle: 'We thrive on original ideas.', imageAsset: 'assets/images/lightbulb.png', imageSizeMultiplier: 4.5)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Quality', subtitle: 'Thoughtful engineering and polish.', imageAsset: 'assets/images/gears.png')),
+                Expanded(child: ValuePill(title: 'Quality', subtitle: 'Thoughtful engineering and polish.', imageAsset: 'assets/images/gears.png', imageSizeMultiplier: 4.5)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Fun', subtitle: 'Playful spirit and charm.', imageAsset: 'assets/images/joystick.png')),
+                Expanded(child: ValuePill(title: 'Fun', subtitle: 'Playful spirit and charm.', imageAsset: 'assets/images/joystick.png', imageSizeMultiplier: 4.5)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Community', subtitle: 'An inclusive player base.', imageAsset: 'assets/images/handshake.png')),
+                Expanded(child: ValuePill(title: 'Community', subtitle: 'An inclusive player base.', imageAsset: 'assets/images/handshake.png', imageSizeMultiplier: 4.5)),
               ],
             ),
           ),

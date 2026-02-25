@@ -6,8 +6,16 @@ class ValuePill extends StatelessWidget {
   final String subtitle;
   final IconData? icon;
   final String? imageAsset;
+  final double imageSizeMultiplier; // scales the image/icon container
 
-  const ValuePill({super.key, required this.title, required this.subtitle, this.icon, this.imageAsset});
+  const ValuePill({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    this.icon,
+    this.imageAsset,
+    this.imageSizeMultiplier = 1.0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +31,26 @@ class ValuePill extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              color: kikiOrange.withAlpha(20),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: imageAsset != null
-                ? Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Image.asset(imageAsset!, fit: BoxFit.contain, filterQuality: FilterQuality.high),
-                  )
-                : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 40),
-          ),
+          // box just big enough to enclose the image/icon
+          Builder(builder: (_) {
+            final double containerSize = 48 * imageSizeMultiplier;
+            final double innerPadding = 8 * imageSizeMultiplier;
+
+            return Container(
+              width: containerSize,
+              height: containerSize,
+              decoration: BoxDecoration(
+                color: kikiOrange.withAlpha(20),
+                borderRadius: BorderRadius.circular(12 * imageSizeMultiplier),
+              ),
+              child: imageAsset != null
+                  ? Padding(
+                      padding: EdgeInsets.all(innerPadding),
+                      child: Image.asset(imageAsset!, fit: BoxFit.contain, filterQuality: FilterQuality.high),
+                    )
+                  : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 24 * imageSizeMultiplier),
+            );
+          }),
           const SizedBox(height: 14),
           Text(title, style: theme.textTheme.titleMedium, textAlign: TextAlign.center),
           const SizedBox(height: 6),

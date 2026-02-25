@@ -39,7 +39,7 @@ class Footer extends StatelessWidget {
             const SizedBox(width: 14),
             _SocialButton(
               tooltip: 'Instagram',
-              onTap: () => launchUrlString('https://instagram.com/kiki.bytes'),
+              onTap: () => launchUrlString('https://instagram.com/kikibytes'),
               child: SafeSvg.asset('assets/images/instagram.svg', width: 15, height: 15),
             ),
             const SizedBox(width: 14),

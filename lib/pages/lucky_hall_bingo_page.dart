@@ -20,7 +20,7 @@ class LuckyHallBingoPage extends StatelessWidget {
           HeroBanner(
             title: 'Lucky Hall Bingo',
             subtitle: 'The classic game of bingo — reimagined for everyone.',
-            assetPath: 'assets/images/illustration.svg',
+            assetPath: 'assets/images/lhb_banner.jpg',
           ),
 
           const SizedBox(height: 36),

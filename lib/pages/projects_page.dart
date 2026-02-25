@@ -25,6 +25,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
       tagline: 'The classic game of bingo — reimagined for everyone.',
       gradientColors: [Color(0xFFFF8A00), Color(0xFFFFD700)],
       previewIcon: Icons.grid_on_rounded,
+      imageAsset: 'assets/images/lhb_title.jpg',
       category: _ProjectFilter.games,
       route: Routes.luckyHallBingo,
     ),
@@ -55,7 +56,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
           HeroBanner(
             title: 'Our Projects',
             subtitle: 'Indie games and apps made\nwith creativity, fun, and heart.',
-            assetPath: 'assets/images/cat_sawing.png',
+            assetPath: 'assets/images/cat_sawing.jpg',
           ),
 
           const SizedBox(height: 40),
@@ -113,6 +114,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                                 tagline: filtered[i].tagline,
                                 gradientColors: filtered[i].gradientColors,
                                 previewIcon: filtered[i].previewIcon,
+                                imageAsset: filtered[i].imageAsset,
                                 badge: filtered[i].badge,
                                 onTap: filtered[i].route != null
                                     ? () => widget.onNavigate(filtered[i].route!)
@@ -220,6 +222,7 @@ class _ProjectData {
   final String tagline;
   final List<Color> gradientColors;
   final IconData previewIcon;
+  final String? imageAsset;
   final _ProjectFilter category;
   final String? badge;
   final String? route;
@@ -229,6 +232,7 @@ class _ProjectData {
     required this.tagline,
     required this.gradientColors,
     required this.previewIcon,
+    this.imageAsset,
     required this.category,
     this.badge,
     this.route,

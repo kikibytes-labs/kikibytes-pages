@@ -11,6 +11,11 @@ import 'pages/terms_page.dart';
 import 'widgets/navbar.dart';
 import 'widgets/footer.dart';
 
+// a RouteObserver is used to keep track of which outer
+// MainShell is currently visible so that the navbar highlight can
+// be corrected when the user navigates with the browser back button.
+final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+
 class KikiBytesApp extends StatelessWidget {
   const KikiBytesApp({super.key});
 
@@ -20,6 +25,7 @@ class KikiBytesApp extends StatelessWidget {
       title: 'KikiBytes Labs',
       debugShowCheckedModeBanner: false,
       theme: kikiTheme,
+      navigatorObservers: [routeObserver],
       onGenerateRoute: (settings) {
         return PageRouteBuilder(
           settings: settings,
@@ -46,7 +52,7 @@ class MainShell extends StatefulWidget {
   State<MainShell> createState() => _MainShellState();
 }
 
-class _MainShellState extends State<MainShell> {
+class _MainShellState extends State<MainShell> with RouteAware {
   final GlobalKey<NavigatorState> _innerNavKey = GlobalKey<NavigatorState>();
   String _currentRoute = Routes.home;
   late final NavigatorObserver _innerObserver;
@@ -58,6 +64,40 @@ class _MainShellState extends State<MainShell> {
     _innerObserver = _InnerNavObserver((routeName) {
       if (routeName == _currentRoute) return;
       setState(() => _currentRoute = routeName ?? Routes.home);
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // subscribe to route changes so we can restore the correct
+    // highlighted tab when this shell reappears after a browser back
+    final ModalRoute? route = ModalRoute.of(context);
+    if (route is PageRoute) {
+      routeObserver.subscribe(this, route);
+    }
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didPopNext() {
+    // another MainShell above us was popped, so we're visible again –
+    // reset the highlight to whatever our initialRoute was.
+    setState(() {
+      _currentRoute = widget.initialRoute;
+    });
+  }
+
+  @override
+  void didPush() {
+    // when this shell is pushed, make sure the route matches
+    setState(() {
+      _currentRoute = widget.initialRoute;
     });
   }
 

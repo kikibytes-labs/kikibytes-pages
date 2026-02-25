@@ -34,7 +34,7 @@ class Navbar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/cat_head.png',
+                    'assets/images/cat_head.jpg',
                     height: 28, // scaled down 50%
                     fit: BoxFit.contain,
                     filterQuality: FilterQuality.high,

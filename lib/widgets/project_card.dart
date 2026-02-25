@@ -8,11 +8,14 @@ class ProjectCard extends StatefulWidget {
   /// Short tagline shown beneath the title.
   final String tagline;
 
-  /// Gradient used for the placeholder image area.
+  /// Gradient used for the placeholder image area (ignored when [imageAsset] is provided).
   final List<Color> gradientColors;
 
-  /// Icon shown in the placeholder image area.
+  /// Icon shown in the placeholder image area (ignored when [imageAsset] is provided).
   final IconData previewIcon;
+
+  /// Optional image asset to render in the top area instead of the gradient/icon.
+  final String? imageAsset;
 
   /// Optional badge label (e.g. "In Progress"). Null means no badge.
   final String? badge;
@@ -26,6 +29,7 @@ class ProjectCard extends StatefulWidget {
     required this.tagline,
     required this.gradientColors,
     required this.previewIcon,
+    this.imageAsset,
     this.badge,
     this.onTap,
   });
@@ -64,25 +68,34 @@ class _ProjectCardState extends State<ProjectCard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Placeholder image area
+                // Placeholder image area (or real asset)
                 Stack(
                   children: [
                     Container(
                       height: 160,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: widget.gradientColors,
-                        ),
-                      ),
-                      child: Center(
-                        child: Icon(
-                          widget.previewIcon,
-                          size: 64,
-                          color: Colors.white.withAlpha(200),
-                        ),
-                      ),
+                      decoration: widget.imageAsset == null
+                          ? BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: widget.gradientColors,
+                              ),
+                            )
+                          : null,
+                      child: widget.imageAsset == null
+                          ? Center(
+                              child: Icon(
+                                widget.previewIcon,
+                                size: 64,
+                                color: Colors.white.withAlpha(200),
+                              ),
+                            )
+                          : Image.asset(
+                              widget.imageAsset!,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: double.infinity,
+                            ),
                     ),
                     if (widget.badge != null)
                       Positioned(

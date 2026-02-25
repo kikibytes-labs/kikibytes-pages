@@ -115,7 +115,7 @@ class _ContactPageState extends State<ContactPage> {
             title: 'Contact Us',
             subtitle: "Get in touch — we'd love\nto hear from you!",
             ctaText: 'Send a Message',
-            assetPath: 'assets/images/cat_phone.png',
+            assetPath: 'assets/images/cat_phone.jpg',
           ),
 
           const SizedBox(height: 32),

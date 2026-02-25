@@ -20,8 +20,8 @@ class HomePage extends StatelessWidget {
         children: [
           HeroBanner(
             title: 'KikiBytes Labs',
-            subtitle: 'Indie Games and Apps',
-            assetPath: 'assets/images/cat_computer.png',
+            subtitle: 'Tiny Bytes, Big Ideas',
+            assetPath: 'assets/images/cat_computer.jpg',
             titleStyle: const TextStyle(
               fontSize: 58,
               fontWeight: FontWeight.w800,
@@ -73,6 +73,7 @@ class HomePage extends StatelessWidget {
                     tagline: 'The classic game of bingo — reimagined for everyone.',
                     gradientColors: const [Color(0xFFFF8A00), Color(0xFFFFD700)],
                     previewIcon: Icons.grid_on_rounded,
+                    imageAsset: 'assets/images/lhb_title.jpg',
                     onTap: () => onNavigate(Routes.luckyHallBingo),
                   ),
                 ),
