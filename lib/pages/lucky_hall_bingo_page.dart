@@ -4,6 +4,7 @@ import '../routes.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../strings.dart';
+import '../widgets/safe_svg.dart';
 
 class LuckyHallBingoPage extends StatelessWidget {
   final void Function(String route) onNavigate;
@@ -67,10 +68,27 @@ class LuckyHallBingoPage extends StatelessWidget {
           const SizedBox(height: 20),
           _FeatureList(
             features: const [
-              _Feature(icon: Icons.grid_on_rounded, title: 'Classic Bingo Gameplay', description: 'Multiple card layouts and pattern win conditions to keep every game fresh.'),
-              _Feature(icon: Icons.palette_outlined, title: 'Themed Cards & Daubers', description: 'Unlock seasonal and holiday-themed bingo cards and custom daubers.'),
-              _Feature(icon: Icons.leaderboard_outlined, title: 'Leaderboards', description: 'Compete globally and climb the ranks to become the Lucky Hall champion.'),
-              _Feature(icon: Icons.bolt_outlined, title: 'Power-Ups', description: 'Strategically deploy power-ups to gain the edge when the numbers are called.'),
+              // each feature now specifies an SVG asset for the icon
+              _Feature(
+                icon: SafeSvg.asset('assets/images/bingo.svg', width: 124, height: 124),
+                title: Strings.luckyHallFeatureClassic,
+                description: Strings.luckyHallFeatureClassicDesc,
+              ),
+              _Feature(
+                icon: SafeSvg.asset('assets/images/charms.svg', width: 124, height: 124),
+                title: Strings.luckyHallFeatureThemed,
+                description: Strings.luckyHallFeatureThemedDesc,
+              ),
+              _Feature(
+                icon: SafeSvg.asset('assets/images/daub.svg', width: 124, height: 124),
+                title: Strings.luckyHallFeatureLeaderboards,
+                description: Strings.luckyHallFeatureLeaderboardsDesc,
+              ),
+              _Feature(
+                icon: SafeSvg.asset('assets/images/pulltab.svg', width: 124, height: 124),
+                title: Strings.luckyHallFeaturePowerUps,
+                description: Strings.luckyHallFeaturePowerUpsDesc,
+              ),
             ],
           ),
 
@@ -122,7 +140,9 @@ class LuckyHallBingoPage extends StatelessWidget {
 }
 
 class _Feature {
-  final IconData icon;
+  // icon is now an arbitrary widget so we can render SVGs instead of
+  // material icons. callers should size/colour the widget as needed.
+  final Widget icon;
   final String title;
   final String description;
   const _Feature({required this.icon, required this.title, required this.description});
@@ -179,13 +199,14 @@ class _FeatureTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 40,
-            height: 40,
+            width: 134,
+            height: 134,
             decoration: BoxDecoration(
               color: kikiOrange.withAlpha(20),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(feature.icon, color: kikiOrange, size: 22),
+            alignment: Alignment.center,
+            child: feature.icon,
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -226,10 +247,10 @@ class _StatusCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Available Now', style: theme.textTheme.titleMedium?.copyWith(color: kikiOrange)),
+                Text(Strings.luckyHallStatusTitle, style: theme.textTheme.titleMedium?.copyWith(color: kikiOrange)),
                 const SizedBox(height: 4),
                 Text(
-                  'Lucky Hall Bingo is live and available to play. Stay tuned for updates, new themes, and seasonal events.',
+                  Strings.luckyHallStatusBody,
                   style: theme.textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),

@@ -8,7 +8,6 @@ void main() async {
   // Preload all SVG assets in parallel before the first frame so every
   // SafeSvg widget renders synchronously with no async flicker.
   await Future.wait([
-    SafeSvg.preload('assets/images/illustration.svg'),
     // logo.png is used instead of svg
     SafeSvg.preload('assets/images/logo.png'),
     SafeSvg.preload('assets/images/facebook.svg'),
@@ -23,6 +22,11 @@ void main() async {
     SafeSvg.preload('assets/images/gears.svg'),
     SafeSvg.preload('assets/images/joystick.svg'),
     SafeSvg.preload('assets/images/handshake.svg'),
+    // lucky hall feature icons
+    SafeSvg.preload('assets/images/bingo.svg'),
+    SafeSvg.preload('assets/images/charms.svg'),
+    SafeSvg.preload('assets/images/daub.svg'),
+    SafeSvg.preload('assets/images/pulltab.svg'),
   ]);
 
   runApp(const KikiBytesApp());
