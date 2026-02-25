@@ -35,7 +35,7 @@ class Navbar extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/images/cat_head.png',
-                    height: 56,
+                    height: 28, // scaled down 50%
                     fit: BoxFit.contain,
                     filterQuality: FilterQuality.high,
                   ),
