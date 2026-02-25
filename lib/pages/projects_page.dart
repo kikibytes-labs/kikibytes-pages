@@ -56,7 +56,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
           HeroBanner(
             title: 'Our Projects',
             subtitle: 'Indie games and apps made\nwith creativity, fun, and heart.',
-            assetPath: 'assets/images/cat_sawing.jpg',
+            assetPath: 'assets/images/cat_sawing.svg',
           ),
 
           const SizedBox(height: 40),

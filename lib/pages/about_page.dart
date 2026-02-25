@@ -23,7 +23,7 @@ class AboutPage extends StatelessWidget {
             title: 'About KikiBytes Labs',
             subtitle: 'Innovative apps and games\nwith a touch of fun and whimsy.',
             ctaText: 'Get in Touch',
-            assetPath: 'assets/images/cat_hiking.jpg',
+            assetPath: 'assets/images/cat_hiking.svg',
             onCtaPressed: () => onNavigate(Routes.contact),
           ),
 
