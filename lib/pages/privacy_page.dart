@@ -18,7 +18,7 @@ class PrivacyPage extends StatelessWidget {
           HeroBanner(
             title: 'Privacy Policy',
             ctaText: 'Back to Home',
-            assetPath: 'assets/images/illustration.svg',
+            assetPath: 'assets/images/cat_towel.svg',
             onCtaPressed: () {
               if (Navigator.of(context).canPop()) {
                 Navigator.of(context).pop();

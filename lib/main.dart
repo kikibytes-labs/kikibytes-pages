@@ -9,7 +9,8 @@ void main() async {
   // SafeSvg widget renders synchronously with no async flicker.
   await Future.wait([
     SafeSvg.preload('assets/images/illustration.svg'),
-    SafeSvg.preload('assets/images/logo.svg'),
+    // logo.png is used instead of svg
+    SafeSvg.preload('assets/images/logo.png'),
     SafeSvg.preload('assets/images/facebook.svg'),
     SafeSvg.preload('assets/images/instagram.svg'),
     SafeSvg.preload('assets/images/lhb_charm.svg'),

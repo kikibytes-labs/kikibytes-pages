@@ -18,7 +18,7 @@ class TermsPage extends StatelessWidget {
           HeroBanner(
             title: 'Terms of Service',
             ctaText: 'Back to Home',
-            assetPath: 'assets/images/illustration.svg',
+            assetPath: 'assets/images/cat_scholar.svg',
             onCtaPressed: () {
               if (Navigator.of(context).canPop()) {
                 Navigator.of(context).pop();

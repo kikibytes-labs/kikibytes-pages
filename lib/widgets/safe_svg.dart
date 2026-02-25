@@ -35,44 +35,51 @@ class SafeSvg extends StatelessWidget {
   }
 
   static Future<String> _loadAndCache(String assetName) {
-    final normalized = _normalizeAsset(assetName);
+    String normalized = _normalizeAsset(assetName);
     if (_cache.containsKey(normalized)) {
       return Future.value(_cache[normalized]!);
     }
     return _inflight.putIfAbsent(normalized, () async {
+      Uint8List list;
+      String loadedPath = normalized;
       try {
-        // load raw bytes then decide if it's svg or binary
         final bytes = await rootBundle.load(normalized);
-        final list = bytes.buffer.asUint8List();
-        // detect common bitmap signatures (PNG, JPEG, GIF)
-        if (list.length >= 4) {
-          // PNG
-          if (list[0] == 0x89 && list[1] == 0x50 && list[2] == 0x4E && list[3] == 0x47) {
-            _cache[normalized] = '<BINARY>';
-            return '<BINARY>';
-          }
-          // JPEG (FF D8 FF)
-          if (list[0] == 0xFF && list[1] == 0xD8 && list[2] == 0xFF) {
-            _cache[normalized] = '<BINARY>';
-            return '<BINARY>';
-          }
-          // GIF (47 49 46 38)
-          if (list[0] == 0x47 && list[1] == 0x49 && list[2] == 0x46 && list[3] == 0x38) {
-            _cache[normalized] = '<BINARY>';
-            return '<BINARY>';
-          }
-        }
-        // treat as text svg
-        final raw = utf8.decode(list);
-        final result = _sanitize(raw);
-        _cache[normalized] = result;
-        return result;
+        list = bytes.buffer.asUint8List();
       } catch (_) {
-        _cache[normalized] = '';
-        return '';
-      } finally {
-        _inflight.remove(normalized);
+        // maybe asset was mis‑named; try png if original was svg
+        if (normalized.toLowerCase().endsWith('.svg')) {
+          final alt = normalized.replaceAll(RegExp(r'\.svg\$'), '.png');
+          final bytes = await rootBundle.load(alt);
+          list = bytes.buffer.asUint8List();
+          loadedPath = alt;
+        } else {
+          rethrow;
+        }
       }
+
+      // detect common bitmap signatures (PNG, JPEG, GIF)
+      if (list.length >= 4) {
+        // PNG
+        if (list[0] == 0x89 && list[1] == 0x50 && list[2] == 0x4E && list[3] == 0x47) {
+          _cache[loadedPath] = '<BINARY>';
+          return '<BINARY>';
+        }
+        // JPEG (FF D8 FF)
+        if (list[0] == 0xFF && list[1] == 0xD8 && list[2] == 0xFF) {
+          _cache[loadedPath] = '<BINARY>';
+          return '<BINARY>';
+        }
+        // GIF (47 49 46 38)
+        if (list[0] == 0x47 && list[1] == 0x49 && list[2] == 0x46 && list[3] == 0x38) {
+          _cache[loadedPath] = '<BINARY>';
+          return '<BINARY>';
+        }
+      }
+      // treat as text svg
+      final raw = utf8.decode(list);
+      final result = _sanitize(raw);
+      _cache[loadedPath] = result;
+      return result;
     });
   }
 
