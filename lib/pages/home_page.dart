@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
                     tagline: 'The classic game of bingo — reimagined for everyone.',
                     gradientColors: const [Color(0xFFFF8A00), Color(0xFFFFD700)],
                     previewIcon: Icons.grid_on_rounded,
-                    imageAsset: 'assets/images/lhb_title.jpg',
+                    imageAsset: 'assets/images/lhb_title.svg',
                     onTap: () => onNavigate(Routes.luckyHallBingo),
                   ),
                 ),

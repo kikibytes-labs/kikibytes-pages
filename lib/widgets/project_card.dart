@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
+import 'safe_svg.dart';
 
 class ProjectCard extends StatefulWidget {
   /// Display name of the project.
@@ -90,7 +91,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                 color: Colors.white.withAlpha(200),
                               ),
                             )
-                          : Image.asset(
+                          : SafeSvg.asset(
                               widget.imageAsset!,
                               fit: BoxFit.cover,
                               width: double.infinity,

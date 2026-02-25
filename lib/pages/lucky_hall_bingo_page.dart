@@ -3,6 +3,7 @@ import '../theme.dart';
 import '../routes.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
+import '../strings.dart';
 
 class LuckyHallBingoPage extends StatelessWidget {
   final void Function(String route) onNavigate;
@@ -18,9 +19,10 @@ class LuckyHallBingoPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeroBanner(
-            title: 'Lucky Hall Bingo',
-            subtitle: 'The classic game of bingo — reimagined for everyone.',
-            assetPath: 'assets/images/lhb_banner.jpg',
+            title: Strings.luckyHallTitle,
+            subtitle: Strings.luckyHallSubtitle,
+            assetPath: 'assets/images/lhb_charm.svg',
+            backgroundAsset: 'assets/images/bg_lhb.png',
           ),
 
           const SizedBox(height: 36),

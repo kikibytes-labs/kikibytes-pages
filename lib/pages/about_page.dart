@@ -4,6 +4,7 @@ import '../theme.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/value_pill.dart';
+import '../strings.dart';
 
 class AboutPage extends StatelessWidget {
   final void Function(String route) onNavigate;
@@ -87,14 +88,14 @@ class AboutPage extends StatelessWidget {
           IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                Expanded(child: ValuePill(title: 'Creativity', subtitle: 'We thrive on original ideas.', imageAsset: 'assets/images/lightbulb.png', imageSizeMultiplier: 4.5)),
+              children: [
+                Expanded(child: ValuePill(title: Strings.valueCreativityTitle, subtitle: Strings.valueCreativitySubtitle, imageAsset: 'assets/images/lightbulb.svg', imageSizeMultiplier: 4.5)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Quality', subtitle: 'Thoughtful engineering and polish.', imageAsset: 'assets/images/gears.png', imageSizeMultiplier: 4.5)),
+                Expanded(child: ValuePill(title: Strings.valueQualityTitle, subtitle: Strings.valueQualitySubtitle, imageAsset: 'assets/images/gears.svg', imageSizeMultiplier: 4.5)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Fun', subtitle: 'Playful spirit and charm.', imageAsset: 'assets/images/joystick.png', imageSizeMultiplier: 4.5)),
+                Expanded(child: ValuePill(title: Strings.valueFunTitle, subtitle: Strings.valueFunSubtitle, imageAsset: 'assets/images/joystick.svg', imageSizeMultiplier: 4.5)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: 'Community', subtitle: 'An inclusive player base.', imageAsset: 'assets/images/handshake.png', imageSizeMultiplier: 4.5)),
+                Expanded(child: ValuePill(title: Strings.valueCommunityTitle, subtitle: Strings.valueCommunitySubtitle, imageAsset: 'assets/images/handshake.svg', imageSizeMultiplier: 4.5)),
               ],
             ),
           ),

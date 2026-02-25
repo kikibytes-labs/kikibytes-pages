@@ -12,6 +12,11 @@ void main() async {
     SafeSvg.preload('assets/images/logo.svg'),
     SafeSvg.preload('assets/images/facebook.svg'),
     SafeSvg.preload('assets/images/instagram.svg'),
+    SafeSvg.preload('assets/images/lhb_charm.svg'),
+    SafeSvg.preload('assets/images/lightbulb.svg'),
+    SafeSvg.preload('assets/images/gears.svg'),
+    SafeSvg.preload('assets/images/joystick.svg'),
+    SafeSvg.preload('assets/images/handshake.svg'),
   ]);
 
   runApp(const KikiBytesApp());

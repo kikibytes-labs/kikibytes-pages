@@ -106,11 +106,9 @@ class _MainShellState extends State<MainShell> with RouteAware {
     // Do NOT mutate _currentRoute here. Each MainShell owns exactly its
     // initialRoute — changing it would corrupt the highlight when back is pressed.
     final rootNav = Navigator.of(context);
-    if (route == Routes.home) {
-      rootNav.pushNamedAndRemoveUntil(Routes.home, (r) => false);
-    } else {
-      rootNav.pushNamed(route);
-    }
+    // avoid rewriting history; let the browser back/forward stack record
+    // every navigation action so the native buttons continue to work.
+    rootNav.pushNamed(route);
   }
 
   Route<dynamic> _onGenerateInner(RouteSettings settings) {

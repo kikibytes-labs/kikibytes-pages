@@ -7,6 +7,9 @@ class HeroBanner extends StatelessWidget {
   final String? subtitle;
   final String ctaText;
   final String assetPath;
+  /// optional background image to use instead of the shared `bg.png`.
+  /// if null the default `assets/images/bg.png` is used.
+  final String? backgroundAsset;
   final VoidCallback? onCtaPressed;
   final TextStyle? titleStyle;
 
@@ -16,6 +19,7 @@ class HeroBanner extends StatelessWidget {
     this.subtitle,
     this.ctaText = '',
     required this.assetPath,
+    this.backgroundAsset,
     this.onCtaPressed,
     this.titleStyle,
   });
@@ -25,7 +29,6 @@ class HeroBanner extends StatelessWidget {
     final theme = Theme.of(context);
     final screenWidth = MediaQuery.of(context).size.width;
     final isNarrow = screenWidth < 600;
-    final isSvg = assetPath.toLowerCase().endsWith('.svg');
 
     // base sizes (original dummy sizes)
     final double baseWidth = isNarrow ? 180.0 : 220.0;
@@ -45,10 +48,11 @@ class HeroBanner extends StatelessWidget {
     final banner = Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 36),
-      // the banner now uses a fixed background image, but we keep the
-      // previous gradient underneath as a fallback in case the image
-      // fails to load or is transparent. the gradient is still visible
-      // through any semi‑transparent portions of the PNG.
+      // the banner now uses a fixed background image (customizable per
+      // instance) but we keep the previous gradient underneath as a
+      // fallback in case the image fails to load or is transparent. the
+      // gradient is still visible through any semi‑transparent portions
+      // of the PNG.
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         gradient: const LinearGradient(
@@ -61,8 +65,8 @@ class HeroBanner extends StatelessWidget {
           ],
           stops: [0.0, 0.5, 1.0],
         ),
-        image: const DecorationImage(
-          image: AssetImage('assets/images/bg.png'),
+        image: DecorationImage(
+          image: AssetImage(backgroundAsset ?? 'assets/images/bg.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -75,9 +79,7 @@ class HeroBanner extends StatelessWidget {
                 SizedBox(
                   width: imageWidth * imageScale,
                   height: imageHeight * imageScale,
-                  child: isSvg
-                      ? SafeSvg.asset(assetPath)
-                      : Image.asset(assetPath, fit: BoxFit.contain),
+                  child: SafeSvg.asset(assetPath, fit: BoxFit.contain),
                 ),
               ],
             )
@@ -89,9 +91,7 @@ class HeroBanner extends StatelessWidget {
                 SizedBox(
                   width: imageWidth * imageScale,
                   height: imageHeight * imageScale,
-                  child: isSvg
-                      ? SafeSvg.asset(assetPath)
-                      : Image.asset(assetPath, fit: BoxFit.contain),
+                  child: SafeSvg.asset(assetPath, fit: BoxFit.contain),
                 ),
               ],
             ),

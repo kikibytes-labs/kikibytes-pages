@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:convert';
 
 /// Loads and renders SVG assets with a static cache so each asset is only
 /// fetched + sanitized once. Call [SafeSvg.preload] for each asset before
@@ -12,6 +13,8 @@ class SafeSvg extends StatelessWidget {
   final BoxFit fit;
 
   // Stores fully processed SVG strings keyed by asset path.
+  // special value '<BINARY>' means we detected non-SVG data (PNG etc) and
+  // should render via Image.asset instead.
   static final Map<String, String> _cache = {};
 
   // Deduplicates concurrent loads for the same asset.
@@ -26,21 +29,40 @@ class SafeSvg extends StatelessWidget {
     await _loadAndCache(assetName);
   }
 
+  static String _normalizeAsset(String path) {
+    if (path.startsWith('assets/')) return path.substring(7);
+    return path;
+  }
+
   static Future<String> _loadAndCache(String assetName) {
-    if (_cache.containsKey(assetName)) {
-      return Future.value(_cache[assetName]!);
+    final normalized = _normalizeAsset(assetName);
+    if (_cache.containsKey(normalized)) {
+      return Future.value(_cache[normalized]!);
     }
-    return _inflight.putIfAbsent(assetName, () async {
+    return _inflight.putIfAbsent(normalized, () async {
       try {
-        final raw = await rootBundle.loadString(assetName);
+        // load raw bytes then decide if it's svg or binary
+        final bytes = await rootBundle.load(normalized);
+        final list = bytes.buffer.asUint8List();
+        // detect PNG header (89 50 4E 47) or GIF or JPG (common cases)
+        if (list.length >= 4 &&
+            list[0] == 0x89 &&
+            list[1] == 0x50 &&
+            list[2] == 0x4E &&
+            list[3] == 0x47) {
+          _cache[normalized] = '<BINARY>';
+          return '<BINARY>';
+        }
+        // treat as text svg
+        final raw = utf8.decode(list);
         final result = _sanitize(raw);
-        _cache[assetName] = result;
+        _cache[normalized] = result;
         return result;
       } catch (_) {
-        _cache[assetName] = '';
+        _cache[normalized] = '';
         return '';
       } finally {
-        _inflight.remove(assetName);
+        _inflight.remove(normalized);
       }
     });
   }
@@ -69,8 +91,12 @@ class SafeSvg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Cache hit → synchronous render, no async flicker.
-    final cached = _cache[assetName];
+    final key = _normalizeAsset(assetName);
+    final cached = _cache[key];
     if (cached != null) {
+      if (cached == '<BINARY>') {
+        return Image.asset(key, width: width, height: height, fit: fit);
+      }
       return cached.isEmpty ? _fallback() : _render(cached);
     }
 
@@ -83,6 +109,9 @@ class SafeSvg extends StatelessWidget {
         }
         final data = snapshot.data;
         if (data == null || data.isEmpty) return _fallback();
+        if (data == '<BINARY>') {
+          return Image.asset(_normalizeAsset(assetName), width: width, height: height, fit: fit);
+        }
         return _render(data);
       },
     );
