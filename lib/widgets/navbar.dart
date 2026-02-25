@@ -35,7 +35,7 @@ class Navbar extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/images/cat_head.png',
-                    height: 40,
+                    height: 56,
                     fit: BoxFit.contain,
                     filterQuality: FilterQuality.high,
                   ),
@@ -44,11 +44,19 @@ class Navbar extends StatelessWidget {
                     text: const TextSpan(
                       children: [
                         TextSpan(
-                          text: 'KikiBytes',
+                          text: 'Kiki',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: kikiOrange,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'Bytes',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
                           ),
                         ),
                         TextSpan(

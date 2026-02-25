@@ -21,26 +21,26 @@ class ValuePill extends StatelessWidget {
         border: Border.all(color: const Color(0xFFE5E7EB)),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 44,
-            height: 44,
+            width: 80,
+            height: 80,
             decoration: BoxDecoration(
               color: kikiOrange.withAlpha(20),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(16),
             ),
             child: imageAsset != null
                 ? Padding(
-                    padding: const EdgeInsets.all(6),
-                    child: Image.asset(imageAsset!, width: 32, height: 32, fit: BoxFit.contain),
+                    padding: const EdgeInsets.all(10),
+                    child: Image.asset(imageAsset!, fit: BoxFit.contain, filterQuality: FilterQuality.high),
                   )
-                : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 22),
+                : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 40),
           ),
           const SizedBox(height: 14),
-          Text(title, style: theme.textTheme.titleMedium),
+          Text(title, style: theme.textTheme.titleMedium, textAlign: TextAlign.center),
           const SizedBox(height: 6),
-          Text(subtitle, style: theme.textTheme.bodyMedium),
+          Text(subtitle, style: theme.textTheme.bodyMedium, textAlign: TextAlign.center),
         ],
       ),
     );
