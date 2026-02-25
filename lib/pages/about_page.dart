@@ -89,13 +89,13 @@ class AboutPage extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Expanded(child: ValuePill(title: Strings.valueCreativityTitle, subtitle: Strings.valueCreativitySubtitle, imageAsset: 'assets/images/lightbulb.svg', imageSizeMultiplier: 4.5)),
+                Expanded(child: ValuePill(title: Strings.valueCreativityTitle, subtitle: Strings.valueCreativitySubtitle, imageAsset: 'assets/images/lightbulb.svg', imageSizeMultiplier: 3.375)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: Strings.valueQualityTitle, subtitle: Strings.valueQualitySubtitle, imageAsset: 'assets/images/gears.svg', imageSizeMultiplier: 4.5)),
+                Expanded(child: ValuePill(title: Strings.valueQualityTitle, subtitle: Strings.valueQualitySubtitle, imageAsset: 'assets/images/gears.svg', imageSizeMultiplier: 3.375)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: Strings.valueFunTitle, subtitle: Strings.valueFunSubtitle, imageAsset: 'assets/images/joystick.svg', imageSizeMultiplier: 4.5)),
+                Expanded(child: ValuePill(title: Strings.valueFunTitle, subtitle: Strings.valueFunSubtitle, imageAsset: 'assets/images/joystick.svg', imageSizeMultiplier: 3.375)),
                 SizedBox(width: 16),
-                Expanded(child: ValuePill(title: Strings.valueCommunityTitle, subtitle: Strings.valueCommunitySubtitle, imageAsset: 'assets/images/handshake.svg', imageSizeMultiplier: 4.5)),
+                Expanded(child: ValuePill(title: Strings.valueCommunityTitle, subtitle: Strings.valueCommunitySubtitle, imageAsset: 'assets/images/handshake.svg', imageSizeMultiplier: 3.375)),
               ],
             ),
           ),
