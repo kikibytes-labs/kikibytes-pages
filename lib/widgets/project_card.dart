@@ -48,7 +48,8 @@ class _ProjectCardState extends State<ProjectCard> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final screenWidth = MediaQuery.of(context).size.width;
-    final imageHeight = screenWidth < 600 ? 200.0 : 160.0;
+    final isNarrow = screenWidth < 600;
+    final imageHeight = isNarrow ? 160.0 : 200.0;
 
     // Build the card widget first so we can optionally constrain and center it
     Widget cardWidget = AnimatedContainer(
@@ -84,13 +85,12 @@ class _ProjectCardState extends State<ProjectCard> {
                       ? Center(
                           child: Icon(
                             widget.previewIcon,
-                            size: 64,
+                            size: isNarrow ? 48 : 64,
                             color: Colors.white.withAlpha(200),
                           ),
                         )
                       : SafeSvg.asset(
                           widget.imageAsset!,
-                          fit: BoxFit.contain,
                           width: double.infinity,
                           height: double.infinity,
                         ),
@@ -105,7 +105,7 @@ class _ProjectCardState extends State<ProjectCard> {
             ),
             // Card body
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(isNarrow ? 14 : 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -125,11 +125,11 @@ class _ProjectCardState extends State<ProjectCard> {
                       ),
                       const SizedBox(width: 4),
                       _isDisabled
-                          ? Icon(Icons.arrow_forward, size: 14, color: Colors.grey)
+                          ? const Icon(Icons.arrow_forward, size: 14, color: Colors.grey)
                           : AnimatedSlide(
                               duration: const Duration(milliseconds: 180),
                               offset: _hovered ? const Offset(0.2, 0) : Offset.zero,
-                              child: Icon(Icons.arrow_forward, size: 14, color: kikiOrange),
+                              child: const Icon(Icons.arrow_forward, size: 14, color: kikiOrange),
                             ),
                     ],
                   ),
@@ -149,6 +149,14 @@ class _ProjectCardState extends State<ProjectCard> {
           constraints: const BoxConstraints(maxWidth: 420),
           child: cardWidget,
         ),
+      );
+    }
+
+    // On narrow screens, add horizontal padding so cards don't feel long & skinny
+    if (isNarrow) {
+      cardWidget = Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: cardWidget,
       );
     }
 

@@ -19,7 +19,7 @@ class LuckyHallBingoPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HeroBanner(
+          const HeroBanner(
             title: Strings.luckyHallTitle,
             subtitle: Strings.luckyHallSubtitle,
             assetPath: 'assets/images/lhb_charm.svg',
@@ -77,8 +77,8 @@ class LuckyHallBingoPage extends StatelessWidget {
                   ),
                   child: const Text(Strings.luckyHallStatusButton),
                 ),
-          _FeatureList(
-            features: const [
+          const _FeatureList(
+            features: [
               // each feature now specifies an SVG asset for the icon
               _Feature(
                 icon: SafeSvg.asset('assets/images/bingo.svg', width: 124, height: 124),
@@ -126,7 +126,6 @@ class LuckyHallBingoPage extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   Strings.luckyHallCtaTitle,
@@ -147,7 +146,6 @@ class LuckyHallBingoPage extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: () => onNavigate(Routes.contact),
@@ -289,7 +287,7 @@ class _StatusCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(Icons.rocket_launch_outlined, color: kikiOrange, size: 28),
+          const Icon(Icons.rocket_launch_outlined, color: kikiOrange, size: 28),
           const SizedBox(width: 16),
           Expanded(
             child: Column(

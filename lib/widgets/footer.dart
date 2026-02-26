@@ -22,9 +22,9 @@ class Footer extends StatelessWidget {
       child: SiteContainer(
         child: Row(
           children: [
-            Text(
+            const Text(
               Strings.footerCopyright,
-              style: const TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
+              style: TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
             ),
             const Spacer(),
             _FooterLink(label: 'Privacy', onTap: () => context.go(Routes.privacy)),
@@ -34,13 +34,13 @@ class Footer extends StatelessWidget {
             _SocialButton(
               tooltip: 'Facebook',
               onTap: () => launchUrlString('https://www.facebook.com/profile.php?id=61588637222576'),
-              child: SafeSvg.asset('assets/images/facebook.svg', width: 15, height: 15),
+              child: const SafeSvg.asset('assets/images/facebook.svg', width: 15, height: 15),
             ),
             const SizedBox(width: 14),
             _SocialButton(
               tooltip: 'Instagram',
               onTap: () => launchUrlString('https://instagram.com/kikibytes'),
-              child: SafeSvg.asset('assets/images/instagram.svg', width: 15, height: 15),
+              child: const SafeSvg.asset('assets/images/instagram.svg', width: 15, height: 15),
             ),
             const SizedBox(width: 14),
             _SocialButton(

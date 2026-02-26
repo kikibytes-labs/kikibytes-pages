@@ -19,11 +19,11 @@ class HomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HeroBanner(
+          const HeroBanner(
             title: Strings.homeTitle,
             subtitle: Strings.homeSubtitle,
             assetPath: 'assets/images/cat_computer.svg',
-            titleStyle: const TextStyle(
+            titleStyle: TextStyle(
               fontSize: 58,
               fontWeight: FontWeight.w800,
               height: 1.1,
@@ -33,7 +33,6 @@ class HomePage extends StatelessWidget {
 
           const SizedBox(height: 40),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(Strings.homeWelcome, style: theme.textTheme.headlineMedium),
               const SizedBox(height: 12),
@@ -79,11 +78,11 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 20),
-                Expanded(
+                const Expanded(
                   child: ProjectCard(
                     title: Strings.projectChatSpreeTitle,
                     tagline: Strings.projectChatSpreeTagline,
-                    gradientColors: const [Color(0xFF6366F1), Color(0xFF0EA5E9)],
+                    gradientColors: [Color(0xFF6366F1), Color(0xFF0EA5E9)],
                     previewIcon: Icons.chat_bubble_outline_rounded,
                     badge: Strings.projectBadgeInProgress,
                   ),

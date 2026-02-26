@@ -37,7 +37,7 @@ class _ContactPageState extends State<ContactPage> {
 
     setState(() => _isSubmitting = true);
 
-    final to = contactEmail;
+    const to = contactEmail;
     final subject = Uri.encodeComponent(_subjectController.text.trim());
     final body = Uri.encodeComponent('Name: ${_nameController.text.trim()}\nEmail: ${_emailController.text.trim()}\n\n${_messageController.text.trim()}');
     final mailto = 'mailto:$to?subject=$subject&body=$body';
@@ -112,7 +112,7 @@ class _ContactPageState extends State<ContactPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HeroBanner(
+          const HeroBanner(
             title: Strings.contactTitle,
             subtitle: Strings.contactSubtitle,
             ctaText: Strings.contactCta,
@@ -225,12 +225,12 @@ class _ContactPageState extends State<ContactPage> {
 class _ContactInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-        return Column(
+        return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _ContactTile(icon: Icons.email_outlined, label: contactEmail, color: kikiOrange),
-        const SizedBox(height: 12),
-        const _ContactTile(icon: Icons.location_on_outlined, label: Strings.contactLocation, color: Color(0xFF6B7280)),
+        SizedBox(height: 12),
+        _ContactTile(icon: Icons.location_on_outlined, label: Strings.contactLocation, color: Color(0xFF6B7280)),
       ],
     );
   }

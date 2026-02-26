@@ -21,7 +21,7 @@ void main() {
 class PreloadApp extends StatefulWidget {
   final Widget child;
 
-  const PreloadApp({Key? key, required this.child}) : super(key: key);
+  const PreloadApp({super.key, required this.child});
 
   @override
   State<PreloadApp> createState() => _PreloadAppState();
@@ -96,10 +96,10 @@ class _PreloadAppState extends State<PreloadApp> {
             children: [
               Image.asset('assets/images/logo.png', height: 58),
               const SizedBox(height: 16),
-              SizedBox(
+              const SizedBox(
                 width: 20,
                 height: 20,
-                child: const CircularProgressIndicator(strokeWidth: 2.5),
+                child: CircularProgressIndicator(strokeWidth: 2.5),
               ),
             ],
           ),

@@ -12,7 +12,6 @@ final kikiTheme = ThemeData(
   primaryColor: kikiOrange,
   colorScheme: ColorScheme.fromSeed(
     seedColor: kikiOrange,
-    brightness: Brightness.light,
     surface: _kikiSurface,
   ),
 

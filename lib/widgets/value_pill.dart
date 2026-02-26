@@ -30,7 +30,6 @@ class ValuePill extends StatelessWidget {
         border: Border.all(color: const Color(0xFFE5E7EB)),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // box just big enough to enclose the image/icon
           Builder(builder: (_) {
@@ -47,7 +46,7 @@ class ValuePill extends StatelessWidget {
               child: imageAsset != null
                   ? Padding(
                       padding: EdgeInsets.all(innerPadding),
-                      child: SafeSvg.asset(imageAsset!, fit: BoxFit.contain, width: double.infinity, height: double.infinity),
+                      child: SafeSvg.asset(imageAsset!, width: double.infinity, height: double.infinity),
                     )
                   : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 24 * imageSizeMultiplier),
             );

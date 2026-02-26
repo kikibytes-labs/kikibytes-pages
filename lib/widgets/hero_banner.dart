@@ -79,7 +79,7 @@ class HeroBanner extends StatelessWidget {
                 SizedBox(
                   width: imageWidth * imageScale,
                   height: imageHeight * imageScale,
-                  child: SafeSvg.asset(assetPath, fit: BoxFit.contain),
+                  child: SafeSvg.asset(assetPath),
                 ),
               ],
             )
@@ -91,7 +91,7 @@ class HeroBanner extends StatelessWidget {
                 SizedBox(
                   width: imageWidth * imageScale,
                   height: imageHeight * imageScale,
-                  child: SafeSvg.asset(assetPath, fit: BoxFit.contain),
+                  child: SafeSvg.asset(assetPath),
                 ),
               ],
             ),
