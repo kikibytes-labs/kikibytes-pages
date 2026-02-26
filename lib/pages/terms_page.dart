@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../routes.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
-import '../contact_config.dart';
 import '../strings.dart';
 
 class TermsPage extends StatelessWidget {
