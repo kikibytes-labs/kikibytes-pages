@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../theme.dart';
 import 'site_container.dart';
@@ -7,9 +9,7 @@ import '../routes.dart';
 import '../contact_config.dart';
 
 class Footer extends StatelessWidget {
-  final void Function(String route) onNavigate;
-
-  const Footer({super.key, required this.onNavigate});
+  const Footer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,9 @@ class Footer extends StatelessWidget {
               style: TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
             ),
             const Spacer(),
-            _FooterLink(label: 'Privacy', onTap: () => onNavigate(Routes.privacy)),
+            _FooterLink(label: 'Privacy', onTap: () => context.go(Routes.privacy)),
             const _Separator(),
-            _FooterLink(label: 'Terms', onTap: () => onNavigate(Routes.terms)),
+            _FooterLink(label: 'Terms', onTap: () => context.go(Routes.terms)),
             const SizedBox(width: 20),
             _SocialButton(
               tooltip: 'Facebook',

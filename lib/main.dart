@@ -29,5 +29,5 @@ void main() async {
     SafeSvg.preload('assets/images/pulltab.svg'),
   ]);
 
-  runApp(const KikiBytesApp());
+  runApp(KikiBytesApp());
 }

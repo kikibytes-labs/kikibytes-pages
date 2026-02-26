@@ -8,9 +8,14 @@ class SiteScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // No nested Scaffold — the outer MainShell already provides one.
+    // No nested Scaffold — the outer router shell provides one.  Wrap the
+    // body in a white container so that when the page fades in the underlying
+    // content from the previous route isn't visible through transparent areas.
     return SingleChildScrollView(
-      child: SiteContainer(child: child),
+      child: Container(
+        color: Colors.white,
+        child: SiteContainer(child: child),
+      ),
     );
   }
 }

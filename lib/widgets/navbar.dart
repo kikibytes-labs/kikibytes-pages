@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../routes.dart';
 import 'site_container.dart';
+import 'package:go_router/go_router.dart';
 
 class Navbar extends StatelessWidget {
-  final void Function(String route) onNavigate;
-  final String currentRoute;
-
-  const Navbar({super.key, required this.onNavigate, required this.currentRoute});
+  const Navbar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,7 @@ class Navbar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () => onNavigate(Routes.home),
+              onTap: () => context.go(Routes.home),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -74,13 +72,13 @@ class Navbar extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            _NavLink(label: 'Home', route: Routes.home, currentRoute: currentRoute, onNavigate: onNavigate),
+            _NavLink(label: 'Home', route: Routes.home),
             const SizedBox(width: 2),
-            _NavLink(label: 'About', route: Routes.about, currentRoute: currentRoute, onNavigate: onNavigate),
+            _NavLink(label: 'About', route: Routes.about),
             const SizedBox(width: 2),
-            _NavLink(label: 'Projects', route: Routes.projects, currentRoute: currentRoute, onNavigate: onNavigate),
+            _NavLink(label: 'Projects', route: Routes.projects),
             const SizedBox(width: 2),
-            _NavLink(label: 'Contact', route: Routes.contact, currentRoute: currentRoute, onNavigate: onNavigate),
+            _NavLink(label: 'Contact', route: Routes.contact),
           ],
         ),
       ),
@@ -91,14 +89,10 @@ class Navbar extends StatelessWidget {
 class _NavLink extends StatefulWidget {
   final String label;
   final String route;
-  final String currentRoute;
-  final void Function(String) onNavigate;
 
   const _NavLink({
     required this.label,
     required this.route,
-    required this.currentRoute,
-    required this.onNavigate,
   });
 
   @override
@@ -108,7 +102,7 @@ class _NavLink extends StatefulWidget {
 class _NavLinkState extends State<_NavLink> {
   bool _hovered = false;
 
-  bool get _isActive => widget.currentRoute == widget.route;
+  bool get _isActive => GoRouter.of(context).state.uri.path == widget.route;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +111,7 @@ class _NavLinkState extends State<_NavLink> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
-        onTap: () => widget.onNavigate(widget.route),
+        onTap: () => context.go(widget.route),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),

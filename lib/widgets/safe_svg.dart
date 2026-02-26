@@ -29,16 +29,12 @@ class SafeSvg extends StatelessWidget {
     await _loadAndCache(assetName);
   }
 
-  static String _normalizeAsset(String path) {
-    if (path.startsWith('assets/')) return path.substring(7);
-    return path;
-  }
-
-  static Future<String> _loadAndCache(String assetName) {
-    String normalized = _normalizeAsset(assetName);
-    if (_cache.containsKey(normalized)) {
-      return Future.value(_cache[normalized]!);
+    static Future<String> _loadAndCache(String assetName) {
+    if (_cache.containsKey(assetName)) {
+      return Future.value(_cache[assetName]!);
     }
+    // no normalization needed; use the asset name directly
+    final normalized = assetName;
     return _inflight.putIfAbsent(normalized, () async {
       Uint8List list;
       String loadedPath = normalized;
@@ -107,7 +103,7 @@ class SafeSvg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Cache hit → synchronous render, no async flicker.
-    final key = _normalizeAsset(assetName);
+    final key = assetName;
     final cached = _cache[key];
     if (cached != null) {
       if (cached == '<BINARY>') {
@@ -126,7 +122,7 @@ class SafeSvg extends StatelessWidget {
         final data = snapshot.data;
         if (data == null || data.isEmpty) return _fallback();
         if (data == '<BINARY>') {
-          return Image.asset(_normalizeAsset(assetName), width: width, height: height, fit: fit);
+          return Image.asset(assetName, width: width, height: height, fit: fit);
         }
         return _render(data);
       },
