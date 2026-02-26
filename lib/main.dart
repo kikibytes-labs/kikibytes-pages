@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'app.dart';
 import 'widgets/safe_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,5 +36,13 @@ void main() async {
     SafeSvg.preload('assets/images/bg_lhb.png'),
   ]);
 
-  runApp(KikiBytesApp());
+  runApp(
+    ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => child!,
+      child: KikiBytesApp(),
+    ),
+  );
 }

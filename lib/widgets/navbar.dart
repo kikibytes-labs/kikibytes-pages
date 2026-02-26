@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme.dart';
 import '../routes.dart';
 import 'site_container.dart';
@@ -32,16 +33,16 @@ class Navbar extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SafeSvg.asset('assets/images/cat_head.svg', height: 28),
-                  const SizedBox(width: 10),
+                  SafeSvg.asset('assets/images/cat_head.svg', height: 28.h),
+                  SizedBox(width: 6.w),
                   RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       children: [
                         TextSpan(
                           // append a word-joiner to avoid line breaking between Kiki and Bytes
                           text: 'Kiki\u2060',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 7.2.sp,
                             fontWeight: FontWeight.bold,
                             color: kikiOrange,
                           ),
@@ -49,7 +50,7 @@ class Navbar extends StatelessWidget {
                         TextSpan(
                           text: 'Bytes',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 7.2.sp,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -57,7 +58,7 @@ class Navbar extends StatelessWidget {
                         TextSpan(
                           text: ' Labs',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 7.2.sp,
                             fontWeight: FontWeight.w500,
                             color: kikiDeep,
                           ),
@@ -70,11 +71,11 @@ class Navbar extends StatelessWidget {
             ),
             const Spacer(),
             _NavLink(label: 'Home', route: Routes.home),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.w),
             _NavLink(label: 'About', route: Routes.about),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.w),
             _NavLink(label: 'Projects', route: Routes.projects),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.w),
             _NavLink(label: 'Contact', route: Routes.contact),
           ],
         ),
