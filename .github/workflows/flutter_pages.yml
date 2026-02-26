@@ -41,7 +41,5 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: foOwdWGWDIJtcI1MM3VUppvL9XxWguLFtwpaGElY
-          accountId: 5d712cd84a58f1cc6ba05cd90de15cad
           projectName: kikibytes-pages
           directory: build/web
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
