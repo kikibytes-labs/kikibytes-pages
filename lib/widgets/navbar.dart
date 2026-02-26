@@ -30,19 +30,21 @@ class Navbar extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () => context.go(Routes.home),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SafeSvg.asset('assets/images/cat_head.svg', height: 28.h * 0.85),
-                  SizedBox(width: 2.w),
-                  RichText(
+              child: Padding(
+                padding: EdgeInsets.only(top: 6.h),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                      SafeSvg.asset('assets/images/cat_head.svg', height: (28.h * 0.85) * 1.10),
+                    SizedBox(width: 2.w),
+                    RichText(
                     text: TextSpan(
                       children: [
                         TextSpan(
                           // append a word-joiner to avoid line breaking between Kiki and Bytes
                           text: 'Kiki\u2060',
                           style: TextStyle(
-                            fontSize: 7.2.sp,
+                            fontSize: 7.2.sp * 1.10,
                             fontWeight: FontWeight.bold,
                             color: kikiOrange,
                           ),
@@ -50,7 +52,7 @@ class Navbar extends StatelessWidget {
                         TextSpan(
                           text: 'Bytes',
                           style: TextStyle(
-                            fontSize: 7.2.sp,
+                            fontSize: 7.2.sp * 1.10,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -58,15 +60,16 @@ class Navbar extends StatelessWidget {
                         TextSpan(
                           text: ' Labs',
                           style: TextStyle(
-                            fontSize: 7.2.sp,
+                            fontSize: 7.2.sp * 1.10,
                             fontWeight: FontWeight.w500,
                             color: const Color(0xFF6B7280),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
             const Spacer(),
