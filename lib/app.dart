@@ -48,7 +48,7 @@ class KikiBytesApp extends StatelessWidget {
           return Scaffold(
             body: Column(
               children: [
-                const Navbar(),
+                Navbar(),
                 Expanded(child: child),
                 const Footer(),
               ],

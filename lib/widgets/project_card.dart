@@ -141,15 +141,21 @@ class _ProjectCardState extends State<ProjectCard> {
       ),
     );
 
-    // If this card uses an image asset, constrain its width and center it
+    // If this card uses an image asset, constrain its width and center it on wide screens.
+    // On narrow screens we want the card to take the available width so it doesn't
+    // collapse into a skinny sliver.
     if (widget.imageAsset != null) {
-      cardWidget = Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 420),
-          child: cardWidget,
-        ),
-      );
+      if (isNarrow) {
+        cardWidget = Align(alignment: Alignment.topCenter, child: SizedBox(width: double.infinity, child: cardWidget));
+      } else {
+        cardWidget = Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 420),
+            child: cardWidget,
+          ),
+        );
+      }
     }
 
     // On narrow screens, add horizontal padding so cards don't feel long & skinny

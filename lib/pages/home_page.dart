@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
               Text(Strings.homeWelcome, style: theme.textTheme.headlineMedium),
               const SizedBox(height: 12),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
+                padding: EdgeInsets.symmetric(horizontal: isNarrow ? 16 : 40),
                 child: Text(
                   Strings.homeIntro,
                   textAlign: TextAlign.center,

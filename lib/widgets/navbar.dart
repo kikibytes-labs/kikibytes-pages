@@ -70,33 +70,36 @@ class Navbar extends StatelessWidget {
             ),
             const Spacer(),
             if (!isNarrow) ...[
-              const _NavLink(label: 'Home', route: Routes.home),
+              _NavLink(label: 'Home', route: Routes.home),
               SizedBox(width: 12.w),
-              const _NavLink(label: 'About', route: Routes.about),
+              _NavLink(label: 'About', route: Routes.about),
               SizedBox(width: 12.w),
-              const _NavLink(label: 'Projects', route: Routes.projects),
+              _NavLink(label: 'Projects', route: Routes.projects),
               SizedBox(width: 12.w),
-              const _NavLink(label: 'Contact', route: Routes.contact),
+              _NavLink(label: 'Contact', route: Routes.contact),
             ] else ...[
               IconButton(
                 onPressed: () {
-                  showDialog<void>(
+                  showGeneralDialog<void>(
                     context: context,
                     barrierDismissible: true,
-                    builder: (context) {
+                    barrierLabel: 'Navigation',
+                    barrierColor: Colors.black26,
+                    transitionDuration: const Duration(milliseconds: 220),
+                    pageBuilder: (ctx, anim1, anim2) {
                       final topPadding = MediaQuery.of(context).padding.top + 8.0;
-                      return Align(
-                        alignment: Alignment.topCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: topPadding, left: 12, right: 12),
-                          child: Material(
-                            color: const Color(0xFFF9FAFB), // subtle light background
-                            elevation: 8,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
-                            ),
-                            child: SafeArea(
-                              bottom: false,
+                      return SafeArea(
+                        bottom: false,
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: Padding(
+                            padding: EdgeInsets.only(top: topPadding, left: 12, right: 12),
+                            child: Material(
+                              color: const Color(0xFFF9FAFB), // subtle light background
+                              elevation: 8,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
+                              ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                 child: Column(
@@ -112,7 +115,7 @@ class Navbar extends StatelessWidget {
                                           ),
                                         ),
                                         IconButton(
-                                          onPressed: () => Navigator.of(context).pop(),
+                                          onPressed: () => Navigator.of(ctx).pop(),
                                           icon: const Icon(Icons.close),
                                         ),
                                       ],
@@ -123,20 +126,20 @@ class Navbar extends StatelessWidget {
 
                                     // Menu items
                                     _MobileMenuItem(label: Strings.navHome, onTap: () {
-                                      Navigator.of(context).pop();
-                                      context.go(Routes.home);
+                                      Navigator.of(ctx).pop();
+                                      ctx.go(Routes.home);
                                     }),
                                     _MobileMenuItem(label: Strings.navAbout, onTap: () {
-                                      Navigator.of(context).pop();
-                                      context.go(Routes.about);
+                                      Navigator.of(ctx).pop();
+                                      ctx.go(Routes.about);
                                     }),
                                     _MobileMenuItem(label: Strings.navProjects, onTap: () {
-                                      Navigator.of(context).pop();
-                                      context.go(Routes.projects);
+                                      Navigator.of(ctx).pop();
+                                      ctx.go(Routes.projects);
                                     }),
                                     _MobileMenuItem(label: Strings.navContact, onTap: () {
-                                      Navigator.of(context).pop();
-                                      context.go(Routes.contact);
+                                      Navigator.of(ctx).pop();
+                                      ctx.go(Routes.contact);
                                     }),
                                     const SizedBox(height: 8),
                                   ],
@@ -146,6 +149,10 @@ class Navbar extends StatelessWidget {
                           ),
                         ),
                       );
+                    },
+                    transitionBuilder: (ctx, anim, secAnim, child) {
+                      final offset = Tween(begin: const Offset(0, -0.08), end: Offset.zero).animate(anim);
+                      return SlideTransition(position: offset, child: child);
                     },
                   );
                 },
