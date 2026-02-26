@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../theme.dart';
+import '../strings.dart';
 import 'site_container.dart';
 import 'safe_svg.dart';
 import '../routes.dart';
@@ -21,9 +22,9 @@ class Footer extends StatelessWidget {
       child: SiteContainer(
         child: Row(
           children: [
-            const Text(
-              '© 2026 KikiBytes LLC',
-              style: TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
+            Text(
+              Strings.footerCopyright,
+              style: const TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
             ),
             const Spacer(),
             _FooterLink(label: 'Privacy', onTap: () => context.go(Routes.privacy)),
