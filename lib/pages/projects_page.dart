@@ -110,14 +110,16 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   .map(
                     (p) => Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
-                      child: ProjectCard(
-                        title: p.title,
-                        tagline: p.tagline,
-                        gradientColors: p.gradientColors,
-                        previewIcon: p.previewIcon,
-                        imageAsset: p.imageAsset,
-                        badge: p.badge,
-                        onTap: p.route != null ? () => widget.onNavigate(p.route!) : null,
+                      child: Center(
+                        child: ProjectCard(
+                          title: p.title,
+                          tagline: p.tagline,
+                          gradientColors: p.gradientColors,
+                          previewIcon: p.previewIcon,
+                          imageAsset: p.imageAsset,
+                          badge: p.badge,
+                          onTap: p.route != null ? () => widget.onNavigate(p.route!) : null,
+                        ),
                       ),
                     ),
                   )

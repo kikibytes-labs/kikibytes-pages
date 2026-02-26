@@ -97,6 +97,7 @@ class HomePage extends StatelessWidget {
             )
           else
             Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ProjectCard(
                   title: Strings.projectLuckyHallTitle,
