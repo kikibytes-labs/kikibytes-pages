@@ -12,6 +12,9 @@ class Navbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isNarrow = screenWidth < 760;
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -37,7 +40,7 @@ class Navbar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                       SafeSvg.asset('assets/images/cat_head.svg', height: (28.h * 0.85) * 1.10),
-                    SizedBox(width: 6.w),
+                    SizedBox(width: isNarrow ? 8.w : 6.w),
                     RichText(
                       text: TextSpan(
                         children: [
@@ -45,7 +48,7 @@ class Navbar extends StatelessWidget {
                             // append a word-joiner to avoid line breaking between Kiki and Bytes
                             text: Strings.brandPrefix,
                             style: TextStyle(
-                              fontSize: 7.8.sp * 1.18,
+                              fontSize: isNarrow ? 7.sp * 1.1 : 7.8.sp * 1.18,
                               fontWeight: FontWeight.bold,
                               color: kikiOrange,
                             ),
@@ -53,7 +56,7 @@ class Navbar extends StatelessWidget {
                           TextSpan(
                             text: Strings.brandSuffix,
                             style: TextStyle(
-                              fontSize: 7.8.sp * 1.18,
+                              fontSize: isNarrow ? 7.sp * 1.1 : 7.8.sp * 1.18,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
@@ -66,13 +69,36 @@ class Navbar extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            _NavLink(label: 'Home', route: Routes.home),
-            SizedBox(width: 12.w),
-            _NavLink(label: 'About', route: Routes.about),
-            SizedBox(width: 12.w),
-            _NavLink(label: 'Projects', route: Routes.projects),
-            SizedBox(width: 12.w),
-            _NavLink(label: 'Contact', route: Routes.contact),
+            if (!isNarrow) ...[
+              _NavLink(label: 'Home', route: Routes.home),
+              SizedBox(width: 12.w),
+              _NavLink(label: 'About', route: Routes.about),
+              SizedBox(width: 12.w),
+              _NavLink(label: 'Projects', route: Routes.projects),
+              SizedBox(width: 12.w),
+              _NavLink(label: 'Contact', route: Routes.contact),
+            ] else ...[
+              // compact menu button for small widths
+                  IconButton(
+                onPressed: () {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (context) => SafeArea(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ListTile(title: Text(Strings.navHome), onTap: () => context.go(Routes.home)),
+                          ListTile(title: Text(Strings.navAbout), onTap: () => context.go(Routes.about)),
+                          ListTile(title: Text(Strings.navProjects), onTap: () => context.go(Routes.projects)),
+                          ListTile(title: Text(Strings.navContact), onTap: () => context.go(Routes.contact)),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.menu),
+              ),
+            ],
           ],
         ),
       ),

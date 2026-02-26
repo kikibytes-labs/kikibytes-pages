@@ -15,9 +15,9 @@ class Strings {
   static const aboutSubtitle = 'Innovative apps and games\nwith a touch of fun and whimsy.';
   static const aboutCta = 'Get in Touch';
   static const aboutSectionWho = 'Who We Are';
-  static const aboutParagraph1 = 'KikiBytes Labs is a small indie development studio dedicated to crafting playful, thoughtfully engineered apps and games. We\'re a passionate team of creative minds and experienced developers who love to experiment and create delightful digital experiences.';
+  static const aboutParagraph1 = 'KikiBytes Labs is a small indie development studio dedicated to crafting fun, professionally designed and engineered apps and games. We\'re a passionate team of creative minds and experienced developers who love to experiment and create delightful digital experiences.';
   static const aboutSectionMission = 'Our Mission';
-  static const aboutParagraph2 = 'Our mission is to bring joy and creativity into the digital world. We strive to develop applications and games that are not only fun but also thoughtfully designed and engineered.';
+  static const aboutParagraph2 = 'Our mission is to bring joy and creativity into the digital world. We strive to develop applications and games that are not only fun but well made and safe.';
   static const aboutSectionValues = 'Our Values';
 
   // value pills

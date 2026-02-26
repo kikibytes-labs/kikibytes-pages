@@ -47,7 +47,7 @@ class HeroBanner extends StatelessWidget {
     // rather than letting it overlap.
     final banner = Container(
       margin: const EdgeInsets.symmetric(vertical: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 36),
+      padding: EdgeInsets.symmetric(horizontal: isNarrow ? 16 : 36, vertical: isNarrow ? 20 : 36),
       // the banner now uses a fixed background image (customizable per
       // instance) but we keep the previous gradient underneath as a
       // fallback in case the image fails to load or is transparent. the

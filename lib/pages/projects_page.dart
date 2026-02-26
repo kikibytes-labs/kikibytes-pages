@@ -49,6 +49,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final filtered = _filtered;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isNarrow = screenWidth < 800;
 
     return SiteScaffold(
       child: Column(
@@ -101,6 +103,25 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   textAlign: TextAlign.center,
                 ),
               ),
+            )
+          else if (isNarrow)
+            Column(
+              children: filtered
+                  .map(
+                    (p) => Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: ProjectCard(
+                        title: p.title,
+                        tagline: p.tagline,
+                        gradientColors: p.gradientColors,
+                        previewIcon: p.previewIcon,
+                        imageAsset: p.imageAsset,
+                        badge: p.badge,
+                        onTap: p.route != null ? () => widget.onNavigate(p.route!) : null,
+                      ),
+                    ),
+                  )
+                  .toList(),
             )
           else
             IntrinsicHeight(
