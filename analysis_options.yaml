@@ -1,0 +1,17 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+
+linter:
+  rules:
+    avoid_print: true
+    prefer_const_constructors: true
+    prefer_final_fields: true
+    prefer_const_declarations: true
+    avoid_redundant_argument_values: true
+    prefer_is_empty: true
+    prefer_is_not_empty: true
+    # Note: some older lint names are not supported by `flutter_lints`.
+    # Keep rules here conservative and use the included `flutter_lints` set.

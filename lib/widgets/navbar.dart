@@ -14,6 +14,8 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isNarrow = screenWidth < 760;
+    // Use a simple fixed brand font size (narrow vs wide). Increased ~25%.
+    final double displayBrandSize = isNarrow ? 9.sp : 15.sp;
 
     return Container(
       decoration: BoxDecoration(
@@ -48,7 +50,7 @@ class Navbar extends StatelessWidget {
                             // append a word-joiner to avoid line breaking between Kiki and Bytes
                             text: Strings.brandPrefix,
                             style: TextStyle(
-                              fontSize: isNarrow ? 7.sp * 1.1 : 7.8.sp * 1.18,
+                              fontSize: displayBrandSize,
                               fontWeight: FontWeight.bold,
                               color: kikiOrange,
                             ),
@@ -56,7 +58,7 @@ class Navbar extends StatelessWidget {
                           TextSpan(
                             text: Strings.brandSuffix,
                             style: TextStyle(
-                              fontSize: isNarrow ? 7.sp * 1.1 : 7.8.sp * 1.18,
+                              fontSize: displayBrandSize,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),

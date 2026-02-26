@@ -56,6 +56,16 @@ flutter build web
 
 The static site output will be in `build/web`.
 
+Git hooks:
+- To enable the simple pre-commit hook that formats and runs `flutter analyze`, run:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+CI:
+- A GitHub Actions workflow `.github/workflows/flutter-analyze.yml` runs `flutter analyze` on push/pull requests.
+
 ---
 
 **Deploy to Cloudflare with Wrangler**
