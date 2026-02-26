@@ -37,10 +37,7 @@ jobs:
       - name: Build web
         run: flutter build web --release
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: foOwdWGWDIJtcI1MM3VUppvL9XxWguLFtwpaGElY
-          accountId: 5d712cd84a58f1cc6ba05cd90de15cad
-          projectName: kikibytes-pages
-          directory: build/web
+      - name: Deploy to Cloudflare Pages (Wrangler)
+        run: npx wrangler pages deploy build/web --project-name=kikibytes-pages
+        env:
+          CLOUDFLARE_API_TOKEN: foOwdWGWDIJtcI1MM3VUppvL9XxWguLFtwpaGElY
