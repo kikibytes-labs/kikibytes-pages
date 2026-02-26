@@ -186,7 +186,21 @@ class _FeatureList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isNarrow = screenWidth < 700;
     // Split into rows of 2 so IntrinsicHeight can enforce uniform height per row.
+    if (isNarrow) {
+      // Stack features vertically on narrow screens
+      return Column(
+        children: features
+            .map((f) => Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: _FeatureTile(feature: f, theme: theme),
+                ))
+            .toList(),
+      );
+    }
+
     final rows = <Widget>[];
     for (var i = 0; i < features.length; i += 2) {
       if (i > 0) rows.add(const SizedBox(height: 16));
@@ -219,6 +233,9 @@ class _FeatureTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final iconSize = screenWidth < 600 ? 96.0 : 134.0;
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -230,8 +247,8 @@ class _FeatureTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 134,
-            height: 134,
+            width: iconSize,
+            height: iconSize,
             decoration: BoxDecoration(
               color: kikiOrange.withAlpha(20),
               borderRadius: BorderRadius.circular(10),

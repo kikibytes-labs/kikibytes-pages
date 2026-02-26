@@ -94,9 +94,13 @@ class _PreloadAppState extends State<PreloadApp> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset('assets/images/logo.png', height: 72),
-              const SizedBox(height: 20),
-              const CircularProgressIndicator(),
+              Image.asset('assets/images/logo.png', height: 58),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: 20,
+                height: 20,
+                child: const CircularProgressIndicator(strokeWidth: 2.5),
+              ),
             ],
           ),
         ),

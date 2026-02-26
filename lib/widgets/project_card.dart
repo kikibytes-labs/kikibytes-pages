@@ -47,6 +47,110 @@ class _ProjectCardState extends State<ProjectCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final imageHeight = screenWidth < 600 ? 200.0 : 160.0;
+
+    // Build the card widget first so we can optionally constrain and center it
+    Widget cardWidget = AnimatedContainer(
+      duration: const Duration(milliseconds: 180),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
+        boxShadow: _hovered && !_isDisabled
+            ? [BoxShadow(color: kikiOrange.withAlpha(30), blurRadius: 20, offset: const Offset(0, 8))]
+            : [BoxShadow(color: Colors.black.withAlpha(8), blurRadius: 8, offset: const Offset(0, 2))],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Placeholder image area (or real asset)
+            Stack(
+              children: [
+                Container(
+                  height: imageHeight,
+                  decoration: widget.imageAsset == null
+                      ? BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: widget.gradientColors,
+                          ),
+                        )
+                      : null,
+                  child: widget.imageAsset == null
+                      ? Center(
+                          child: Icon(
+                            widget.previewIcon,
+                            size: 64,
+                            color: Colors.white.withAlpha(200),
+                          ),
+                        )
+                      : SafeSvg.asset(
+                          widget.imageAsset!,
+                          fit: BoxFit.contain,
+                          width: double.infinity,
+                          height: double.infinity,
+                        ),
+                ),
+                if (widget.badge != null)
+                  Positioned(
+                    top: 12,
+                    right: 12,
+                    child: _Badge(label: widget.badge!),
+                  ),
+              ],
+            ),
+            // Card body
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(widget.title, style: theme.textTheme.titleMedium),
+                  const SizedBox(height: 6),
+                  Text(widget.tagline, style: theme.textTheme.bodyMedium),
+                  const SizedBox(height: 14),
+                  Row(
+                    children: [
+                      Text(
+                        'Learn More',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: _isDisabled ? Colors.grey : kikiOrange,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      _isDisabled
+                          ? Icon(Icons.arrow_forward, size: 14, color: Colors.grey)
+                          : AnimatedSlide(
+                              duration: const Duration(milliseconds: 180),
+                              offset: _hovered ? const Offset(0.2, 0) : Offset.zero,
+                              child: Icon(Icons.arrow_forward, size: 14, color: kikiOrange),
+                            ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    // If this card uses an image asset, constrain its width and center it
+    if (widget.imageAsset != null) {
+      cardWidget = Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 420),
+          child: cardWidget,
+        ),
+      );
+    }
 
     return MouseRegion(
       cursor: _isDisabled ? SystemMouseCursors.basic : SystemMouseCursors.click,
@@ -54,95 +158,7 @@ class _ProjectCardState extends State<ProjectCard> {
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFFE5E7EB)),
-            boxShadow: _hovered && !_isDisabled
-                ? [BoxShadow(color: kikiOrange.withAlpha(30), blurRadius: 20, offset: const Offset(0, 8))]
-                : [BoxShadow(color: Colors.black.withAlpha(8), blurRadius: 8, offset: const Offset(0, 2))],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Placeholder image area (or real asset)
-                Stack(
-                  children: [
-                    Container(
-                      height: 160,
-                      decoration: widget.imageAsset == null
-                          ? BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: widget.gradientColors,
-                              ),
-                            )
-                          : null,
-                      child: widget.imageAsset == null
-                          ? Center(
-                              child: Icon(
-                                widget.previewIcon,
-                                size: 64,
-                                color: Colors.white.withAlpha(200),
-                              ),
-                            )
-                          : SafeSvg.asset(
-                              widget.imageAsset!,
-                              fit: BoxFit.contain,
-                              width: double.infinity,
-                              height: double.infinity,
-                            ),
-                    ),
-                    if (widget.badge != null)
-                      Positioned(
-                        top: 12,
-                        right: 12,
-                        child: _Badge(label: widget.badge!),
-                      ),
-                  ],
-                ),
-                // Card body
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(widget.title, style: theme.textTheme.titleMedium),
-                      const SizedBox(height: 6),
-                      Text(widget.tagline, style: theme.textTheme.bodyMedium),
-                      const SizedBox(height: 14),
-                      Row(
-                        children: [
-                          Text(
-                            'Learn More',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: _isDisabled ? Colors.grey : kikiOrange,
-                            ),
-                          ),
-                          const SizedBox(width: 4),
-                          _isDisabled
-                              ? Icon(Icons.arrow_forward, size: 14, color: Colors.grey)
-                              : AnimatedSlide(
-                                  duration: const Duration(milliseconds: 180),
-                                  offset: _hovered ? const Offset(0.2, 0) : Offset.zero,
-                                  child: Icon(Icons.arrow_forward, size: 14, color: kikiOrange),
-                                ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+        child: cardWidget,
       ),
     );
   }

@@ -14,8 +14,9 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isNarrow = screenWidth < 760;
-    // Use a simple fixed brand font size (narrow vs wide). Increased ~25%.
-    final double displayBrandSize = isNarrow ? 9.sp : 15.sp;
+    // Use a simple fixed brand font size (narrow vs wide).
+    // Reduce the visible brand size by another 50% as requested.
+    final double displayBrandSize = isNarrow ? 3.15.sp : 5.25.sp;
 
     return Container(
       decoration: BoxDecoration(
@@ -41,7 +42,7 @@ class Navbar extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                      SafeSvg.asset('assets/images/cat_head.svg', height: (28.h * 0.85) * 1.10),
+                      SafeSvg.asset('assets/images/cat_head.svg', height: (28.h * 0.85) * 1.10 * 1.20),
                     SizedBox(width: isNarrow ? 8.w : 6.w),
                     RichText(
                       text: TextSpan(
@@ -85,15 +86,55 @@ class Navbar extends StatelessWidget {
                 onPressed: () {
                   showModalBottomSheet<void>(
                     context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                    ),
+                    backgroundColor: Colors.white,
                     builder: (context) => SafeArea(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ListTile(title: Text(Strings.navHome), onTap: () => context.go(Routes.home)),
-                          ListTile(title: Text(Strings.navAbout), onTap: () => context.go(Routes.about)),
-                          ListTile(title: Text(Strings.navProjects), onTap: () => context.go(Routes.projects)),
-                          ListTile(title: Text(Strings.navContact), onTap: () => context.go(Routes.contact)),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    Strings.brandPrefix + Strings.brandSuffix,
+                                    style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  icon: const Icon(Icons.close),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Divider(color: Colors.grey.withAlpha(40)),
+                            const SizedBox(height: 8),
+
+                            // Menu items
+                            _MobileMenuItem(label: Strings.navHome, onTap: () {
+                              Navigator.of(context).pop();
+                              context.go(Routes.home);
+                            }),
+                            _MobileMenuItem(label: Strings.navAbout, onTap: () {
+                              Navigator.of(context).pop();
+                              context.go(Routes.about);
+                            }),
+                            _MobileMenuItem(label: Strings.navProjects, onTap: () {
+                              Navigator.of(context).pop();
+                              context.go(Routes.projects);
+                            }),
+                            _MobileMenuItem(label: Strings.navContact, onTap: () {
+                              Navigator.of(context).pop();
+                              context.go(Routes.contact);
+                            }),
+                            const SizedBox(height: 8),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -157,6 +198,38 @@ class _NavLinkState extends State<_NavLink> {
                       : const Color(0xFF6B7280),
             ),
             child: Text(widget.label),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MobileMenuItem extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+
+  const _MobileMenuItem({required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Material(
+        color: Colors.white,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+            child: Text(
+              label,
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, color: kikiDeep),
+            ),
           ),
         ),
       ),
