@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
+import 'safe_svg.dart';
 
 class ValuePill extends StatelessWidget {
   final String title;
@@ -46,7 +47,7 @@ class ValuePill extends StatelessWidget {
               child: imageAsset != null
                   ? Padding(
                       padding: EdgeInsets.all(innerPadding),
-                      child: Image.asset(imageAsset!, fit: BoxFit.contain, filterQuality: FilterQuality.high),
+                      child: SafeSvg.asset(imageAsset!, fit: BoxFit.contain, width: double.infinity, height: double.infinity),
                     )
                   : Icon(icon ?? Icons.help_outline, color: kikiOrange, size: 24 * imageSizeMultiplier),
             );

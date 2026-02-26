@@ -24,34 +24,33 @@ class LuckyHallBingoPage extends StatelessWidget {
             subtitle: Strings.luckyHallSubtitle,
             assetPath: 'assets/images/lhb_charm.svg',
             backgroundAsset: 'assets/images/bg_lhb.png',
-          ),
-
-          const SizedBox(height: 36),
-
-          // About section
-          Row(
-            children: [
-              Container(
-                width: 3,
-                height: 22,
-                decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
               ),
-              const SizedBox(width: 10),
-              Text('About the Game', style: theme.textTheme.headlineMedium),
-            ],
-          ),
-          const SizedBox(height: 14),
-          Text(
-            'Lucky Hall Bingo brings the timeless fun of bingo to your fingertips. Whether you\'re a seasoned bingo veteran or brand new to the game, Lucky Hall Bingo offers a welcoming experience packed with charm, vibrant visuals, and satisfying gameplay.',
-            style: theme.textTheme.bodyLarge,
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'Play solo or challenge friends in a variety of game modes. Unlock themed bingo cards, collect power-ups, and compete on leaderboards to prove you\'ve got the lucky touch.',
-            style: theme.textTheme.bodyLarge,
-          ),
+              const SizedBox(height: 36),
 
-          const SizedBox(height: 36),
+              // About section
+              Row(
+                children: [
+                  Container(
+                    width: 3,
+                    height: 22,
+                    decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(Strings.luckyHallAboutSection, style: theme.textTheme.headlineMedium),
+                ],
+              ),
+              const SizedBox(height: 14),
+              Text(
+                Strings.luckyHallAboutP1,
+                style: theme.textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                Strings.luckyHallAboutP2,
+                style: theme.textTheme.bodyLarge,
+              ),
+
+              const SizedBox(height: 36),
 
           // Features
           Row(
@@ -111,9 +110,11 @@ class LuckyHallBingoPage extends StatelessWidget {
 
           const SizedBox(height: 40),
 
-          // CTA
-          Center(
+          // CTA — span full width and center contents
+          SizedBox(
+            width: double.infinity,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'Interested in Lucky Hall Bingo?',
@@ -126,8 +127,16 @@ class LuckyHallBingoPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () => onNavigate(Routes.contact),
-                  child: const Text('Contact Us'),
+                  onPressed: () => onNavigate(Routes.home),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: kikiOrange,
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                  ),
+                  child: const Text('Download the App'),
                 ),
               ],
             ),
@@ -255,10 +264,10 @@ class _StatusCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: () => onNavigate(Routes.contact),
+                      onPressed: () => onNavigate(Routes.home),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: kikiOrange,
@@ -267,7 +276,7 @@ class _StatusCard extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                       ),
-                      child: const Text('Get in Touch'),
+                      child: const Text('Download the App'),
                     ),
                   ],
                 ),

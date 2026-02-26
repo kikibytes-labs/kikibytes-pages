@@ -41,7 +41,31 @@ void main() async {
       designSize: const Size(390, 844),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) => child!,
+      builder: (context, child) {
+        // Precache raster images (PNGs/JPGs) so they are decoded before
+        // the first frame. `SafeSvg.preload` is already called in main() to
+        // load and sanitize SVG strings; parsing into pictures is handled by
+        // the `SafeSvg` widget when it renders.
+        final bitmapAssets = [
+          'assets/images/bg.png',
+          'assets/images/bg_lhb.png',
+          'assets/images/logo.png',
+        ];
+
+        final preloadFuture = Future.wait(bitmapAssets.map((p) => precacheImage(AssetImage(p), context)));
+
+        return FutureBuilder(
+          future: preloadFuture,
+          builder: (ctx, snapshot) {
+            if (snapshot.connectionState != ConnectionState.done) {
+              // Keep a blank frame (or spinner) until images are ready to avoid
+              // visual pop-in. Using a simple SizedBox keeps layout stable.
+              return const SizedBox.shrink();
+            }
+            return child!;
+          },
+        );
+      },
       child: KikiBytesApp(),
     ),
   );

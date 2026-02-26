@@ -33,8 +33,8 @@ class Navbar extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SafeSvg.asset('assets/images/cat_head.svg', height: 28.h),
-                  SizedBox(width: 6.w),
+                  SafeSvg.asset('assets/images/cat_head.svg', height: 28.h * 0.85),
+                  SizedBox(width: 2.w),
                   RichText(
                     text: TextSpan(
                       children: [
@@ -60,7 +60,7 @@ class Navbar extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 7.2.sp,
                             fontWeight: FontWeight.w500,
-                            color: kikiDeep,
+                            color: const Color(0xFF6B7280),
                           ),
                         ),
                       ],
