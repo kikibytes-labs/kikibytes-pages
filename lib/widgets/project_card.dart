@@ -166,7 +166,10 @@ class _ProjectCardState extends State<ProjectCard> {
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: cardWidget,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: isNarrow ? 220 : 0),
+          child: cardWidget,
+        ),
       ),
     );
   }

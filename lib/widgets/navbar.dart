@@ -15,7 +15,6 @@ class Navbar extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final isNarrow = screenWidth < 760;
     // Use a simple fixed brand font size (narrow vs wide).
-    // Reduce the visible brand size by another 50% as requested.
     final double displayBrandSize = isNarrow ? 3.78.sp : 5.25.sp;
 
     return Container(
@@ -40,8 +39,8 @@ class Navbar extends StatelessWidget {
                 padding: EdgeInsets.only(top: 6.h),
                 child: Row(
                   children: [
-                      SafeSvg.asset('assets/images/cat_head.svg', height: (28.h * 0.85) * 1.10 * 1.20),
-                      SizedBox(width: isNarrow ? 4.w : 2.w),
+                    SafeSvg.asset('assets/images/cat_head.svg', height: (28.h * 0.85) * 1.10 * 1.20),
+                    SizedBox(width: isNarrow ? 4.w : 2.w),
                     RichText(
                       text: TextSpan(
                         children: [
@@ -79,78 +78,75 @@ class Navbar extends StatelessWidget {
               SizedBox(width: 12.w),
               const _NavLink(label: 'Contact', route: Routes.contact),
             ] else ...[
-              // compact menu button for small widths
-                  IconButton(
+              IconButton(
                 onPressed: () {
-                  showModalBottomSheet<void>(
+                  showDialog<void>(
                     context: context,
-                    isScrollControlled: true,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                    ),
-                    backgroundColor: Colors.white,
-                    builder: (context) => SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              // small drag handle for affordance
-                              Align(
-                                alignment: Alignment.topCenter,
-                                child: Container(
-                                  width: 40,
-                                  height: 4,
-                                  margin: const EdgeInsets.only(bottom: 10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey.withAlpha(160),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
+                    barrierDismissible: true,
+                    builder: (context) {
+                      final topPadding = MediaQuery.of(context).padding.top + 8.0;
+                      return Align(
+                        alignment: Alignment.topCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: topPadding, left: 12, right: 12),
+                          child: Material(
+                            color: const Color(0xFFF9FAFB), // subtle light background
+                            elevation: 8,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
+                            ),
+                            child: SafeArea(
+                              bottom: false,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            Strings.brandPrefix + Strings.brandSuffix,
+                                            style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () => Navigator.of(context).pop(),
+                                          icon: const Icon(Icons.close),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Divider(color: Colors.grey.withAlpha(40)),
+                                    const SizedBox(height: 8),
+
+                                    // Menu items
+                                    _MobileMenuItem(label: Strings.navHome, onTap: () {
+                                      Navigator.of(context).pop();
+                                      context.go(Routes.home);
+                                    }),
+                                    _MobileMenuItem(label: Strings.navAbout, onTap: () {
+                                      Navigator.of(context).pop();
+                                      context.go(Routes.about);
+                                    }),
+                                    _MobileMenuItem(label: Strings.navProjects, onTap: () {
+                                      Navigator.of(context).pop();
+                                      context.go(Routes.projects);
+                                    }),
+                                    _MobileMenuItem(label: Strings.navContact, onTap: () {
+                                      Navigator.of(context).pop();
+                                      context.go(Routes.contact);
+                                    }),
+                                    const SizedBox(height: 8),
+                                  ],
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      Strings.brandPrefix + Strings.brandSuffix,
-                                      style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () => Navigator.of(context).pop(),
-                                    icon: const Icon(Icons.close),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              Divider(color: Colors.grey.withAlpha(40)),
-                              const SizedBox(height: 8),
-
-                              // Menu items
-                              _MobileMenuItem(label: Strings.navHome, onTap: () {
-                                Navigator.of(context).pop();
-                                context.go(Routes.home);
-                              }),
-                              _MobileMenuItem(label: Strings.navAbout, onTap: () {
-                                Navigator.of(context).pop();
-                                context.go(Routes.about);
-                              }),
-                              _MobileMenuItem(label: Strings.navProjects, onTap: () {
-                                Navigator.of(context).pop();
-                                context.go(Routes.projects);
-                              }),
-                              _MobileMenuItem(label: Strings.navContact, onTap: () {
-                                Navigator.of(context).pop();
-                                context.go(Routes.contact);
-                              }),
-                              const SizedBox(height: 8),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
                 icon: const Icon(Icons.menu),

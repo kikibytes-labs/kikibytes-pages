@@ -14,6 +14,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isNarrow = screenWidth < 800;
 
     return SiteScaffold(
       child: Column(
@@ -63,35 +65,57 @@ class HomePage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+          if (!isNarrow)
+            IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: ProjectCard(
+                      title: Strings.projectLuckyHallTitle,
+                      tagline: Strings.projectLuckyHallTagline,
+                      gradientColors: const [Color(0xFFFF8A00), Color(0xFFFFD700)],
+                      previewIcon: Icons.grid_on_rounded,
+                      imageAsset: 'assets/images/lhb_title.svg',
+                      onTap: () => onNavigate(Routes.luckyHallBingo),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  const Expanded(
+                    child: ProjectCard(
+                      title: Strings.projectChatSpreeTitle,
+                      tagline: Strings.projectChatSpreeTagline,
+                      gradientColors: [Color(0xFF6366F1), Color(0xFF0EA5E9)],
+                      previewIcon: Icons.chat_bubble_outline_rounded,
+                      badge: Strings.projectBadgeInProgress,
+                    ),
+                  ),
+                  // Placeholder to keep the grid balanced while there are only 2 projects
+                  const Expanded(child: SizedBox()),
+                ],
+              ),
+            )
+          else
+            Column(
               children: [
-                Expanded(
-                  child: ProjectCard(
-                    title: Strings.projectLuckyHallTitle,
-                    tagline: Strings.projectLuckyHallTagline,
-                    gradientColors: const [Color(0xFFFF8A00), Color(0xFFFFD700)],
-                    previewIcon: Icons.grid_on_rounded,
-                    imageAsset: 'assets/images/lhb_title.svg',
-                    onTap: () => onNavigate(Routes.luckyHallBingo),
-                  ),
+                ProjectCard(
+                  title: Strings.projectLuckyHallTitle,
+                  tagline: Strings.projectLuckyHallTagline,
+                  gradientColors: const [Color(0xFFFF8A00), Color(0xFFFFD700)],
+                  previewIcon: Icons.grid_on_rounded,
+                  imageAsset: 'assets/images/lhb_title.svg',
+                  onTap: () => onNavigate(Routes.luckyHallBingo),
                 ),
-                const SizedBox(width: 20),
-                const Expanded(
-                  child: ProjectCard(
-                    title: Strings.projectChatSpreeTitle,
-                    tagline: Strings.projectChatSpreeTagline,
-                    gradientColors: [Color(0xFF6366F1), Color(0xFF0EA5E9)],
-                    previewIcon: Icons.chat_bubble_outline_rounded,
-                    badge: Strings.projectBadgeInProgress,
-                  ),
+                const SizedBox(height: 16),
+                ProjectCard(
+                  title: Strings.projectChatSpreeTitle,
+                  tagline: Strings.projectChatSpreeTagline,
+                  gradientColors: const [Color(0xFF6366F1), Color(0xFF0EA5E9)],
+                  previewIcon: Icons.chat_bubble_outline_rounded,
+                  badge: Strings.projectBadgeInProgress,
                 ),
-                // Placeholder to keep the grid balanced while there are only 2 projects
-                const Expanded(child: SizedBox()),
               ],
             ),
-          ),
 
           const SizedBox(height: 32),
         ],
