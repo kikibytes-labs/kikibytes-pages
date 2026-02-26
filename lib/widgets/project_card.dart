@@ -93,7 +93,7 @@ class _ProjectCardState extends State<ProjectCard> {
                             )
                           : SafeSvg.asset(
                               widget.imageAsset!,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                               width: double.infinity,
                               height: double.infinity,
                             ),

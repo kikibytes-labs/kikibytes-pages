@@ -20,9 +20,9 @@ class AboutPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeroBanner(
-            title: 'About KikiBytes Labs',
-            subtitle: 'Innovative apps and games\nwith a touch of fun and whimsy.',
-            ctaText: 'Get in Touch',
+            title: Strings.aboutTitle,
+            subtitle: Strings.aboutSubtitle,
+            ctaText: Strings.aboutCta,
             assetPath: 'assets/images/cat_hiking.svg',
             onCtaPressed: () => onNavigate(Routes.contact),
           ),
@@ -39,12 +39,12 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              Text('Who We Are', style: theme.textTheme.headlineMedium),
+              Text(Strings.aboutSectionWho, style: theme.textTheme.headlineMedium),
             ],
           ),
           const SizedBox(height: 14),
           Text(
-            "KikiBytes Labs is a small indie development studio dedicated to crafting playful, thoughtfully engineered apps and games. We're a passionate team of creative minds and experienced developers who love to experiment and create delightful digital experiences.",
+            Strings.aboutParagraph1,
             style: theme.textTheme.bodyLarge,
           ),
 
@@ -60,12 +60,12 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              Text('Our Mission', style: theme.textTheme.headlineMedium),
+              Text(Strings.aboutSectionMission, style: theme.textTheme.headlineMedium),
             ],
           ),
           const SizedBox(height: 14),
           Text(
-            'Our mission is to bring joy and creativity into the digital world. We strive to develop applications and games that are not only fun but also thoughtfully designed and engineered.',
+            Strings.aboutParagraph2,
             style: theme.textTheme.bodyLarge,
           ),
 
@@ -81,7 +81,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              Text('Our Values', style: theme.textTheme.headlineMedium),
+              Text(Strings.aboutSectionValues, style: theme.textTheme.headlineMedium),
             ],
           ),
           const SizedBox(height: 20),

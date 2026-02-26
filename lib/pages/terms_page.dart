@@ -3,6 +3,7 @@ import '../routes.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../contact_config.dart';
+import '../strings.dart';
 
 class TermsPage extends StatelessWidget {
   final void Function(String route) onNavigate;
@@ -16,8 +17,8 @@ class TermsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeroBanner(
-            title: 'Terms of Service',
-            ctaText: 'Back to Home',
+            title: Strings.termsTitle,
+            ctaText: Strings.termsCta,
             assetPath: 'assets/images/cat_scholar.svg',
             onCtaPressed: () {
               if (Navigator.of(context).canPop()) {
@@ -32,31 +33,30 @@ class TermsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Text(
-              'Last updated: February 23, 2026',
+              Strings.termsLastUpdated,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
           const SizedBox(height: 8),
-
           _Section(
-            title: 'Acceptance of Terms',
-            body: 'By accessing or using the KikiBytes Labs website (the "Service"), you agree to be bound by these Terms of Service. If you do not agree to all the terms, do not use the Service.',
+            title: Strings.termsSectionAcceptance,
+            body: Strings.termsBodyAcceptance,
           ),
           _Section(
-            title: 'Use of the Service',
-            body: 'You agree to use the Service only for lawful purposes and in a way that does not infringe the rights of others or restrict their use and enjoyment of the Service.',
+            title: Strings.termsSectionUse,
+            body: Strings.termsBodyUse,
           ),
           _Section(
-            title: 'Intellectual Property',
-            body: 'All content on the Service, including text, graphics, logos, and images, is the property of KikiBytes LLC or its licensors and is protected by intellectual property laws.',
+            title: Strings.termsSectionIP,
+            body: Strings.termsBodyIP,
           ),
           _Section(
-            title: 'Limitation of Liability',
-            body: 'To the fullest extent permitted by law, KikiBytes LLC will not be liable for any indirect, incidental, special, consequential or punitive damages arising out of use of the Service.',
+            title: Strings.termsSectionLiability,
+            body: Strings.termsBodyLiability,
           ),
           _Section(
-            title: 'Contact',
-            body: 'If you have questions about these Terms, please contact us at $contactEmail',
+            title: Strings.termsSectionContact,
+            body: Strings.termsBodyContact,
             isLast: true,
           ),
 

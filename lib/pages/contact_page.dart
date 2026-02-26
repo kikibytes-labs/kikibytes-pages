@@ -4,6 +4,7 @@ import '../theme.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../contact_config.dart';
+import '../strings.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -79,21 +80,21 @@ class _ContactPageState extends State<ContactPage> {
               ),
               const SizedBox(height: 20),
               const Text(
-                'Message Sent!',
+                Strings.contactDialogSent,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: kikiDeep),
               ),
               const SizedBox(height: 8),
               Text(
-                "Thanks for reaching out. We'll get back to you as soon as possible.",
+                Strings.contactDialogThanks,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: Colors.grey.shade600, height: 1.5),
               ),
               const SizedBox(height: 24),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
+                  child: ElevatedButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Close'),
+                  child: const Text(Strings.contactDialogClose),
                 ),
               ),
             ],
@@ -112,9 +113,9 @@ class _ContactPageState extends State<ContactPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeroBanner(
-            title: 'Contact Us',
-            subtitle: "Get in touch — we'd love\nto hear from you!",
-            ctaText: 'Send a Message',
+            title: Strings.contactTitle,
+            subtitle: Strings.contactSubtitle,
+            ctaText: Strings.contactCta,
             assetPath: 'assets/images/cat_phone.svg',
           ),
 
@@ -127,7 +128,7 @@ class _ContactPageState extends State<ContactPage> {
                 decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
               ),
               const SizedBox(width: 10),
-              Text('Get in Touch', style: theme.textTheme.headlineMedium),
+              Text(Strings.contactSectionGetInTouch, style: theme.textTheme.headlineMedium),
             ],
           ),
           const SizedBox(height: 14),
@@ -143,7 +144,7 @@ class _ContactPageState extends State<ContactPage> {
                 decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
               ),
               const SizedBox(width: 10),
-              Text('Send a Message', style: theme.textTheme.headlineMedium),
+              Text(Strings.contactSectionSendMessage, style: theme.textTheme.headlineMedium),
             ],
           ),
           const SizedBox(height: 20),
@@ -158,39 +159,39 @@ class _ContactPageState extends State<ContactPage> {
                   children: [
                     TextFormField(
                       controller: _nameController,
-                      decoration: const InputDecoration(labelText: 'Your Name'),
+                      decoration: const InputDecoration(labelText: Strings.contactLabelName),
                       textInputAction: TextInputAction.next,
-                      validator: (v) => (v == null || v.trim().isEmpty) ? 'Please enter your name.' : null,
+                        validator: (v) => (v == null || v.trim().isEmpty) ? Strings.contactValidationName : null,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: _emailController,
-                      decoration: const InputDecoration(labelText: 'Email Address'),
+                      decoration: const InputDecoration(labelText: Strings.contactLabelEmail),
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       validator: (v) {
-                        if (v == null || v.trim().isEmpty) return 'Please enter your email.';
-                        if (!_emailRegex.hasMatch(v.trim())) return 'Please enter a valid email address.';
+                        if (v == null || v.trim().isEmpty) return Strings.contactValidationEmail;
+                        if (!_emailRegex.hasMatch(v.trim())) return Strings.contactValidationEmailValid;
                         return null;
                       },
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: _subjectController,
-                      decoration: const InputDecoration(labelText: 'Subject'),
+                      decoration: const InputDecoration(labelText: Strings.contactLabelSubject),
                       textInputAction: TextInputAction.next,
-                      validator: (v) => (v == null || v.trim().isEmpty) ? 'Please enter a subject.' : null,
+                      validator: (v) => (v == null || v.trim().isEmpty) ? Strings.contactValidationSubject : null,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: _messageController,
                       decoration: const InputDecoration(
-                        labelText: 'Message',
+                        labelText: Strings.contactLabelMessage,
                         alignLabelWithHint: true,
                       ),
                       maxLines: 5,
                       textInputAction: TextInputAction.newline,
-                      validator: (v) => (v == null || v.trim().isEmpty) ? 'Please enter a message.' : null,
+                      validator: (v) => (v == null || v.trim().isEmpty) ? Strings.contactValidationMessage : null,
                     ),
                     const SizedBox(height: 24),
                     SizedBox(
@@ -206,7 +207,7 @@ class _ContactPageState extends State<ContactPage> {
                                   color: Colors.white,
                                 ),
                               )
-                            : const Text('Send Message'),
+                            : const Text(Strings.contactSendMessageButton),
                       ),
                     ),
                   ],
@@ -229,7 +230,7 @@ class _ContactInfo extends StatelessWidget {
       children: [
         _ContactTile(icon: Icons.email_outlined, label: contactEmail, color: kikiOrange),
         const SizedBox(height: 12),
-        const _ContactTile(icon: Icons.location_on_outlined, label: 'New York, NY', color: Color(0xFF6B7280)),
+        const _ContactTile(icon: Icons.location_on_outlined, label: Strings.contactLocation, color: Color(0xFF6B7280)),
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../routes.dart';
 import '../theme.dart';
+import '../strings.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/project_card.dart';
@@ -19,8 +20,8 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeroBanner(
-            title: 'KikiBytes Labs',
-            subtitle: 'Tiny Bytes, Big Ideas',
+            title: Strings.homeTitle,
+            subtitle: Strings.homeSubtitle,
             assetPath: 'assets/images/cat_computer.svg',
             titleStyle: const TextStyle(
               fontSize: 58,
@@ -34,12 +35,12 @@ class HomePage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Welcome to KikiBytes Labs!', style: theme.textTheme.headlineMedium),
+              Text(Strings.homeWelcome, style: theme.textTheme.headlineMedium),
               const SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Text(
-                  "We're a small indie development studio passionate about creating playful and thoughtfully crafted digital experiences. At KikiBytes Labs, we blend creativity, quality, and a touch of whimsy to build games and apps that delight players of all ages.",
+                  Strings.homeIntro,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyLarge,
                 ),
@@ -59,7 +60,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              Text('Our Projects', style: theme.textTheme.headlineMedium),
+              Text(Strings.homeProjectsHeader, style: theme.textTheme.headlineMedium),
             ],
           ),
           const SizedBox(height: 20),
@@ -69,8 +70,8 @@ class HomePage extends StatelessWidget {
               children: [
                 Expanded(
                   child: ProjectCard(
-                    title: 'Lucky Hall Bingo',
-                    tagline: 'The classic game of bingo — reimagined for everyone.',
+                    title: Strings.projectLuckyHallTitle,
+                    tagline: Strings.projectLuckyHallTagline,
                     gradientColors: const [Color(0xFFFF8A00), Color(0xFFFFD700)],
                     previewIcon: Icons.grid_on_rounded,
                     imageAsset: 'assets/images/lhb_title.svg',
@@ -80,11 +81,11 @@ class HomePage extends StatelessWidget {
                 const SizedBox(width: 20),
                 Expanded(
                   child: ProjectCard(
-                    title: 'Chat Spree',
-                    tagline: 'A fun, fast-paced social chat game for groups.',
+                    title: Strings.projectChatSpreeTitle,
+                    tagline: Strings.projectChatSpreeTagline,
                     gradientColors: const [Color(0xFF6366F1), Color(0xFF0EA5E9)],
                     previewIcon: Icons.chat_bubble_outline_rounded,
-                    badge: 'In Progress',
+                    badge: Strings.projectBadgeInProgress,
                   ),
                 ),
                 // Placeholder to keep the grid balanced while there are only 2 projects

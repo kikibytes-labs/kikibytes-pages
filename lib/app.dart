@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'routes.dart';
 import 'theme.dart';
+import 'strings.dart';
 import 'pages/home_page.dart';
 import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
@@ -119,7 +120,7 @@ class KikiBytesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'KikiBytes Labs',
+      title: Strings.homeTitle,
       debugShowCheckedModeBanner: false,
       theme: kikiTheme,
       routerConfig: _router,

@@ -4,6 +4,7 @@ import '../theme.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/project_card.dart';
+import '../strings.dart';
 
 enum _ProjectFilter { all, games, apps }
 
@@ -21,8 +22,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   static const _projects = [
     _ProjectData(
-      title: 'Lucky Hall Bingo',
-      tagline: 'The classic game of bingo — reimagined for everyone.',
+      title: Strings.projectLuckyHallTitle,
+      tagline: Strings.projectLuckyHallTagline,
       gradientColors: [Color(0xFFFF8A00), Color(0xFFFFD700)],
       previewIcon: Icons.grid_on_rounded,
       imageAsset: 'assets/images/lhb_title.svg',
@@ -30,12 +31,12 @@ class _ProjectsPageState extends State<ProjectsPage> {
       route: Routes.luckyHallBingo,
     ),
     _ProjectData(
-      title: 'Chat Spree',
-      tagline: 'A fun, fast-paced social chat game for groups.',
+      title: Strings.projectChatSpreeTitle,
+      tagline: Strings.projectChatSpreeTagline,
       gradientColors: [Color(0xFF6366F1), Color(0xFF0EA5E9)],
       previewIcon: Icons.chat_bubble_outline_rounded,
       category: _ProjectFilter.apps,
-      badge: 'In Progress',
+      badge: Strings.projectBadgeInProgress,
     ),
   ];
 
@@ -54,8 +55,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeroBanner(
-            title: 'Our Projects',
-            subtitle: 'Indie games and apps made\nwith creativity, fun, and heart.',
+            title: Strings.projectsTitle,
+            subtitle: Strings.projectsSubtitle,
+            ctaText: Strings.aboutCta,
+            onCtaPressed: () => widget.onNavigate(Routes.contact),
             assetPath: 'assets/images/cat_sawing.svg',
           ),
 
@@ -73,7 +76,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                 ),
               ),
               const SizedBox(width: 10),
-              Text('Browse Projects', style: theme.textTheme.headlineMedium),
+              Text(Strings.projectsBrowse, style: theme.textTheme.headlineMedium),
             ],
           ),
 
@@ -93,7 +96,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
               padding: const EdgeInsets.symmetric(vertical: 48),
               child: Center(
                 child: Text(
-                  'No projects in this category yet — check back soon!',
+                  Strings.projectsEmpty,
                   style: theme.textTheme.bodyLarge?.copyWith(color: const Color(0xFF9CA3AF)),
                   textAlign: TextAlign.center,
                 ),
@@ -143,12 +146,12 @@ class _FilterTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
-        _FilterTab(label: 'All Projects', value: _ProjectFilter.all, selected: selected, onSelected: onSelected),
+        children: [
+        _FilterTab(label: Strings.projectsFilterAll, value: _ProjectFilter.all, selected: selected, onSelected: onSelected),
         const SizedBox(width: 8),
-        _FilterTab(label: 'Games', value: _ProjectFilter.games, selected: selected, onSelected: onSelected),
+        _FilterTab(label: Strings.projectsFilterGames, value: _ProjectFilter.games, selected: selected, onSelected: onSelected),
         const SizedBox(width: 8),
-        _FilterTab(label: 'Apps', value: _ProjectFilter.apps, selected: selected, onSelected: onSelected),
+        _FilterTab(label: Strings.projectsFilterApps, value: _ProjectFilter.apps, selected: selected, onSelected: onSelected),
       ],
     );
   }

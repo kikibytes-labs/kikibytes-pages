@@ -58,6 +58,14 @@ The static site output will be in `build/web`.
 
 ---
 
+**Deploy to Cloudflare with Wrangler**
+
+```bash
+npx wrangler pages deploy build/web --project-name=kikibytes-pages
+```
+
+---
+
 ## Project highlights & architecture
 
 - `lib/app.dart` — App entry and router configuration (uses a `ShellRoute` that contains the `Navbar` and `Footer`).

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme.dart';
+import '../strings.dart';
 import '../routes.dart';
 import 'site_container.dart';
 import 'package:go_router/go_router.dart';
@@ -36,37 +37,29 @@ class Navbar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                       SafeSvg.asset('assets/images/cat_head.svg', height: (28.h * 0.85) * 1.10),
-                    SizedBox(width: 2.w),
+                    SizedBox(width: 6.w),
                     RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          // append a word-joiner to avoid line breaking between Kiki and Bytes
-                          text: 'Kiki\u2060',
-                          style: TextStyle(
-                            fontSize: 7.2.sp * 1.10,
-                            fontWeight: FontWeight.bold,
-                            color: kikiOrange,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            // append a word-joiner to avoid line breaking between Kiki and Bytes
+                            text: Strings.brandPrefix,
+                            style: TextStyle(
+                              fontSize: 7.8.sp * 1.18,
+                              fontWeight: FontWeight.bold,
+                              color: kikiOrange,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: 'Bytes',
-                          style: TextStyle(
-                            fontSize: 7.2.sp * 1.10,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                          TextSpan(
+                            text: Strings.brandSuffix,
+                            style: TextStyle(
+                              fontSize: 7.8.sp * 1.18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: ' Labs',
-                          style: TextStyle(
-                            fontSize: 7.2.sp * 1.10,
-                            fontWeight: FontWeight.w500,
-                            color: const Color(0xFF6B7280),
-                          ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

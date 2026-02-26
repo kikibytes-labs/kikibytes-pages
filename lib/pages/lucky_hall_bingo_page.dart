@@ -61,10 +61,22 @@ class LuckyHallBingoPage extends StatelessWidget {
                 decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
               ),
               const SizedBox(width: 10),
-              Text('Features', style: theme.textTheme.headlineMedium),
+              Text(Strings.luckyHallFeaturesSection, style: theme.textTheme.headlineMedium),
             ],
           ),
-          const SizedBox(height: 20),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () => onNavigate(Routes.contact),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: kikiOrange,
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                  ),
+                  child: const Text(Strings.luckyHallStatusButton),
+                ),
           _FeatureList(
             features: const [
               // each feature now specifies an SVG asset for the icon
@@ -102,7 +114,7 @@ class LuckyHallBingoPage extends StatelessWidget {
                 decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(2)),
               ),
               const SizedBox(width: 10),
-              Text('Development Status', style: theme.textTheme.headlineMedium),
+              Text(Strings.luckyHallStatusHeader, style: theme.textTheme.headlineMedium),
             ],
           ),
           const SizedBox(height: 14),
@@ -117,31 +129,41 @@ class LuckyHallBingoPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Interested in Lucky Hall Bingo?',
+                  Strings.luckyHallCtaTitle,
                   style: theme.textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Reach out to us — we\'d love to hear from you.',
+                  Strings.luckyHallCtaSubtitle,
                   style: theme.textTheme.bodyLarge,
                 ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => onNavigate(Routes.home),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: kikiOrange,
-                    elevation: 0,
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                  ),
-                  child: const Text('Download the App'),
-                ),
+                
               ],
             ),
           ),
           const SizedBox(height: 24),
+
+          // Bottom CTA — full-width centered orange button linking to Contact
+          SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => onNavigate(Routes.contact),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kikiOrange,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  ),
+                  child: const Text(Strings.luckyHallStatusButton),
+                ),
+                const SizedBox(height: 12),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -263,23 +285,6 @@ class _StatusCard extends StatelessWidget {
                   style: theme.textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () => onNavigate(Routes.home),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: kikiOrange,
-                        elevation: 0,
-                        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                      ),
-                      child: const Text('Download the App'),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),

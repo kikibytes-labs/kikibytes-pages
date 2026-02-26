@@ -4,9 +4,11 @@
 class Strings {
   // home page
   static const homeTitle = 'KikiBytes Labs';
+  static const brandPrefix = 'Kiki\u2060';
+  static const brandSuffix = 'Bytes';
   static const homeSubtitle = 'Tiny Bytes, Big Ideas';
   static const homeWelcome = 'Welcome to KikiBytes Labs!';
-  static const homeIntro = "We're a small indie development studio passionate about creating playful and thoughtfully crafted digital experiences. At KikiBytes Labs, we blend creativity, quality, and a touch of whimsy to build games and apps that delight players of all ages.";
+  static const homeIntro = "We're a small indie development studio passionate about creating playful and thoughtfully crafted digital experiences. At KikiBytes Labs, we blend creativity, quality, and a touch of whimsy to build games and apps that delight people of all ages.";
 
   // about page
   static const aboutTitle = 'About KikiBytes Labs';

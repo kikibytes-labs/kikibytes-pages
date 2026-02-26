@@ -3,6 +3,7 @@ import '../routes.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../contact_config.dart';
+import '../strings.dart';
 
 class PrivacyPage extends StatelessWidget {
   final void Function(String route) onNavigate;
@@ -16,8 +17,8 @@ class PrivacyPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HeroBanner(
-            title: 'Privacy Policy',
-            ctaText: 'Back to Home',
+            title: Strings.privacyTitle,
+            ctaText: Strings.privacyCta,
             assetPath: 'assets/images/cat_towel.svg',
             onCtaPressed: () {
               if (Navigator.of(context).canPop()) {
@@ -32,39 +33,39 @@ class PrivacyPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Text(
-              'Last updated: February 23, 2026',
+              Strings.privacyLastUpdated,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
           const SizedBox(height: 8),
 
           _Section(
-            title: 'Introduction',
-            body: 'KikiBytes LLC ("we", "us" or "our") operates the KikiBytes Labs website. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or contact us.',
+            title: Strings.privacySectionIntro,
+            body: Strings.privacyBodyIntro,
           ),
           _Section(
-            title: 'Information We Collect',
-            body: 'Contact information you provide when you email us or use the contact form (name, email address, message contents).\n\nUsage data that is automatically collected (IP address, pages visited, browser and device information).',
+            title: Strings.privacySectionInfoCollect,
+            body: Strings.privacyBodyInfoCollect,
           ),
           _Section(
-            title: 'How We Use Information',
-            body: 'We use the information we collect to respond to inquiries, provide and improve our services, analyze site performance, and communicate updates and marketing messages where you have opted in.',
+            title: Strings.privacySectionHowUse,
+            body: Strings.privacyBodyHowUse,
           ),
           _Section(
-            title: 'Sharing & Disclosure',
-            body: 'We do not sell your personal information. We may share information with service providers that help operate the website (analytics, hosting) or when required by law.',
+            title: Strings.privacySectionShare,
+            body: Strings.privacyBodyShare,
           ),
           _Section(
-            title: 'Cookies & Tracking',
-            body: 'We and our service providers may use cookies and similar tracking technologies to collect usage data. You can control cookies through your browser settings.',
+            title: Strings.privacySectionCookies,
+            body: Strings.privacyBodyCookies,
           ),
           _Section(
-            title: 'Your Choices',
-            body: 'You can opt out of marketing communications, and you may request access to, correction of, or deletion of your personal information by contacting us at the email address listed on the site.',
+            title: Strings.privacySectionChoices,
+            body: Strings.privacyBodyChoices,
           ),
           _Section(
-            title: 'Contact',
-            body: 'For privacy inquiries, please email: $contactEmail',
+            title: Strings.privacySectionContact,
+            body: Strings.privacyBodyContact,
             isLast: true,
           ),
 
