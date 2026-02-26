@@ -40,4 +40,4 @@ jobs:
       - name: Deploy to Cloudflare Pages (Wrangler)
         run: npx wrangler pages deploy build/web --project-name=kikibytes-pages
         env:
-          CLOUDFLARE_API_TOKEN: 162a317a03aa84b3f485b2d27ca11d50093a1
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
