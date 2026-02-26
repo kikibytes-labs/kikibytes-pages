@@ -34,7 +34,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
       tagline: 'A fun, fast-paced social chat game for groups.',
       gradientColors: [Color(0xFF6366F1), Color(0xFF0EA5E9)],
       previewIcon: Icons.chat_bubble_outline_rounded,
-      category: _ProjectFilter.games,
+      category: _ProjectFilter.apps,
       badge: 'In Progress',
     ),
   ];

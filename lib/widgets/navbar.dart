@@ -3,6 +3,7 @@ import '../theme.dart';
 import '../routes.dart';
 import 'site_container.dart';
 import 'package:go_router/go_router.dart';
+import 'safe_svg.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({super.key});
@@ -31,18 +32,14 @@ class Navbar extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/cat_head.svg',
-                    height: 28, // scaled down 50%
-                    fit: BoxFit.contain,
-                    filterQuality: FilterQuality.high,
-                  ),
+                  SafeSvg.asset('assets/images/cat_head.svg', height: 28),
                   const SizedBox(width: 10),
                   RichText(
                     text: const TextSpan(
                       children: [
                         TextSpan(
-                          text: 'Kiki',
+                          // append a word-joiner to avoid line breaking between Kiki and Bytes
+                          text: 'Kiki\u2060',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -73,11 +70,11 @@ class Navbar extends StatelessWidget {
             ),
             const Spacer(),
             _NavLink(label: 'Home', route: Routes.home),
-            const SizedBox(width: 2),
+            const SizedBox(width: 12),
             _NavLink(label: 'About', route: Routes.about),
-            const SizedBox(width: 2),
+            const SizedBox(width: 12),
             _NavLink(label: 'Projects', route: Routes.projects),
-            const SizedBox(width: 2),
+            const SizedBox(width: 12),
             _NavLink(label: 'Contact', route: Routes.contact),
           ],
         ),

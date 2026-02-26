@@ -18,6 +18,8 @@ void main() async {
     SafeSvg.preload('assets/images/cat_hiking.svg'),
     SafeSvg.preload('assets/images/cat_phone.svg'),
     SafeSvg.preload('assets/images/cat_sawing.svg'),
+    SafeSvg.preload('assets/images/cat_scholar.svg'),
+    SafeSvg.preload('assets/images/cat_towel.svg'),
     SafeSvg.preload('assets/images/lightbulb.svg'),
     SafeSvg.preload('assets/images/gears.svg'),
     SafeSvg.preload('assets/images/joystick.svg'),
@@ -27,6 +29,10 @@ void main() async {
     SafeSvg.preload('assets/images/charms.svg'),
     SafeSvg.preload('assets/images/daub.svg'),
     SafeSvg.preload('assets/images/pulltab.svg'),
+    // hero & title backgrounds
+    SafeSvg.preload('assets/images/lhb_title.svg'),
+    SafeSvg.preload('assets/images/bg.png'),
+    SafeSvg.preload('assets/images/bg_lhb.png'),
   ]);
 
   runApp(KikiBytesApp());
