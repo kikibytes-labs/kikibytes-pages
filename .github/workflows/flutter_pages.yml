@@ -40,7 +40,7 @@ jobs:
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
-          apiToken: 162a317a03aa84b3f485b2d27ca11d50093a1
+          apiToken: foOwdWGWDIJtcI1MM3VUppvL9XxWguLFtwpaGElY
           accountId: 5d712cd84a58f1cc6ba05cd90de15cad
           projectName: kikibytes-pages
           directory: build/web
