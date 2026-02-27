@@ -38,31 +38,31 @@ class PrivacyPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
 
-          const _Section(
+          _Section(
             title: Strings.privacySectionIntro,
             body: Strings.privacyBodyIntro,
           ),
-          const _Section(
+          _Section(
             title: Strings.privacySectionInfoCollect,
             body: Strings.privacyBodyInfoCollect,
           ),
-          const _Section(
+          _Section(
             title: Strings.privacySectionHowUse,
             body: Strings.privacyBodyHowUse,
           ),
-          const _Section(
+          _Section(
             title: Strings.privacySectionShare,
             body: Strings.privacyBodyShare,
           ),
-          const _Section(
+          _Section(
             title: Strings.privacySectionCookies,
             body: Strings.privacyBodyCookies,
           ),
-          const _Section(
+          _Section(
             title: Strings.privacySectionChoices,
             body: Strings.privacyBodyChoices,
           ),
-          const _Section(
+          _Section(
             title: Strings.privacySectionContact,
             body: Strings.privacyBodyContact,
             isLast: true,

@@ -65,18 +65,6 @@ class LuckyHallBingoPage extends StatelessWidget {
             ],
           ),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => onNavigate(Routes.contact),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: kikiOrange,
-                    elevation: 0,
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                  ),
-                  child: const Text(Strings.luckyHallStatusButton),
-                ),
           const _FeatureList(
             features: [
               // each feature now specifies an SVG asset for the icon

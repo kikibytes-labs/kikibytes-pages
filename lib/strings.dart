@@ -1,6 +1,8 @@
 // central place for all user-visible strings
 // keeping everything in one file makes editing and internationalization easier.
 
+import 'contact_config.dart';
+
 class Strings {
   // home page
   static const homeTitle = 'KikiBytes Labs';
@@ -87,7 +89,7 @@ class Strings {
   static const luckyHallFeaturePowerUpsDesc = 'Open instant-win pull tabs mid-game for surprise rewards and extra excitement.';
   static const luckyHallStatusHeader = 'Development Status';
   static const luckyHallStatusTitle = 'Available Soon';
-  static const luckyHallStatusBody = 'Lucky Hall Bingo will be live and available to play in March 2026. Stay tuned for updates, new themes, and seasonal events.';
+  static const luckyHallStatusBody = 'Lucky Hall Bingo will be live and available to play in April 2026. Stay tuned for updates, new themes, and seasonal events.';
   static const luckyHallStatusButton = 'Get in Touch';
   static const luckyHallCtaTitle = 'Interested in Lucky Hall Bingo?';
   static const luckyHallCtaSubtitle = 'Reach out to us — we\'d love to hear from you.';
@@ -106,7 +108,7 @@ class Strings {
   static const termsBodyUse = 'You agree to use the Service only for lawful purposes and in a way that does not infringe the rights of others or restrict their use and enjoyment of the Service.';
   static const termsBodyIP = 'All content on the Service, including text, graphics, logos, and images, is the property of KikiBytes LLC or its licensors and is protected by intellectual property laws.';
   static const termsBodyLiability = 'To the fullest extent permitted by law, KikiBytes LLC will not be liable for any indirect, incidental, special, consequential or punitive damages arising out of use of the Service.';
-  static const termsBodyContact = 'If you have questions about these Terms, please contact us at \$contactEmail';
+  static String get termsBodyContact => 'If you have questions about these Terms, please contact us at $contactEmail';
 
   // privacy page
   static const privacyTitle = 'Privacy Policy';
@@ -125,7 +127,7 @@ class Strings {
   static const privacyBodyShare = 'We do not sell your personal information. We may share information with service providers that help operate the website (analytics, hosting) or when required by law.';
   static const privacyBodyCookies = 'We and our service providers may use cookies and similar tracking technologies to collect usage data. You can control cookies through your browser settings.';
   static const privacyBodyChoices = 'You can opt out of marketing communications, and you may request access to, correction of, or deletion of your personal information by contacting us at the email address listed on the site.';
-  static const privacyBodyContact = 'For privacy inquiries, please email: \$contactEmail';
+  static String get privacyBodyContact => 'For privacy inquiries, please email: $contactEmail';
 
   // navbar
   static const navHome = 'Home';

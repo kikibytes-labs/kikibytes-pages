@@ -15,7 +15,8 @@ class Navbar extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final isNarrow = screenWidth < 760;
     // Use a simple fixed brand font size (narrow vs wide).
-    final double displayBrandSize = isNarrow ? 3.78.sp : 5.25.sp;
+    // Increase mobile brand size per request (4x on narrow screens).
+    final double displayBrandSize = isNarrow ? (3.78.sp * 4) : 5.25.sp;
 
     return Container(
       decoration: BoxDecoration(
@@ -111,7 +112,7 @@ class Navbar extends StatelessWidget {
                                         Expanded(
                                           child: Text(
                                             Strings.brandPrefix + Strings.brandSuffix,
-                                            style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w700),
+                                            style: TextStyle(fontSize: (22.sp * 4), fontWeight: FontWeight.w700),
                                           ),
                                         ),
                                         IconButton(
