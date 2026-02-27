@@ -215,8 +215,6 @@ class _NavLinkState extends State<_NavLink> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Router's delegate is typically a Listenable in go_router; use it to be
-    // notified when navigation changes so we can rebuild link state.
     final delegate = Router.of(context).routerDelegate as Listenable;
     _routerListenable?.removeListener(_onRouteChanged);
     _routerListenable = delegate;

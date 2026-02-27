@@ -73,17 +73,26 @@ class _FooterLinkState extends State<_FooterLink> {
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          child: AnimatedDefaultTextStyle(
-            duration: const Duration(milliseconds: 120),
-            style: TextStyle(
-              fontSize: 12,
-              color: _hovered ? kikiOrange : const Color(0xFF6B7280),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(4),
+            onTap: () {
+              WidgetsBinding.instance.addPostFrameCallback((_) => widget.onTap());
+            },
+            child: AnimatedDefaultTextStyle(
+              duration: const Duration(milliseconds: 120),
+              style: TextStyle(
+                fontSize: 12,
+                color: _hovered ? kikiOrange : const Color(0xFF6B7280),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                child: Text(widget.label),
+              ),
             ),
-            child: Text(widget.label),
           ),
         ),
       ),
