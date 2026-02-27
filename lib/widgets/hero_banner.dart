@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
+import '../responsive.dart';
 import 'safe_svg.dart';
 
 class HeroBanner extends StatelessWidget {
@@ -27,8 +28,7 @@ class HeroBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isNarrow = screenWidth < 600;
+    final isNarrow = context.isCompact;
 
     // base sizes (original dummy sizes)
     final double baseWidth = isNarrow ? 180.0 : 220.0;

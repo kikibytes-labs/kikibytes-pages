@@ -69,7 +69,7 @@ class Strings {
   static const projectLuckyHallTitle = 'Lucky Hall Bingo';
   static const projectLuckyHallTagline = 'The classic game of bingo — reimagined for everyone.';
   static const projectChatSpreeTitle = 'Chat Spree';
-  static const projectChatSpreeTagline = 'A fun, fast-paced social chat game for groups.';
+  static const projectChatSpreeTagline = 'A fun, customizable social AI chat for friends and bots (or friends of bots).';
   static const projectBadgeInProgress = 'In Progress';
 
   // lucky hall page

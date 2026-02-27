@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../routes.dart';
 import '../theme.dart';
+import '../responsive.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/value_pill.dart';
@@ -14,8 +15,8 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isNarrow = screenWidth < 760;
+    final screenWidth = context.screenWidth;
+    final isNarrow = context.isNarrow;
 
     return SiteScaffold(
       child: Column(

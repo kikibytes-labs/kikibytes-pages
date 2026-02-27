@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme.dart';
 import '../strings.dart';
 import '../routes.dart';
+import '../responsive.dart';
 import 'site_container.dart';
 import 'package:go_router/go_router.dart';
 import 'safe_svg.dart';
@@ -12,8 +13,7 @@ class Navbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isNarrow = screenWidth < 760;
+    final isNarrow = context.isNarrow;
 
     return Container(
       decoration: BoxDecoration(

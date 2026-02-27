@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../routes.dart';
+import '../responsive.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../strings.dart';
@@ -14,6 +15,7 @@ class LuckyHallBingoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isMobile = context.isMobile;
 
     return SiteScaffold(
       child: Column(
@@ -118,13 +120,14 @@ class LuckyHallBingoPage extends StatelessWidget {
                 Text(
                   Strings.luckyHallCtaTitle,
                   style: theme.textTheme.headlineMedium,
+                  textAlign: isMobile ? TextAlign.center : null,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   Strings.luckyHallCtaSubtitle,
                   style: theme.textTheme.bodyLarge,
+                  textAlign: isMobile ? TextAlign.center : null,
                 ),
-                
               ],
             ),
           ),
@@ -172,8 +175,7 @@ class _FeatureList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isNarrow = screenWidth < 700;
+    final isNarrow = context.isMobile;
     // Split into rows of 2 so IntrinsicHeight can enforce uniform height per row.
     if (isNarrow) {
       // Stack features vertically on narrow screens
@@ -219,8 +221,7 @@ class _FeatureTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final iconSize = screenWidth < 600 ? 96.0 : 134.0;
+    final iconSize = context.isCompact ? 96.0 : 134.0;
 
     return Container(
       padding: const EdgeInsets.all(20),

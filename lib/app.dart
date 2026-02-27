@@ -46,12 +46,14 @@ class KikiBytesApp extends StatelessWidget {
       ShellRoute(
         builder: (context, state, child) {
           return Scaffold(
-            body: Column(
-              children: [
-                const Navbar(),
-                Expanded(child: child),
-                const Footer(),
-              ],
+            body: SelectionArea(
+              child: Column(
+                children: [
+                  const Navbar(),
+                  Expanded(child: child),
+                  const Footer(),
+                ],
+              ),
             ),
           );
         },

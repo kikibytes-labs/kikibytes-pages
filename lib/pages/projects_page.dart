@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../routes.dart';
 import '../theme.dart';
+import '../responsive.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/project_card.dart';
@@ -49,8 +50,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final filtered = _filtered;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isNarrow = screenWidth < 800;
+    final isNarrow = context.screenWidth < 800;
 
     return SiteScaffold(
       child: Column(

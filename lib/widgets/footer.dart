@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../theme.dart';
 import '../strings.dart';
+import '../responsive.dart';
 import 'site_container.dart';
 import 'safe_svg.dart';
 import '../routes.dart';
@@ -13,6 +14,31 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = context.isCompact;
+
+    final socials = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _SocialButton(
+          tooltip: 'Facebook',
+          onTap: () => launchUrlString('https://www.facebook.com/profile.php?id=61588637222576'),
+          child: const SafeSvg.asset('assets/images/facebook.svg', width: 15, height: 15),
+        ),
+        const SizedBox(width: 14),
+        _SocialButton(
+          tooltip: 'Instagram',
+          onTap: () => launchUrlString('https://instagram.com/kikibytes'),
+          child: const SafeSvg.asset('assets/images/instagram.svg', width: 15, height: 15),
+        ),
+        const SizedBox(width: 14),
+        _SocialButton(
+          tooltip: 'Email us',
+          onTap: () => launchUrlString('mailto:$contactEmail'),
+          child: const Icon(Icons.alternate_email_rounded, size: 15, color: Color(0xFF6B7280)),
+        ),
+      ],
+    );
+
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -20,36 +46,44 @@ class Footer extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(vertical: 14),
       child: SiteContainer(
-        child: Row(
-          children: [
-            const Text(
-              Strings.footerCopyright,
-              style: TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
-            ),
-            const Spacer(),
-            _FooterLink(label: 'Privacy', onTap: () => context.go(Routes.privacy)),
-            const _Separator(),
-            _FooterLink(label: 'Terms', onTap: () => context.go(Routes.terms)),
-            const SizedBox(width: 20),
-            _SocialButton(
-              tooltip: 'Facebook',
-              onTap: () => launchUrlString('https://www.facebook.com/profile.php?id=61588637222576'),
-              child: const SafeSvg.asset('assets/images/facebook.svg', width: 15, height: 15),
-            ),
-            const SizedBox(width: 14),
-            _SocialButton(
-              tooltip: 'Instagram',
-              onTap: () => launchUrlString('https://instagram.com/kikibytes'),
-              child: const SafeSvg.asset('assets/images/instagram.svg', width: 15, height: 15),
-            ),
-            const SizedBox(width: 14),
-            _SocialButton(
-              tooltip: 'Email us',
-              onTap: () => launchUrlString('mailto:$contactEmail'),
-              child: const Icon(Icons.alternate_email_rounded, size: 15, color: Color(0xFF6B7280)),
-            ),
-          ],
-        ),
+        child: isMobile
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Text(
+                        Strings.footerCopyright,
+                        style: TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
+                      ),
+                      const Spacer(),
+                      socials,
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      _FooterLink(label: 'Privacy', onTap: () => context.go(Routes.privacy)),
+                      const _Separator(),
+                      _FooterLink(label: 'Terms', onTap: () => context.go(Routes.terms)),
+                    ],
+                  ),
+                ],
+              )
+            : Row(
+                children: [
+                  const Text(
+                    Strings.footerCopyright,
+                    style: TextStyle(fontSize: 12, color: Color(0xFFADB5BD)),
+                  ),
+                  const Spacer(),
+                  _FooterLink(label: 'Privacy', onTap: () => context.go(Routes.privacy)),
+                  const _Separator(),
+                  _FooterLink(label: 'Terms', onTap: () => context.go(Routes.terms)),
+                  const SizedBox(width: 20),
+                  socials,
+                ],
+              ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../routes.dart';
 import '../theme.dart';
+import '../responsive.dart';
 import '../strings.dart';
 import '../widgets/site_scaffold.dart';
 import '../widgets/hero_banner.dart';
@@ -14,8 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isNarrow = screenWidth < 800;
+    final isNarrow = context.screenWidth < 800;
 
     return SiteScaffold(
       child: Column(

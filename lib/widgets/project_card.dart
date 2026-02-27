@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
+import '../responsive.dart';
 import 'safe_svg.dart';
 
 class ProjectCard extends StatefulWidget {
@@ -47,8 +48,7 @@ class _ProjectCardState extends State<ProjectCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isNarrow = screenWidth < 600;
+    final isNarrow = context.isCompact;
     final imageHeight = isNarrow ? 160.0 : 200.0;
 
     // Build the card widget first so we can optionally constrain and center it
