@@ -37,19 +37,19 @@ class TermsPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          _Section(
+          const _Section(
             title: Strings.termsSectionAcceptance,
             body: Strings.termsBodyAcceptance,
           ),
-          _Section(
+          const _Section(
             title: Strings.termsSectionUse,
             body: Strings.termsBodyUse,
           ),
-          _Section(
+          const _Section(
             title: Strings.termsSectionIP,
             body: Strings.termsBodyIP,
           ),
-          _Section(
+          const _Section(
             title: Strings.termsSectionLiability,
             body: Strings.termsBodyLiability,
           ),

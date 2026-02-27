@@ -97,7 +97,6 @@ class HomePage extends StatelessWidget {
             )
           else
             Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ProjectCard(
                   title: Strings.projectLuckyHallTitle,
@@ -108,10 +107,10 @@ class HomePage extends StatelessWidget {
                   onTap: () => onNavigate(Routes.luckyHallBingo),
                 ),
                 const SizedBox(height: 16),
-                ProjectCard(
+                const ProjectCard(
                   title: Strings.projectChatSpreeTitle,
                   tagline: Strings.projectChatSpreeTagline,
-                  gradientColors: const [Color(0xFF6366F1), Color(0xFF0EA5E9)],
+                  gradientColors: [Color(0xFF6366F1), Color(0xFF0EA5E9)],
                   previewIcon: Icons.chat_bubble_outline_rounded,
                   badge: Strings.projectBadgeInProgress,
                 ),

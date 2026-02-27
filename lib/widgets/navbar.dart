@@ -35,7 +35,6 @@ class Navbar extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: 6.h),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // compute a single logo height used for both the SVG and brand text sizing
                     Builder(builder: (ctx) {
@@ -75,13 +74,13 @@ class Navbar extends StatelessWidget {
             const Spacer(),
 
             if (!isNarrow) ...[
-              _NavLink(label: Strings.navHome, route: Routes.home),
+              const _NavLink(label: Strings.navHome, route: Routes.home),
               SizedBox(width: 12.w),
-              _NavLink(label: Strings.navAbout, route: Routes.about),
+              const _NavLink(label: Strings.navAbout, route: Routes.about),
               SizedBox(width: 12.w),
-              _NavLink(label: Strings.navProjects, route: Routes.projects),
+              const _NavLink(label: Strings.navProjects, route: Routes.projects),
               SizedBox(width: 12.w),
-              _NavLink(label: Strings.navContact, route: Routes.contact),
+              const _NavLink(label: Strings.navContact, route: Routes.contact),
             ] else ...[
               IconButton(
                 onPressed: () {
@@ -204,10 +203,40 @@ class _NavLink extends StatefulWidget {
 class _NavLinkState extends State<_NavLink> {
   bool _hovered = false;
 
+  Listenable? _routerListenable;
+
   bool get _isActive => GoRouter.of(context).state.uri.path == widget.route;
+
+  void _onRouteChanged() {
+    if (!mounted) return;
+    setState(() {});
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Router's delegate is typically a Listenable in go_router; use it to be
+    // notified when navigation changes so we can rebuild link state.
+    final delegate = Router.of(context).routerDelegate as Listenable;
+    _routerListenable?.removeListener(_onRouteChanged);
+    _routerListenable = delegate;
+    try {
+      _routerListenable!.addListener(_onRouteChanged);
+    } catch (_) {}
+  }
+
+  @override
+  void dispose() {
+    try {
+      _routerListenable?.removeListener(_onRouteChanged);
+    } catch (_) {}
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    // ensure we have the current router instance (in case dependencies changed)
+    // (didChangeDependencies handles listener updates)
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),

@@ -90,16 +90,16 @@ class AboutPage extends StatelessWidget {
           if (!isNarrow) ...[
             // Ensure all value pills are the same height on wide screens by
             // wrapping the row in IntrinsicHeight and making each pill Expanded.
-            IntrinsicHeight(
+            const IntrinsicHeight(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(child: ValuePill(title: Strings.valueCreativityTitle, subtitle: Strings.valueCreativitySubtitle, imageAsset: 'assets/images/lightbulb.svg', imageSizeMultiplier: 3.375)),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(child: ValuePill(title: Strings.valueQualityTitle, subtitle: Strings.valueQualitySubtitle, imageAsset: 'assets/images/gears.svg', imageSizeMultiplier: 3.375)),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(child: ValuePill(title: Strings.valueFunTitle, subtitle: Strings.valueFunSubtitle, imageAsset: 'assets/images/joystick.svg', imageSizeMultiplier: 3.375)),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(child: ValuePill(title: Strings.valueCommunityTitle, subtitle: Strings.valueCommunitySubtitle, imageAsset: 'assets/images/handshake.svg', imageSizeMultiplier: 3.375)),
                 ],
               ),
@@ -109,8 +109,8 @@ class AboutPage extends StatelessWidget {
             // On narrow screens show a 2x2 grid (two per row) using Wrap so items
             // maintain consistent width and wrap naturally.
             Builder(builder: (_) {
-              final double gap = 12.0;
-              final double horizontalPadding = 48.0; // approximate SiteScaffold padding
+              const double gap = 12.0;
+              const double horizontalPadding = 48.0; // approximate SiteScaffold padding
               final double twoWidth = ((screenWidth - horizontalPadding) - gap) / 2.0;
               final double pillWidth = twoWidth.clamp(140.0, 420.0);
               return Wrap(
@@ -118,10 +118,10 @@ class AboutPage extends StatelessWidget {
                 runSpacing: 12,
                 alignment: WrapAlignment.center,
                 children: [
-                  SizedBox(width: pillWidth, child: ValuePill(title: Strings.valueCreativityTitle, subtitle: Strings.valueCreativitySubtitle, imageAsset: 'assets/images/lightbulb.svg', imageSizeMultiplier: 2.0)),
-                  SizedBox(width: pillWidth, child: ValuePill(title: Strings.valueQualityTitle, subtitle: Strings.valueQualitySubtitle, imageAsset: 'assets/images/gears.svg', imageSizeMultiplier: 2.0)),
-                  SizedBox(width: pillWidth, child: ValuePill(title: Strings.valueFunTitle, subtitle: Strings.valueFunSubtitle, imageAsset: 'assets/images/joystick.svg', imageSizeMultiplier: 2.0)),
-                  SizedBox(width: pillWidth, child: ValuePill(title: Strings.valueCommunityTitle, subtitle: Strings.valueCommunitySubtitle, imageAsset: 'assets/images/handshake.svg', imageSizeMultiplier: 2.0)),
+                  SizedBox(width: pillWidth, child: const ValuePill(title: Strings.valueCreativityTitle, subtitle: Strings.valueCreativitySubtitle, imageAsset: 'assets/images/lightbulb.svg', imageSizeMultiplier: 2.0)),
+                  SizedBox(width: pillWidth, child: const ValuePill(title: Strings.valueQualityTitle, subtitle: Strings.valueQualitySubtitle, imageAsset: 'assets/images/gears.svg', imageSizeMultiplier: 2.0)),
+                  SizedBox(width: pillWidth, child: const ValuePill(title: Strings.valueFunTitle, subtitle: Strings.valueFunSubtitle, imageAsset: 'assets/images/joystick.svg', imageSizeMultiplier: 2.0)),
+                  SizedBox(width: pillWidth, child: const ValuePill(title: Strings.valueCommunityTitle, subtitle: Strings.valueCommunitySubtitle, imageAsset: 'assets/images/handshake.svg', imageSizeMultiplier: 2.0)),
                   const SizedBox(height: 16),
                 ],
               );
