@@ -14,9 +14,6 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isNarrow = screenWidth < 760;
-    // Use a simple fixed brand font size (narrow vs wide).
-    // Increase mobile brand size per request (4x on narrow screens).
-    final double displayBrandSize = isNarrow ? (3.78.sp * 4) : 5.25.sp;
 
     return Container(
       decoration: BoxDecoration(
@@ -31,7 +28,6 @@ class Navbar extends StatelessWidget {
       ),
       padding: EdgeInsets.zero,
       child: SiteContainer(
-        // navigation row with logo attached on the left
         child: Row(
           children: [
             GestureDetector(
@@ -39,45 +35,53 @@ class Navbar extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: 6.h),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SafeSvg.asset('assets/images/cat_head.svg', height: (28.h * 0.85) * 1.10 * 1.20),
-                    SizedBox(width: isNarrow ? 4.w : 2.w),
-                    RichText(
-                      text: TextSpan(
+                    // compute a single logo height used for both the SVG and brand text sizing
+                    Builder(builder: (ctx) {
+                      final double logoHeight = (28.h * 0.85) * 1.10 * 1.20;
+                      return Row(
                         children: [
-                          TextSpan(
-                            // append a word-joiner to avoid line breaking between Kiki and Bytes
-                            text: Strings.brandPrefix,
-                            style: TextStyle(
-                              fontSize: displayBrandSize,
-                              fontWeight: FontWeight.bold,
-                              color: kikiOrange,
-                            ),
-                          ),
-                          TextSpan(
-                            text: Strings.brandSuffix,
-                            style: TextStyle(
-                              fontSize: displayBrandSize,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
+                          SafeSvg.asset('assets/images/cat_head.svg', height: logoHeight),
+                          SizedBox(width: isNarrow ? 0.w : 2.w),
+                          // Brand split into two spans: prefix (orange) and suffix (black)
+                          RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text: Strings.brandPrefix,
+                                style: TextStyle(
+                                  fontSize: logoHeight * 0.6,
+                                  fontWeight: FontWeight.bold,
+                                  color: kikiOrange,
+                                ),
+                              ),
+                              TextSpan(
+                                text: Strings.brandSuffix,
+                                style: TextStyle(
+                                  fontSize: logoHeight * 0.6,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ]),
                           ),
                         ],
-                      ),
-                    ),
+                      );
+                    }),
                   ],
                 ),
               ),
             ),
             const Spacer(),
+
             if (!isNarrow) ...[
-              _NavLink(label: 'Home', route: Routes.home),
+              _NavLink(label: Strings.navHome, route: Routes.home),
               SizedBox(width: 12.w),
-              _NavLink(label: 'About', route: Routes.about),
+              _NavLink(label: Strings.navAbout, route: Routes.about),
               SizedBox(width: 12.w),
-              _NavLink(label: 'Projects', route: Routes.projects),
+              _NavLink(label: Strings.navProjects, route: Routes.projects),
               SizedBox(width: 12.w),
-              _NavLink(label: 'Contact', route: Routes.contact),
+              _NavLink(label: Strings.navContact, route: Routes.contact),
             ] else ...[
               IconButton(
                 onPressed: () {
@@ -95,11 +99,13 @@ class Navbar extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: Padding(
                             padding: EdgeInsets.only(top: topPadding, left: 12, right: 12),
-                            child: Material(
-                              color: const Color(0xFFF9FAFB), // subtle light background
-                              elevation: 8,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF9FAFB), // subtle light background
+                                boxShadow: [
+                                  BoxShadow(color: Colors.black.withAlpha(12), blurRadius: 20, offset: const Offset(0, 6))
+                                ],
+                                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(12)),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -107,14 +113,32 @@ class Navbar extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: [
+                                    // small handle to indicate draggable sheet
+                                    Center(
+                                      child: Container(
+                                        width: 48,
+                                        height: 4,
+                                        decoration: BoxDecoration(color: Colors.grey.withAlpha(60), borderRadius: BorderRadius.circular(8)),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
                                     Row(
                                       children: [
-                                        Expanded(
-                                          child: Text(
-                                            Strings.brandPrefix + Strings.brandSuffix,
-                                            style: TextStyle(fontSize: (22.sp * 4), fontWeight: FontWeight.w700),
-                                          ),
+                                        SafeSvg.asset('assets/images/cat_head.svg', height: 38.h),
+                                        const SizedBox(width: 6),
+                                        RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text: Strings.brandPrefix,
+                                              style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w800, color: kikiOrange),
+                                            ),
+                                            TextSpan(
+                                              text: Strings.brandSuffix,
+                                              style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w800, color: Colors.black),
+                                            ),
+                                          ]),
                                         ),
+                                        const Spacer(),
                                         IconButton(
                                           onPressed: () => Navigator.of(ctx).pop(),
                                           icon: const Icon(Icons.close),
@@ -123,9 +147,9 @@ class Navbar extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 8),
                                     Divider(color: Colors.grey.withAlpha(40)),
-                                    const SizedBox(height: 8),
+                                    const SizedBox(height: 12),
 
-                                    // Menu items
+                                    // Menu items — styled cards
                                     _MobileMenuItem(label: Strings.navHome, onTap: () {
                                       Navigator.of(ctx).pop();
                                       ctx.go(Routes.home);
@@ -171,10 +195,7 @@ class _NavLink extends StatefulWidget {
   final String label;
   final String route;
 
-  const _NavLink({
-    required this.label,
-    required this.route,
-  });
+  const _NavLink({required this.label, required this.route});
 
   @override
   State<_NavLink> createState() => _NavLinkState();
@@ -209,11 +230,7 @@ class _NavLinkState extends State<_NavLink> {
             style: TextStyle(
               fontSize: 14,
               fontWeight: _isActive ? FontWeight.w600 : FontWeight.w500,
-              color: _isActive
-                  ? kikiOrange
-                  : _hovered
-                      ? kikiDeep
-                      : const Color(0xFF6B7280),
+              color: _isActive ? kikiOrange : _hovered ? kikiDeep : const Color(0xFF6B7280),
             ),
             child: Text(widget.label),
           ),
@@ -232,21 +249,27 @@ class _MobileMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Material(
-        color: Colors.white,
+        color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
           onTap: onTap,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(12),
               color: Colors.white,
+              boxShadow: [BoxShadow(color: Colors.black.withAlpha(6), blurRadius: 10, offset: const Offset(0, 4))],
             ),
-            child: Text(
-              label,
-              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, color: kikiDeep),
+            child: Row(
+              children: [
+                // cute accent dot
+                Container(width: 10, height: 10, decoration: BoxDecoration(color: kikiOrange, borderRadius: BorderRadius.circular(6))),
+                const SizedBox(width: 12),
+                Expanded(child: Text(label, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700, color: kikiDeep))),
+                const Icon(Icons.chevron_right, color: Color(0xFF9CA3AF)),
+              ],
             ),
           ),
         ),
