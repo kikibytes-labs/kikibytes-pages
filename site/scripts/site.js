@@ -43,8 +43,8 @@ document.querySelectorAll('.site-footer .footer-grid').forEach((footerGrid) => {
 });
 
 const socialIcons = {
-  Instagram: '/assets/icons/instagram.png',
-  Facebook: '/assets/icons/facebook.png',
+  Instagram: '/assets/icons/instagram.webp',
+  Facebook: '/assets/icons/facebook.webp',
 };
 
 document.querySelectorAll('.social-links a').forEach((link) => {

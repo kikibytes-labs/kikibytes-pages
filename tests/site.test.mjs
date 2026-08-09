@@ -57,3 +57,20 @@ test('every local asset reference points to a file or directory', () => {
     }
   }
 });
+
+test('content images use WebP and static assets have immutable caching', () => {
+  const sources = [
+    ...pages.map((page) => readFileSync(page, 'utf8')),
+    readFileSync(resolve(siteRoot, 'styles/base.css'), 'utf8'),
+    readFileSync(resolve(siteRoot, 'styles/components.css'), 'utf8'),
+    readFileSync(resolve(siteRoot, 'styles/pages.css'), 'utf8'),
+    readFileSync(resolve(siteRoot, 'scripts/site.js'), 'utf8'),
+  ].join('\n');
+  const legacyImages = [...sources.matchAll(/assets\/[^\s"')]+\.(?:png|jpe?g)/gi)]
+    .map((match) => match[0])
+    .filter((path) => !path.endsWith('icons/cat-head-favicon.png'));
+  const headers = readFileSync(resolve(siteRoot, '_headers'), 'utf8');
+
+  assert.deepEqual(legacyImages, []);
+  assert.match(headers, /\/assets\/\*[\s\S]*Cache-Control: public, max-age=31536000, immutable/);
+});
