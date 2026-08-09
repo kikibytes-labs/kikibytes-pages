@@ -36,9 +36,13 @@ window.addEventListener('pageshow', () => {
 
 const siteLoader = document.querySelector('.site-loader');
 if (siteLoader) {
+  const loaderLabel = document.createElement('span');
+  loaderLabel.textContent = 'Loading KikiBytes.com';
+  siteLoader.append(loaderLabel);
+
   const dismissSiteLoader = () => {
     siteLoader.classList.add('is-hidden');
-    window.setTimeout(() => siteLoader.remove(), 320);
+    window.setTimeout(() => siteLoader.remove(), 380);
   };
 
   if (document.readyState === 'complete') dismissSiteLoader();

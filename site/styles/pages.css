@@ -71,15 +71,15 @@ body:has(.page-hero-art img[src*="about.png"]) .value-grid .value-card h3 { font
 body:has(.page-hero-art img[src*="about.png"]) .value-grid .value-card p { -webkit-box-orient: vertical; -webkit-line-clamp: 3; color: var(--card-copy-color); display: -webkit-box; font-size: var(--card-copy-size); overflow: hidden; }
 @media (max-width: 840px) { body:has(.page-hero-art img[src*="about.png"]) .value-grid { grid-template-columns: minmax(0, 380px); } body:has(.page-hero-art img[src*="about.png"]) .value-grid .value-card { width: 100%; } body:has(.page-hero-art img[src*="about.png"]) .values-layout { grid-template-columns: 1fr; } body:has(.page-hero-art img[src*="about.png"]) .values-layout .about-values-art img { height: 280px; width: 280px; } body:has(.page-hero-art img[src*="about.png"]) .values-layout .value-grid { grid-template-columns: minmax(0, 380px); justify-content: center; } }
 .lhb-hero { background: transparent; min-height: 0; }
-body:not(.home-page):not(:has(.lhb-hero)) { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.png') center / cover fixed; }
+body:not(.home-page):not(:has(.lhb-hero)) { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover fixed; }
 body:not(.home-page):not(:has(.lhb-hero)) main { background: transparent; }
-body.home-page { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.png?v=2') center / cover fixed; }
+body.home-page { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover fixed; }
 body.home-page main { background: transparent; }
 body:has(.hero-home) .projects-preview { background: transparent; }
-body:has(.lhb-hero) { background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.png?v=2') center / cover fixed; }
+body:has(.lhb-hero) { background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover fixed; }
 body:has(.lhb-hero) main { background: transparent; }
 body:has(.lhb-hero) .site-header, body:has(.lhb-hero) .site-footer { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
-.lhb-hero .container { aspect-ratio: 1827 / 605; background: var(--color-bg) url('../assets/banners/lucky-hall.jpg') center / 100% auto no-repeat; }
+.lhb-hero .container { aspect-ratio: 1827 / 605; background: var(--color-bg) url('../assets/banners/lucky-hall.webp') center / 100% auto no-repeat; }
 .lhb-hero .page-hero-art { display: none; }
 .lhb-hero h1 { max-width: 560px; }.platform-list { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
 body:has(.lhb-hero) .content-section { border-bottom: 0; }
