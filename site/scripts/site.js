@@ -64,3 +64,71 @@ if (siteLoader) {
     window.addEventListener('load', dismissSiteLoader, { once: true });
   }
 }
+
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const formNote = contactForm.querySelector('.form-note');
+  const cooldownMs = 60_000;
+  const cooldownKey = 'kikibytes-contact-last-submission';
+  const honeypot = document.createElement('input');
+  honeypot.className = 'form-honeypot';
+  honeypot.name = '_honey';
+  honeypot.tabIndex = -1;
+  honeypot.autocomplete = 'off';
+  honeypot.setAttribute('aria-hidden', 'true');
+  contactForm.prepend(honeypot);
+
+  submitButton.textContent = 'Send message →';
+  formNote.textContent = 'Your message will be sent directly to KikiBytes Labs.';
+  formNote.setAttribute('aria-live', 'polite');
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!contactForm.reportValidity()) return;
+
+    let lastSubmission = 0;
+    try {
+      lastSubmission = Number(window.localStorage.getItem(cooldownKey));
+    } catch {
+      // Private browsing or strict browser settings can block local storage.
+    }
+    const timeRemaining = cooldownMs - (Date.now() - lastSubmission);
+    if (timeRemaining > 0) {
+      formNote.textContent = `Please wait ${Math.ceil(timeRemaining / 1000)} seconds before sending another message.`;
+      return;
+    }
+
+    if (honeypot.value) {
+      contactForm.reset();
+      submitButton.textContent = 'Message sent';
+      formNote.textContent = 'Thanks — your message was sent to KikiBytes Labs.';
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending…';
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/hello@kikibytes.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+      });
+      if (!response.ok) throw new Error('Form submission failed');
+
+      try {
+        window.localStorage.setItem(cooldownKey, String(Date.now()));
+      } catch {
+        // Submission succeeds even when the optional browser-side cooldown cannot persist.
+      }
+      contactForm.reset();
+      submitButton.textContent = 'Message sent';
+      formNote.textContent = 'Thanks — your message was sent to KikiBytes Labs.';
+    } catch {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send message →';
+      formNote.textContent = 'We couldn’t send your message. Please email hello@kikibytes.com directly.';
+    }
+  });
+}

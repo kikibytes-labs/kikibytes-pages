@@ -8,6 +8,7 @@ main { background: var(--color-bg); }
 .site-loader.is-hidden { opacity: 0; pointer-events: none; visibility: hidden; }
 .site-loader img { height: 100px; object-fit: contain; width: 121px; }
 .site-loader span { color: var(--color-ink); font-size: .85rem; font-weight: 800; letter-spacing: .08em; margin-top: .6rem; text-transform: uppercase; }
+.form-honeypot { display: none; }
 body.page-is-leaving { animation: page-leave .18s ease both; }
 @keyframes page-enter { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes page-leave { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-4px); } }
@@ -37,3 +38,10 @@ h3 { font-size: clamp(1.45rem, 2vw, 2rem); margin-bottom: .75rem; }
 .text-link:hover span { transform: translateX(4px); }
 @media (max-width: 640px) { .container { width: min(var(--container), calc(100% - 2rem)); } .section { padding: var(--section-space) 0; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-surface) inset;
+  -webkit-text-fill-color: var(--color-ink);
+  caret-color: var(--color-ink);
+}

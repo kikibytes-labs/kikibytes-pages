@@ -39,11 +39,12 @@ test('local HTML assets and links resolve', () => {
   }
 });
 
-test('the site uses no third-party form endpoint or runtime content patching', () => {
+test('runtime code is limited to site behavior and the contact form uses its configured endpoint', () => {
   const script = readFileSync(resolve(siteRoot, 'scripts/site.js'), 'utf8');
-  const allHtml = pages.map((page) => readFileSync(page, 'utf8')).join('\n');
-  assert.doesNotMatch(script, /fetch\(|formsubmit|innerHTML\s*=/i);
-  assert.doesNotMatch(allHtml, /formsubmit\.co/i);
+  assert.doesNotMatch(script, /innerHTML\s*=/i);
+  assert.match(script, /fetch\('https:\/\/formsubmit\.co\/ajax\/hello@kikibytes\.com'/);
+  assert.match(script, /name = '_honey'/);
+  assert.match(script, /cooldownMs = 60_000/);
 });
 
 test('every local asset reference points to a file or directory', () => {
