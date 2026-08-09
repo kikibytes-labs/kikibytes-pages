@@ -1,5 +1,14 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const siteMenu = document.querySelector('#site-menu');
+const analyticsBeacon = document.querySelector('script[data-cf-beacon]');
+
+if (!analyticsBeacon) {
+  const beacon = document.createElement('script');
+  beacon.type = 'module';
+  beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  beacon.dataset.cfBeacon = '{"token":"06c2ec3d3f924d6f934940b80e9b656f"}';
+  document.head.append(beacon);
+}
 
 if (menuToggle && siteMenu) {
   menuToggle.addEventListener('click', () => {
