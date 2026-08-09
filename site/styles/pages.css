@@ -121,11 +121,15 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
 .lhb-launch-panel { align-items: center; background: linear-gradient(115deg, #183b2a, #0e241b); border: 1px solid rgba(119, 211, 146, .5); border-radius: var(--radius); display: flex; gap: 1.5rem; justify-content: center; padding: 1.25rem 1.5rem; text-align: center; }
 .lhb-launch-panel > div:first-child { flex: 0 1 auto; text-align: center; }.lhb-launch-panel h2 { margin-bottom: .45rem; }.lhb-launch-panel .lhb-launch-name { color: var(--color-ink); font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 700; line-height: 1.08; }.lhb-launch-panel p:last-child { color: var(--color-muted-strong); margin-bottom: 0; }
 .lhb-launch-actions { align-items: center; display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: .65rem; justify-content: flex-end; }.lhb-launch-actions .button { align-items: center; line-height: 1.1; min-height: 52px; padding: .6rem 1rem; }.platform-button-icon { display: inline-flex; font-size: 1.15rem; line-height: 1; margin-right: .45rem; }.lhb-launch-actions button[disabled] { cursor: not-allowed; opacity: .55; }
+.launch-label-mobile { display: none; }
 @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } .contact-values-art img { height: 300px; width: 300px; } }
 @media (max-width: 600px) { .value-grid, .feature-grid, .project-grid { grid-template-columns: 1fr; }.project-grid { gap: 1rem; padding: 0; }.project-grid::before { margin-bottom: .25rem; }.project-card-project .project-card-art { aspect-ratio: 16 / 9; min-height: 0; }.project-card-project .project-card-body { padding: 1.25rem; }.build-process-section { padding-top: 1.25rem; }.build-process-step { grid-template-columns: 58px minmax(0, 1fr); padding: 1rem; } }
 @media (max-width: 800px) { .lhb-launch-panel { align-items: center; flex-direction: column; text-align: center; }.lhb-launch-actions { justify-content: center; } }
 
 @media (max-width: 600px) {
+  .launch-label-desktop { display: none; }
+  .launch-label-mobile { display: inline; }
+
   .site-header .header-inner {
     padding-inline: 1rem;
     width: 100%;
@@ -171,10 +175,10 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
   }
 
   body.lhb-page .lhb-launch-panel {
-    background: linear-gradient(115deg, #183b2a, #0e241b);
-    border: 1px solid rgba(119, 211, 146, .5);
-    border-radius: var(--radius);
-    padding: 1.25rem 1rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
   }
 
   .page-hero .container,
@@ -184,17 +188,21 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
     border-radius: var(--radius);
   }
 
-  body.lhb-page {
+  html:has(body.lhb-page) {
     background: #0e241b;
     isolation: isolate;
   }
 
-  body.lhb-page::before {
+  body.lhb-page {
+    background: transparent;
+  }
+
+  html:has(body.lhb-page)::before {
     background-color: #0e241b;
     background-image: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp');
     background-position: center top;
     background-repeat: repeat-y;
-    background-size: 100% auto;
+    background-size: 135% auto;
     content: "";
     inset: 0;
     pointer-events: none;
