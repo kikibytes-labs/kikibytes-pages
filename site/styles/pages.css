@@ -88,6 +88,7 @@ body:has(.lhb-hero) .page-hero ~ .section .eyebrow::before { color: var(--color-
 body:has(.lhb-hero) .page-hero ~ .section h2 { text-align: center; }
 body:has(.lhb-hero) .page-hero ~ .section .prose { max-width: none; text-align: center; }
 body:has(.lhb-hero) .page-hero ~ .section .prose > * { margin-inline: auto; max-width: 780px; }
+body:has(.lhb-hero) .page-hero ~ .section .prose h2 { color: #f7f9fc; }
 body:has(.lhb-hero) .page-hero ~ .section > .container { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
 body:has(.lhb-hero) .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-inline: auto; max-width: 980px; }
 body:has(.lhb-hero) .feature-card { background: linear-gradient(145deg, #102b1e, #071910); border-color: rgba(119, 211, 146, .38); padding: 1rem; text-align: center; }
@@ -106,6 +107,24 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
 @media (max-width: 800px) { .lhb-launch-panel { align-items: center; flex-direction: column; text-align: center; }.lhb-launch-actions { justify-content: center; } }
 
 @media (max-width: 600px) {
+  body.lhb-page {
+    background: transparent;
+    isolation: isolate;
+  }
+
+  body.lhb-page::before {
+    background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: fixed;
+    z-index: -1;
+  }
+
+  body:has(.page-hero-art img[src*="about.png"]) .values-layout .about-values-art {
+    display: none;
+  }
+
   .about-preview .home-about-image,
   .about-values-art,
   .contact-values-art,
@@ -141,5 +160,55 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
 
   body:has(.lhb-hero) .feature-card p {
     font-size: .98rem;
+  }
+
+  .home-cta-inner > .button {
+    align-self: center;
+  }
+
+  .about-preview .what-we-do {
+    margin-top: 2.5rem;
+  }
+
+  .project-card-featured .project-card-art-link img {
+    object-position: 62% center;
+  }
+
+  .site-footer .footer-grid > :nth-child(2) {
+    order: 1;
+  }
+
+  .site-footer .footer-grid > :nth-child(3) {
+    order: 2;
+  }
+
+  .site-footer .footer-brand {
+    align-items: center;
+    column-gap: 1rem;
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    margin-inline: 0;
+    order: 3;
+    text-align: left;
+  }
+
+  .site-footer .footer-brand .brand {
+    grid-row: span 2;
+  }
+
+  .site-footer .footer-brand .brand img {
+    width: 118px;
+  }
+
+  .site-footer .footer-brand p {
+    grid-column: 2;
+    margin-inline: 0;
+    text-align: left;
+  }
+
+  .site-footer .footer-brand small {
+    grid-column: 1 / -1;
+    margin-top: .35rem;
+    text-align: center;
   }
 }
