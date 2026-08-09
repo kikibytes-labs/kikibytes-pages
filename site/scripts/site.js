@@ -1,6 +1,12 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const siteMenu = document.querySelector('#site-menu');
 const analyticsBeacon = document.querySelector('script[data-cf-beacon]');
+const featuredProjectArt = document.querySelector('.project-card-art-lhb img');
+
+if (featuredProjectArt) {
+  featuredProjectArt.removeAttribute('loading');
+  featuredProjectArt.fetchPriority = 'high';
+}
 
 if (!analyticsBeacon) {
   const beacon = document.createElement('script');
