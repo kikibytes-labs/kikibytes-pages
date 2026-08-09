@@ -157,6 +157,26 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
     padding: 0;
   }
 
+  body.lhb-page .page-hero ~ .section > .container {
+    background: linear-gradient(115deg, #183b2a, #0e241b);
+    border: 1px solid rgba(119, 211, 146, .5);
+    border-radius: var(--radius);
+    padding: 1rem;
+  }
+
+  body.lhb-page .lhb-launch > .container {
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  body.lhb-page .lhb-launch-panel {
+    background: linear-gradient(115deg, #183b2a, #0e241b);
+    border: 1px solid rgba(119, 211, 146, .5);
+    border-radius: var(--radius);
+    padding: 1.25rem 1rem;
+  }
+
   .page-hero .container,
   .hero-content,
   .page-hero ~ .section > .container,
