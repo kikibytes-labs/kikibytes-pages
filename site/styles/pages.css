@@ -141,6 +141,7 @@ body:has(.lhb-hero) .lhb-bottom-cta h2 { font-size: clamp(2rem, 4vw, 3.3rem); ma
 .lhb-bottom-actions .button { min-height: 0; padding: .5rem .75rem; }
 .launch-label-mobile { display: none; }
 .lhb-bottom-cta-inner { align-items: center; display: flex; gap: 2rem; justify-content: center; padding: clamp(1.5rem, 3vw, 2.5rem); }
+@media (max-width: 600px) { body:has(.lhb-hero) .page-hero ~ .section .eyebrow, body:has(.lhb-hero) .lhb-screenshots .section-title-label, body:has(.lhb-hero) .lhb-bottom-cta .section-title-label { gap: .35rem; margin-inline: auto; width: fit-content; } }
 .lhb-bottom-cta-inner > div { margin-inline: 0; text-align: center; }
 .lhb-bottom-cta-inner h2 { margin-bottom: .65rem; }
 .lhb-bottom-cta-inner button[disabled] { cursor: not-allowed; opacity: .55; }
