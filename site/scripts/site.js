@@ -3,6 +3,28 @@ const siteMenu = document.querySelector('#site-menu');
 const luckyHallDescription = 'A cozy bingo adventure with charming rooms, collectible lucky charms, satisfying level-ups, daily rewards, and a little bit of luck.';
 const skitchDescription = 'Track your transit. Skitch keeps all your trip details organized in one place, so you can leave the spreadsheets behind.';
 
+const siteIcon = document.createElement('link');
+siteIcon.rel = 'icon';
+siteIcon.type = 'image/png';
+siteIcon.href = '/assets/icons/cat-head-favicon.png';
+document.head.append(siteIcon);
+const siteShortcutIcon = siteIcon.cloneNode();
+siteShortcutIcon.rel = 'shortcut icon';
+document.head.append(siteShortcutIcon);
+
+const siteLoader = document.createElement('div');
+siteLoader.className = 'site-loader';
+siteLoader.setAttribute('role', 'status');
+siteLoader.setAttribute('aria-label', 'Loading KikiBytes Labs');
+siteLoader.innerHTML = '<img src="/assets/icons/cat-head.png" width="121" height="100" alt="">';
+document.body.prepend(siteLoader);
+const dismissSiteLoader = () => {
+  siteLoader.classList.add('is-hidden');
+  window.setTimeout(() => siteLoader.remove(), 320);
+};
+if (document.readyState === 'complete') dismissSiteLoader();
+else window.addEventListener('load', dismissSiteLoader, { once: true });
+
 document.querySelectorAll('.project-card').forEach((card) => {
   const heading = card.querySelector('h2, h3');
   if (!heading) return;
