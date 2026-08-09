@@ -126,6 +126,27 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
 @media (max-width: 800px) { .lhb-launch-panel { align-items: center; flex-direction: column; text-align: center; }.lhb-launch-actions { justify-content: center; } }
 
 @media (max-width: 600px) {
+  .site-header .header-inner {
+    padding-inline: 1rem;
+    width: 100%;
+  }
+
+  .page-hero .container,
+  .hero-content,
+  .section > .container,
+  .projects-preview .container {
+    width: 100%;
+  }
+
+  .page-hero .container,
+  .hero-content,
+  .page-hero ~ .section > .container,
+  .projects-preview .container {
+    border-left-width: 0;
+    border-radius: 0;
+    border-right-width: 0;
+  }
+
   body.lhb-page {
     background: transparent;
     isolation: isolate;
@@ -146,7 +167,8 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
     white-space: nowrap;
   }
 
-  body:has(.page-hero-art img[src*="about.png"]) .values-layout .about-values-art {
+  body:has(.page-hero-art img[src*="about.png"]) .values-layout .about-values-art,
+  body.about-page .values-layout .about-values-art {
     display: none;
   }
 
