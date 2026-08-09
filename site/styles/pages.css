@@ -145,6 +145,18 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
     width: calc(100% - 1rem);
   }
 
+  .page-hero ~ .section > .container,
+  .projects-preview .container,
+  .about-combined,
+  .home-cta-inner,
+  body.lhb-page .page-hero ~ .section > .container,
+  body.lhb-page .lhb-launch-panel {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+  }
+
   .page-hero .container,
   .hero-content,
   .page-hero ~ .section > .container,
