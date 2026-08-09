@@ -203,7 +203,7 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
   }
 
   .project-card-featured .project-card-art-link img {
-    object-position: 26% center;
+    object-position: 32% center;
   }
 
   .site-footer .footer-grid > :nth-child(2) {
