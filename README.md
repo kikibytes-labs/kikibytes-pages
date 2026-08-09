@@ -17,7 +17,7 @@ Open `site/index.html` for a quick content review. Directory routes are intended
 
 - Build command: none
 - Output directory: `site`
-- Deploy command: `npx wrangler pages deploy site --project-name=kikibytes-pages`
+- Deploy: Cloudflare Pages deploys from the configured GitHub branch. No deployment CLI or paid service is required by this repository.
 
 ## Analytics
 

@@ -1,0 +1,13 @@
+{
+  "name": "kikibytes-pages",
+  "private": true,
+  "version": "1.0.0",
+  "description": "KikiBytes Labs static website quality checks",
+  "scripts": {
+    "check": "node --check site/scripts/site.js && node --test tests/site.test.mjs",
+    "test": "node --test tests/site.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
