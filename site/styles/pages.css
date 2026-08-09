@@ -70,6 +70,25 @@ body:has(.page-hero-art img[src*="about.png"]) .value-grid .value-card .value-ca
 body:has(.page-hero-art img[src*="about.png"]) .value-grid .value-card h3 { font-size: var(--card-title-size); margin-bottom: .25rem; }
 body:has(.page-hero-art img[src*="about.png"]) .value-grid .value-card p { -webkit-box-orient: vertical; -webkit-line-clamp: 3; color: var(--card-copy-color); display: -webkit-box; font-size: var(--card-copy-size); overflow: hidden; }
 @media (max-width: 840px) { body:has(.page-hero-art img[src*="about.png"]) .value-grid { grid-template-columns: minmax(0, 380px); } body:has(.page-hero-art img[src*="about.png"]) .value-grid .value-card { width: 100%; } body:has(.page-hero-art img[src*="about.png"]) .values-layout { grid-template-columns: 1fr; } body:has(.page-hero-art img[src*="about.png"]) .values-layout .about-values-art img { height: 280px; width: 280px; } body:has(.page-hero-art img[src*="about.png"]) .values-layout .value-grid { grid-template-columns: minmax(0, 380px); justify-content: center; } }
+/* About page layout is tied to the page class rather than an asset filename. */
+body.about-page .content-section { border-bottom: 0; }
+body.about-page .content-section .prose { max-width: none; }
+body.about-page .content-section .prose > * { margin-inline: auto; max-width: 920px; }
+body.about-page .content-section h2 { text-align: center; }
+body.about-page .content-section .eyebrow,
+body.about-page .values-cards-column > .eyebrow { display: block; text-align: center; }
+body.about-page .content-section .eyebrow::before,
+body.about-page .values-cards-column > .eyebrow::before { content: none; }
+body.about-page .values-layout { align-items: center; display: grid; gap: 2rem; grid-template-columns: minmax(260px, 360px) minmax(0, 1fr); margin-inline: auto; max-width: 1040px; }
+body.about-page .values-layout .about-values-art { display: flex; justify-content: center; }
+body.about-page .values-layout .about-values-art img { height: min(30vw, 360px); object-fit: contain; width: min(30vw, 360px); }
+body.about-page .values-cards-column { min-width: 0; }
+body.about-page .values-layout .value-grid { gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
+body.about-page .value-card { align-items: center; background: rgba(5, 11, 21, .36); display: flex; flex-direction: column; height: 210px; justify-content: flex-start; min-height: 210px; overflow: hidden; padding: 1rem 1.25rem; text-align: center; width: 100%; }
+body.about-page .value-card-icon { aspect-ratio: 1; flex: 0 0 76px; height: 76px; margin: 0 auto .6rem; object-fit: contain; width: 76px; }
+body.about-page .value-card h3 { font-size: var(--card-title-size); margin-bottom: .25rem; }
+body.about-page .value-card p { -webkit-box-orient: vertical; -webkit-line-clamp: 3; color: var(--card-copy-color); display: -webkit-box; font-size: var(--card-copy-size); overflow: hidden; }
+@media (max-width: 840px) { body.about-page .values-layout { grid-template-columns: 1fr; } body.about-page .values-layout .value-grid { grid-template-columns: minmax(0, 380px); justify-content: center; } body.about-page .values-layout .about-values-art img { height: 280px; width: 280px; } }
 .lhb-hero { background: transparent; min-height: 0; }
 body:not(.home-page):not(:has(.lhb-hero)) { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover fixed; }
 body:not(.home-page):not(:has(.lhb-hero)) main { background: transparent; }
@@ -184,10 +203,11 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
   }
 
   .project-card-featured .project-card-art-link img {
-    object-position: 22% center;
+    object-position: 26% center;
   }
 
   .site-footer .footer-grid > :nth-child(2) {
+    grid-column: 1 / -1;
     order: 1;
   }
 
@@ -198,10 +218,10 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
   .site-footer .footer-brand {
     display: grid;
     grid-template-columns: 1fr;
-    justify-items: center;
+    justify-items: start;
     margin-inline: 0;
-    order: 3;
-    text-align: center;
+    order: 2;
+    text-align: left;
   }
 
   .site-footer .footer-brand .brand {
@@ -219,6 +239,15 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
   .site-footer .footer-brand small {
     grid-column: 1 / -1;
     margin-top: .35rem;
-    text-align: center;
+    text-align: left;
+  }
+
+  .site-footer .footer-grid {
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .site-footer .footer-grid > :nth-child(3) {
+    justify-self: end;
   }
 }
