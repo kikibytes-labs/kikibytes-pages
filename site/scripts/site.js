@@ -3,6 +3,31 @@ const siteMenu = document.querySelector('#site-menu');
 const analyticsBeacon = document.querySelector('script[data-cf-beacon]');
 const featuredProjectArt = document.querySelector('.project-card-art-lhb img');
 
+const lightbox = document.querySelector('.lhb-lightbox');
+const lightboxImage = lightbox?.querySelector('.lhb-lightbox-image');
+const lightboxCaption = lightbox?.querySelector('#lhb-lightbox-caption');
+const lightboxClose = lightbox?.querySelector('.lhb-lightbox-close');
+
+if (lightbox && lightboxImage && lightboxCaption && lightboxClose) {
+  document.querySelectorAll('.lhb-screenshot-link').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const image = link.querySelector('img');
+      if (!image) return;
+
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      lightboxCaption.textContent = link.closest('figure')?.querySelector('figcaption')?.textContent ?? '';
+      lightbox.showModal();
+    });
+  });
+
+  lightboxClose.addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+}
+
 if (featuredProjectArt) {
   featuredProjectArt.removeAttribute('loading');
   featuredProjectArt.fetchPriority = 'high';
