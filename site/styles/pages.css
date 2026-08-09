@@ -84,10 +84,10 @@ body.about-page .values-layout .about-values-art { display: flex; justify-conten
 body.about-page .values-layout .about-values-art img { height: min(30vw, 360px); object-fit: contain; width: min(30vw, 360px); }
 body.about-page .values-cards-column { min-width: 0; }
 body.about-page .values-layout .value-grid { gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
-body.about-page .value-card { align-items: center; background: rgba(5, 11, 21, .36); display: flex; flex-direction: column; height: 210px; justify-content: flex-start; min-height: 210px; overflow: hidden; padding: 1rem 1.25rem; text-align: center; width: 100%; }
+body.about-page .value-card { align-items: center; background: rgba(5, 11, 21, .36); display: flex; flex-direction: column; height: auto; justify-content: flex-start; min-height: 220px; overflow: visible; padding: 1rem 1.25rem; text-align: center; width: 100%; }
 body.about-page .value-card-icon { aspect-ratio: 1; flex: 0 0 76px; height: 76px; margin: 0 auto .6rem; object-fit: contain; width: 76px; }
 body.about-page .value-card h3 { font-size: var(--card-title-size); margin-bottom: .25rem; }
-body.about-page .value-card p { -webkit-box-orient: vertical; -webkit-line-clamp: 3; color: var(--card-copy-color); display: -webkit-box; font-size: var(--card-copy-size); overflow: hidden; }
+body.about-page .value-card p { color: var(--card-copy-color); display: block; font-size: var(--card-copy-size); line-height: 1.55; overflow: visible; }
 @media (max-width: 840px) { body.about-page .values-layout { grid-template-columns: 1fr; } body.about-page .values-layout .value-grid { grid-template-columns: minmax(0, 380px); justify-content: center; } body.about-page .values-layout .about-values-art img { height: 280px; width: 280px; } }
 .lhb-hero { background: transparent; min-height: 0; }
 body:not(.home-page):not(:has(.lhb-hero)) { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover fixed; }
