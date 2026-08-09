@@ -42,6 +42,25 @@ document.querySelectorAll('.site-footer .footer-grid').forEach((footerGrid) => {
   footerGrid.append(connect);
 });
 
+const socialIcons = {
+  Instagram: '/assets/icons/instagram.png',
+  Facebook: '/assets/icons/facebook.png',
+};
+
+document.querySelectorAll('.social-links a').forEach((link) => {
+  const iconSource = socialIcons[link.textContent.trim()];
+  if (!iconSource) return;
+
+  const image = document.createElement('img');
+  image.src = iconSource;
+  image.width = 28;
+  image.height = 28;
+  image.alt = '';
+  link.classList.add('social-icon-link');
+  link.setAttribute('aria-label', link.textContent.trim());
+  link.replaceChildren(image);
+});
+
 if (menuToggle && siteMenu) {
   menuToggle.addEventListener('click', () => {
     const isOpen = siteMenu.classList.toggle('is-open');
