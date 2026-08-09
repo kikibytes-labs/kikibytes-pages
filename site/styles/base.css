@@ -2,7 +2,7 @@
 html { overscroll-behavior-y: none; scroll-behavior: smooth; }
 body { animation: page-enter .28s ease both; margin: 0; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-sans); line-height: 1.55; }
 main { background: var(--color-bg); }
-.site-loader { align-items: center; background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.png') center / cover fixed; display: flex; inset: 0; justify-content: center; opacity: 1; pointer-events: auto; position: fixed; transition: opacity .28s ease; z-index: 100; }
+.site-loader { align-items: center; background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.png') center / cover fixed; display: grid; height: 100dvh; inset: 0; justify-content: center; left: 0; opacity: 1; overflow: hidden; pointer-events: auto; position: fixed; top: 0; transition: opacity .28s ease; width: 100vw; z-index: 100; }
 .site-loader.is-hidden { opacity: 0; pointer-events: none; }
 .site-loader img { height: 100px; object-fit: contain; width: 121px; }
 body.page-is-leaving { animation: page-leave .18s ease both; }
