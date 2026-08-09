@@ -1,7 +1,7 @@
 * { box-sizing: border-box; }
 html { overscroll-behavior-y: none; scroll-behavior: smooth; }
-body { animation: page-enter .28s ease both; margin: 0; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-sans); line-height: 1.55; }
-main { background: var(--color-bg); }
+body { animation: page-enter .28s ease both; background: var(--color-bg); color: var(--color-ink); display: flex; flex-direction: column; font-family: var(--font-sans); line-height: 1.55; margin: 0; min-height: 100dvh; }
+main { background: var(--color-bg); flex: 1; }
 .site-loader { align-items: center; background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover; display: flex; flex-direction: column; height: 100dvh; inset: 0; justify-content: center; left: 0; opacity: 0; overflow: hidden; pointer-events: none; position: fixed; top: 0; transition: opacity .24s ease, visibility 0s linear .24s; visibility: hidden; width: 100vw; z-index: 100; }
 .lhb-page .site-loader { background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover; }
 .site-loader.is-visible { opacity: 1; pointer-events: auto; transition-delay: 0s; visibility: visible; }
