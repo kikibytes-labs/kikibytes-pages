@@ -16,6 +16,32 @@ if (!analyticsBeacon) {
   document.head.append(beacon);
 }
 
+document.querySelectorAll('.site-footer .footer-grid').forEach((footerGrid) => {
+  if (footerGrid.children.length !== 2) return;
+
+  const connect = document.createElement('div');
+  const heading = document.createElement('h2');
+  heading.className = 'footer-heading';
+  heading.textContent = 'Connect';
+  const links = document.createElement('div');
+  links.className = 'social-links';
+
+  [
+    ['Instagram', 'https://instagram.com/kikibytes'],
+    ['Facebook', 'https://www.facebook.com/profile.php?id=61588637222576'],
+    ['hello@kikibytes.com', 'mailto:hello@kikibytes.com'],
+  ].forEach(([label, href]) => {
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = label;
+    if (href.startsWith('https://')) link.rel = 'noreferrer';
+    links.append(link);
+  });
+
+  connect.append(heading, links);
+  footerGrid.append(connect);
+});
+
 if (menuToggle && siteMenu) {
   menuToggle.addEventListener('click', () => {
     const isOpen = siteMenu.classList.toggle('is-open');
