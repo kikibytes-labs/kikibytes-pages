@@ -49,11 +49,18 @@ if (siteLoader) {
   loaderLabel.textContent = 'Loading KikiBytes.com';
   siteLoader.append(loaderLabel);
 
+  let loaderTimer;
+  const showLoader = () => siteLoader.classList.add('is-visible');
   const dismissSiteLoader = () => {
+    window.clearTimeout(loaderTimer);
     siteLoader.classList.add('is-hidden');
-    window.setTimeout(() => siteLoader.remove(), 380);
+    siteLoader.classList.remove('is-visible');
+    window.setTimeout(() => siteLoader.remove(), 260);
   };
 
   if (document.readyState === 'complete') dismissSiteLoader();
-  else window.addEventListener('load', dismissSiteLoader, { once: true });
+  else {
+    loaderTimer = window.setTimeout(showLoader, 450);
+    window.addEventListener('load', dismissSiteLoader, { once: true });
+  }
 }
