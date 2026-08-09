@@ -104,3 +104,42 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
 @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } .contact-values-art img { height: 300px; width: 300px; } }
 @media (max-width: 600px) { .value-grid, .feature-grid, .project-grid { grid-template-columns: 1fr; }.project-grid { gap: 1rem; padding: 0; }.project-grid::before { margin-bottom: .25rem; }.project-card-project .project-card-art { aspect-ratio: 16 / 9; min-height: 0; }.project-card-project .project-card-body { padding: 1.25rem; }.build-process-section { padding-top: 3rem; }.build-process-step { grid-template-columns: 58px minmax(0, 1fr); padding: 1rem; } }
 @media (max-width: 800px) { .lhb-launch-panel { align-items: center; flex-direction: column; text-align: center; }.lhb-launch-actions { justify-content: center; } }
+
+@media (max-width: 600px) {
+  .about-preview .home-about-image,
+  .about-values-art,
+  .contact-values-art,
+  .build-process-art {
+    display: none;
+  }
+
+  .about-preview .split-section,
+  .values-layout,
+  .contact-grid {
+    gap: 1.5rem;
+  }
+
+  .contact-details {
+    text-align: center;
+  }
+
+  .contact-details h2 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  body:has(.lhb-hero) .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body:has(.lhb-hero) .feature-card {
+    padding: 1.25rem;
+  }
+
+  body:has(.lhb-hero) .feature-card h3 {
+    font-size: 1.15rem;
+  }
+
+  body:has(.lhb-hero) .feature-card p {
+    font-size: .98rem;
+  }
+}
