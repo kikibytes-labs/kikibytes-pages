@@ -132,33 +132,48 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
   }
 
   .page-hero .container,
-  .hero-content,
+  .hero-content {
+    width: 100%;
+  }
+
   .section > .container,
   .projects-preview .container {
-    width: 100%;
+    width: calc(100% - 1rem);
+  }
+
+  body.lhb-page .page-hero ~ .section > .container {
+    width: calc(100% - 1rem);
   }
 
   .page-hero .container,
   .hero-content,
   .page-hero ~ .section > .container,
   .projects-preview .container {
-    border-left-width: 0;
-    border-radius: 0;
-    border-right-width: 0;
+    border-radius: var(--radius);
   }
 
   body.lhb-page {
-    background: transparent;
+    background: #0e241b;
     isolation: isolate;
   }
 
   body.lhb-page::before {
-    background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover;
+    background-color: #0e241b;
+    background-image: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp');
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
     content: "";
     inset: 0;
     pointer-events: none;
     position: fixed;
-    z-index: -1;
+    z-index: 0;
+  }
+
+  body.lhb-page main,
+  body.lhb-page .site-footer {
+    position: relative;
+    z-index: 1;
   }
 
   .about-preview .section-title-label {
@@ -176,10 +191,6 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
   .about-values-art,
   .contact-values-art,
   .build-process-art {
-    display: none;
-  }
-
-  body.about-page .page-hero-art {
     display: none;
   }
 
