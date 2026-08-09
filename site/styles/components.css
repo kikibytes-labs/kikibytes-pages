@@ -26,7 +26,8 @@
 .featured-heading { align-items: start; flex-direction: column; gap: 1rem; justify-content: flex-start; margin-bottom: 1.5rem; }
 .featured-heading .section-title-label { align-self: center; }
 .featured-heading > .button { align-self: center; }
-.section-title-label { align-items: center; color: var(--color-ink); display: flex; font-size: 1.35rem; font-weight: 800; gap: .65rem; justify-content: center; letter-spacing: .02em; line-height: 1.1; text-transform: uppercase; }.section-title-label::before { color: var(--color-orange); content: "</>"; font-size: 1.25rem; font-weight: 900; }.section-title-label h2 { font-size: inherit; letter-spacing: inherit; margin: 0; }
+.section-title-label { align-items: center; color: var(--color-ink); display: flex; flex-wrap: wrap; font-size: 1.35rem; font-weight: 800; gap: .65rem; justify-content: center; letter-spacing: .02em; line-height: 1.1; text-align: center; text-transform: uppercase; }.section-title-label::before { color: var(--color-orange); content: "</>"; flex: 0 0 auto; font-size: 1.25rem; font-weight: 900; }.section-title-label > span { min-width: 0; }.section-title-label h2 { font-size: inherit; letter-spacing: inherit; margin: 0; }
+@media (max-width: 600px) { .section-title-label { gap: .4rem; }.section-title-label > span { max-width: calc(100% - 2.5rem); overflow-wrap: anywhere; } }
 .section-heading h2 { margin-bottom: 0; }
 .project-card { background: linear-gradient(145deg, rgba(15, 32, 52, .96), rgba(7, 17, 29, .96)); border: 1px solid var(--color-line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
 .project-card-featured { display: grid; grid-template-columns: 1.05fr .95fr; margin-inline: auto; max-width: 1120px; }
