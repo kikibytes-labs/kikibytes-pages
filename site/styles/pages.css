@@ -150,7 +150,7 @@ body:has(.lhb-hero) .lhb-bottom-cta h2 { font-size: clamp(2rem, 4vw, 3.3rem); ma
 @media (max-width: 600px) { .value-grid, .feature-grid, .project-grid { grid-template-columns: 1fr; }.project-grid { gap: 1rem; padding: 0; }.project-grid::before { margin-bottom: .25rem; }.project-card-project .project-card-art { aspect-ratio: 16 / 9; min-height: 0; }.project-card-project .project-card-body { padding: 1.25rem; }.build-process-section { padding-top: 1.25rem; }.build-process-step { grid-template-columns: 58px minmax(0, 1fr); padding: 1rem; } }
 @media (max-width: 800px) { .lhb-launch-panel { align-items: center; flex-direction: column; text-align: center; }.lhb-launch-actions { justify-content: center; } }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) { .lhb-bottom-cta-inner { align-items: stretch; flex-direction: column; }.lhb-bottom-cta-inner > div { width: 100%; }.lhb-bottom-cta-inner > button { align-self: center; } }
   body {
     display: flex;
     flex-direction: column;
