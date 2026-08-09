@@ -15,6 +15,11 @@ function htmlFiles(directory) {
 
 const pages = htmlFiles(siteRoot);
 
+function localTarget(page, value) {
+  const path = value.split(/[?#]/, 1)[0];
+  return value.startsWith('/') ? resolve(siteRoot, path.slice(1)) : resolve(dirname(page), path);
+}
+
 test('every page has essential document metadata and an accessible main landmark', () => {
   for (const page of pages) {
     const html = readFileSync(page, 'utf8');
@@ -33,7 +38,7 @@ test('local HTML assets and links resolve', () => {
     for (const match of html.matchAll(attributePattern)) {
       const value = match[1];
       if (/^(?:https?:|mailto:|#)/.test(value)) continue;
-      const target = resolve(dirname(page), value.split(/[?#]/, 1)[0]);
+      const target = localTarget(page, value);
       assert.ok(existsSync(target), `${page} references missing local path ${value}`);
     }
   }
@@ -52,7 +57,7 @@ test('every local asset reference points to a file or directory', () => {
     const html = readFileSync(page, 'utf8');
     for (const value of html.matchAll(/(?:src|href)="([^"]+)"/g).map((match) => match[1])) {
       if (/^(?:https?:|mailto:|#)/.test(value)) continue;
-      const target = resolve(dirname(page), value.split(/[?#]/, 1)[0]);
+      const target = localTarget(page, value);
       assert.ok(statSync(target).isFile() || statSync(target).isDirectory());
     }
   }
