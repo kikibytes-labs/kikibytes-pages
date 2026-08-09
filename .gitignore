@@ -1,14 +1,6 @@
-# Flutter/Dart
-.dart_tool/
-.pub/
-.packages
-.flutter-plugins
-.flutter-plugins-dependencies
-pubspec.lock
-
-# Build outputs
-/build/
-/build/web/
+# Local/build outputs
+.wrangler/
+dist/
 
 # IDE
 .idea/
