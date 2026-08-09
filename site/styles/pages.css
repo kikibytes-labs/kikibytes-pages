@@ -113,6 +113,8 @@ body:has(.lhb-hero) .feature-grid { grid-template-columns: repeat(4, minmax(0, 1
 body:has(.lhb-hero) .feature-card { background: linear-gradient(145deg, #102b1e, #071910); border-color: rgba(119, 211, 146, .38); padding: 1rem; text-align: center; }
 body:has(.lhb-hero) .feature-card img { height: 76px; margin: 0 auto .75rem; object-fit: contain; width: 76px; }
 .lhb-screenshots .section-title-label { gap: .4rem; justify-content: center; margin: 0 auto .75rem; width: fit-content; }
+.lhb-section-label { gap: .15rem !important; margin-inline: auto !important; max-width: 100%; width: max-content !important; }
+.lhb-section-label::before { transform: translateX(.15rem); }
 .lhb-screenshots > .container > h2 { margin-bottom: 1.5rem; text-align: center; }
 .lhb-screenshot-grid { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: .6rem; scroll-snap-type: x mandatory; scrollbar-width: thin; }
 .lhb-screenshot-grid figure { background: linear-gradient(145deg, #102b1e, #071910); border: 1px solid rgba(119, 211, 146, .38); border-radius: var(--radius); flex: 0 0 min(22rem, 78vw); margin: 0; overflow: hidden; scroll-snap-align: start; }
