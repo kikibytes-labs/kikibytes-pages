@@ -1,6 +1,6 @@
 .site-header { background: rgba(5, 11, 21, .92); border-bottom: 1px solid var(--color-line); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); }
 .header-inner { align-items: center; display: flex; justify-content: space-between; min-height: 78px; }
-.brand img { height: auto; width: clamp(138px, 16vw, 164px); }
+.brand img { height: auto; width: clamp(138px, 16vw, 156px); }
 .site-nav { align-items: center; display: flex; gap: clamp(1.3rem, 3vw, 3rem); }
 .site-nav a { color: var(--color-muted-strong); font-size: .95rem; font-weight: 700; padding: 1.7rem 0; position: relative; }
 .site-nav a::after { background: var(--color-orange); bottom: 1rem; content: ""; height: 2px; left: 0; position: absolute; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; width: 100%; }
@@ -70,12 +70,12 @@
 .mascot-orbit-two { inset: 22%; transform: rotate(-55deg); }
 .site-footer { background: #030812; border-top: 1px solid var(--color-line); padding: 1.25rem 0 .75rem; }
 .footer-grid { align-items: center; display: grid; gap: 1.5rem; grid-template-columns: 1.1fr 1.5fr 1.1fr; }
-.footer-brand { align-items: center; column-gap: .75rem; display: grid; grid-template-columns: auto 1fr; }
-.footer-brand .brand { grid-row: span 2; }
-.footer-brand p, .footer-brand small { grid-column: 2; }
+.footer-brand { align-items: flex-start; display: flex; flex-direction: column; gap: .35rem; }
+.footer-brand .brand { grid-row: auto; }
+.footer-brand p, .footer-brand small { grid-column: auto; }
 .footer-brand .brand img { width: 132px; }
 .footer-brand p, .footer-brand small { color: var(--color-muted); display: block; max-width: 250px; }
-.footer-brand p { font-size: .85rem; margin: .45rem 0 .3rem; }
+.footer-brand p { display: none; }
 .footer-heading { color: var(--color-orange-bright); font-size: .7rem; letter-spacing: .12em; margin-bottom: .55rem; text-align: center; text-transform: uppercase; }
 .footer-links, .social-links { display: flex; flex-direction: row; flex-wrap: wrap; gap: .45rem 1rem; justify-content: center; }
 .footer-links a, .social-links a { color: var(--color-muted-strong); }

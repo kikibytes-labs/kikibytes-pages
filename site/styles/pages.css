@@ -127,6 +127,20 @@ body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 
 @media (max-width: 800px) { .lhb-launch-panel { align-items: center; flex-direction: column; text-align: center; }.lhb-launch-actions { justify-content: center; } }
 
 @media (max-width: 600px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  .site-footer {
+    margin-top: auto;
+  }
+
   .build-process-step .build-process-icon {
     align-self: center;
     justify-self: center;
