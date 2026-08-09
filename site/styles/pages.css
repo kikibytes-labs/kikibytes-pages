@@ -102,7 +102,7 @@ body:has(.lhb-hero) .site-header, body:has(.lhb-hero) .site-footer { background:
 .lhb-hero .page-hero-art { display: none; }
 .lhb-hero h1 { max-width: 560px; }.platform-list { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
 body:has(.lhb-hero) .content-section { border-bottom: 0; }
-body:has(.lhb-hero) .page-hero ~ .section .eyebrow { align-items: center; color: var(--color-ink); display: flex; font-size: 1.35rem; font-weight: 800; gap: .65rem; justify-content: center; letter-spacing: .02em; line-height: 1.1; text-align: center; text-transform: uppercase; }
+body:has(.lhb-hero) .page-hero ~ .section .eyebrow { align-items: center; color: var(--color-ink); display: flex; font-size: 1.35rem; font-weight: 800; gap: .4rem; justify-content: center; letter-spacing: .02em; line-height: 1.1; margin-inline: auto; text-align: center; text-transform: uppercase; width: fit-content; }
 body:has(.lhb-hero) .page-hero ~ .section .eyebrow::before { color: var(--color-orange); content: "</>"; font-size: 1.15rem; font-weight: 900; }
 body:has(.lhb-hero) .page-hero ~ .section h2 { text-align: center; }
 body:has(.lhb-hero) .page-hero ~ .section .prose { max-width: none; text-align: center; }
@@ -112,7 +112,7 @@ body:has(.lhb-hero) .page-hero ~ .section > .container { background: linear-grad
 body:has(.lhb-hero) .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-inline: auto; max-width: 980px; }
 body:has(.lhb-hero) .feature-card { background: linear-gradient(145deg, #102b1e, #071910); border-color: rgba(119, 211, 146, .38); padding: 1rem; text-align: center; }
 body:has(.lhb-hero) .feature-card img { height: 76px; margin: 0 auto .75rem; object-fit: contain; width: 76px; }
-.lhb-screenshots .section-title-label { justify-content: center; margin-bottom: .75rem; }
+.lhb-screenshots .section-title-label { gap: .4rem; justify-content: center; margin: 0 auto .75rem; width: fit-content; }
 .lhb-screenshots > .container > h2 { margin-bottom: 1.5rem; text-align: center; }
 .lhb-screenshot-grid { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: .6rem; scroll-snap-type: x mandatory; scrollbar-width: thin; }
 .lhb-screenshot-grid figure { background: linear-gradient(145deg, #102b1e, #071910); border: 1px solid rgba(119, 211, 146, .38); border-radius: var(--radius); flex: 0 0 min(22rem, 78vw); margin: 0; overflow: hidden; scroll-snap-align: start; }
@@ -141,6 +141,7 @@ body:has(.lhb-hero) .lhb-bottom-cta h2 { font-size: clamp(2rem, 4vw, 3.3rem); ma
 .lhb-bottom-actions .button { min-height: 0; padding: .5rem .75rem; }
 .launch-label-mobile { display: none; }
 .lhb-bottom-cta-inner { align-items: center; display: flex; gap: 2rem; justify-content: center; padding: clamp(1.5rem, 3vw, 2.5rem); }
+.lhb-bottom-cta .section-title-label { gap: .4rem; margin-inline: auto; width: fit-content; }
 @media (max-width: 600px) { body:has(.lhb-hero) .page-hero ~ .section .eyebrow, body:has(.lhb-hero) .lhb-screenshots .section-title-label, body:has(.lhb-hero) .lhb-bottom-cta .section-title-label { gap: .35rem; margin-inline: auto; width: fit-content; } }
 .lhb-bottom-cta-inner > div { margin-inline: 0; text-align: center; }
 .lhb-bottom-cta-inner h2 { margin-bottom: .65rem; }
