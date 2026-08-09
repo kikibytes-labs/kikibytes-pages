@@ -45,6 +45,7 @@ document.querySelectorAll('.site-footer .footer-grid').forEach((footerGrid) => {
 const socialIcons = {
   Instagram: '/assets/icons/instagram.webp',
   Facebook: '/assets/icons/facebook.webp',
+  'hello@kikibytes.com': '/assets/icons/email.webp',
 };
 
 document.querySelectorAll('.social-links a').forEach((link) => {
