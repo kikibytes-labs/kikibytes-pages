@@ -186,7 +186,8 @@ body:has(.lhb-hero) .lhb-bottom-cta h2 { font-size: clamp(2rem, 4vw, 3.3rem); ma
 
   .page-hero .container,
   .hero-content {
-    width: calc(100% - 1rem);
+    border-radius: 0;
+    width: 100%;
   }
 
   .section > .container,
@@ -231,10 +232,8 @@ body:has(.lhb-hero) .lhb-bottom-cta h2 { font-size: clamp(2rem, 4vw, 3.3rem); ma
   }
 
   .page-hero .container,
-  .hero-content,
-  .page-hero ~ .section > .container,
-  .projects-preview .container {
-    border-radius: var(--radius);
+  .hero-content {
+    border-radius: 0;
   }
 
   html:has(body.lhb-page) {
