@@ -186,7 +186,7 @@ body:has(.lhb-hero) .lhb-bottom-cta h2 { font-size: clamp(2rem, 4vw, 3.3rem); ma
 
   .page-hero .container,
   .hero-content {
-    width: 100%;
+    width: calc(100% - 1rem);
   }
 
   .section > .container,
