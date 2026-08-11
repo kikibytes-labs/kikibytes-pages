@@ -127,6 +127,7 @@ body:has(.lhb-hero) .page-hero ~ .section:has(.status-panel) > .container { back
 body:has(.lhb-hero) .lhb-launch > .container { background: transparent; border: 0; padding: 0; }
 .lhb-launch-panel { align-items: center; background: linear-gradient(115deg, #183b2a, #0e241b); border: 1px solid rgba(119, 211, 146, .5); border-radius: var(--radius); display: flex; gap: 1.5rem; justify-content: center; padding: 1.25rem 1.5rem; text-align: center; }
 .lhb-launch-panel > div:first-child { flex: 0 1 auto; text-align: center; }.lhb-launch-panel h2 { margin-bottom: .45rem; }.lhb-launch-panel .lhb-launch-name { color: var(--color-ink); font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 700; line-height: 1.08; }.lhb-launch-panel p:last-child { color: var(--color-muted-strong); margin-bottom: 0; }
+.lhb-coming-soon { color: var(--color-orange-bright) !important; font-size: .9rem; font-weight: 800; letter-spacing: .08em; margin: 0 !important; white-space: nowrap; }
 .lhb-launch-actions { align-items: center; display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: .65rem; justify-content: flex-end; }.lhb-launch-actions .button { align-items: center; line-height: 1.1; min-height: 52px; padding: .6rem 1rem; }.platform-button-icon { display: inline-flex; font-size: 1.15rem; line-height: 1; margin-right: .45rem; }.lhb-launch-actions button[disabled] { cursor: not-allowed; opacity: .55; }
 .lhb-bottom-actions { justify-content: center; margin-top: 1rem; }
 .lhb-resource-links { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; justify-content: center; margin-top: .75rem; }
