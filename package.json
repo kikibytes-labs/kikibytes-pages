@@ -4,8 +4,10 @@
   "version": "1.0.0",
   "description": "KikiBytes Labs static website quality checks",
   "scripts": {
-    "check": "node --check site/scripts/site.js && node --test tests/site.test.mjs",
-    "test": "node --test tests/site.test.mjs"
+    "check": "npm run check:js && npm run check:site",
+    "check:js": "node --check site/scripts/site.js",
+    "check:site": "node --test tests/site.test.mjs",
+    "test": "npm run check"
   },
   "engines": {
     "node": ">=20"

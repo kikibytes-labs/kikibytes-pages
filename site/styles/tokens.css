@@ -10,6 +10,19 @@
   --color-orange-bright: #ffad2f;
   --color-blue: #29b8ff;
   --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --heading-1-size: clamp(2.75rem, 6vw, 5.7rem);
+  --heading-2-size: clamp(2rem, 4vw, 3.3rem);
+  --heading-3-size: clamp(1.45rem, 2vw, 2rem);
+  --heading-line-height: 1.08;
+  --heading-tracking: -.035em;
+  --title-size: 1.35rem;
+  --title-icon-size: 1.25rem;
+  --title-line-height: 1.1;
+  --title-tracking: .02em;
+  --card-heading-size: 1.25rem;
+  --compact-heading-size: 1.15rem;
+  --contact-heading-mobile-size: clamp(2.25rem, 11vw, 3rem);
+  --legal-heading-size: 1.5rem;
   --container: 1200px;
   --section-space: clamp(1.25rem, 2.5vw, 1.75rem);
   --card-title-size: 16px;
@@ -19,6 +32,5 @@
   --shadow: 0 20px 60px rgba(0, 0, 0, .24);
 }
 @font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url("../assets/fonts/inter-regular.ttf") format("truetype"); }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/inter-semibold.ttf") format("truetype"); }
 @font-face { font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap; src: url("../assets/fonts/inter-bold.ttf") format("truetype"); }
 @font-face { font-family: "Inter"; font-style: normal; font-weight: 800; font-display: swap; src: url("../assets/fonts/inter-extrabold.ttf") format("truetype"); }

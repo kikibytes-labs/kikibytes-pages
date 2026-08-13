@@ -1,19 +1,30 @@
-# Local/build outputs
+# Dependencies and generated output
+node_modules/
+.dart_tool/
+/build/
 .wrangler/
-dist/
+.flutter-plugins-dependencies
+.claude/settings.local.json
+/dist/
+coverage/
 
-# IDE
+# Editors
 .idea/
 .vscode/
 *.iml
+*.swp
+*.swo
+*~
 
-# macOS
+# Operating systems
 .DS_Store
+Thumbs.db
 
 # Logs
 *.log
+npm-debug.log*
 
-# Environment
+# Local environment files
 .env
-
-*claude*
+.env.*
+!.env.example
