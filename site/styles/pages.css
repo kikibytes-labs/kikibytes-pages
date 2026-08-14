@@ -284,7 +284,12 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
   }
 
   .site-footer .footer-grid > :nth-child(3) {
-    justify-self: end;
+    grid-column: 1 / -1;
+    justify-self: center;
     order: 2;
+  }
+
+  .site-footer .social-links {
+    flex-wrap: nowrap;
   }
 }
