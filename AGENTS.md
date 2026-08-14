@@ -79,6 +79,7 @@ Run `npm run check` after any HTML, CSS, JavaScript, asset-path, redirect, heade
 - Place reusable UI in `components.css`; reserve `pages.css` for composition unique to a route or page family.
 - Prefer page classes and semantic component classes over selectors coupled to asset filenames or text content.
 - Maintain responsive behavior at narrow mobile, tablet, and desktop widths. Avoid fixed dimensions that cause clipping or horizontal page overflow.
+- For pages with custom backgrounds, set the root `html` background to the same or a closely matching page color so mobile elastic overscroll never reveals a white strip; apply this to every new project page as well.
 - Respect `prefers-reduced-motion`. Motion must not be required to understand or operate the site.
 - Do not add inline styles. The production Content Security Policy intentionally limits style sources.
 - Remove obsolete rules when replacing an implementation; do not leave unreachable selectors as a second competing version.

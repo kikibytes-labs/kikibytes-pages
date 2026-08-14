@@ -76,6 +76,7 @@ body.about-page .value-card p { color: var(--card-copy-color); font-size: var(--
 @media (max-width: 840px) { body.about-page .values-layout { grid-template-columns: 1fr; } body.about-page .values-layout .value-grid { grid-template-columns: minmax(0, 380px); justify-content: center; } body.about-page .values-layout .about-values-art img { height: 280px; width: 280px; } }
 body:not(.lhb-page) { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover fixed; }
 body:not(.lhb-page) main { background: transparent; }
+html:has(body.lhb-page) { background: #0e241b; }
 body.lhb-page { background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover fixed; }
 body.lhb-page main { background: transparent; }
 body.lhb-page .site-header, body.lhb-page .site-footer { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
