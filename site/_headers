@@ -7,6 +7,9 @@
 /assets/*
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
+/assets/banners/*.webp
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
 /styles/*
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 

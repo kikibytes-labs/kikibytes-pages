@@ -467,8 +467,6 @@ test('referenced content images use WebP, with explicit favicon exceptions', () 
     .map((match) => match[0])
     .filter((path) => ![
       'assets/icons/cat-head-favicon-192.png',
-      'assets/banners/privacy-policy.png',
-      'assets/banners/terms-conditions.png',
     ].some((allowedPath) => path.endsWith(allowedPath)));
 
   assert.deepEqual(legacyImages, []);
