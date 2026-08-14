@@ -161,8 +161,14 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
 
   .projects-page .project-card-body > div:first-child > p:not(.project-status),
   .projects-page .project-card-footer .tag-list,
-  .projects-page .project-card-skitch .project-card-footer {
+  .projects-page .project-card-skitch .project-card-footer,
+  .projects-preview .project-card-body > div:first-child > p:not(.project-status),
+  .projects-preview .project-card-footer .tag-list {
     display: none;
+  }
+
+  .projects-preview .project-card-footer {
+    margin-top: .75rem;
   }
 
   .build-process-section {
@@ -198,6 +204,7 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
   .projects-page .page-hero ~ .section > .container,
   .about-page .page-hero ~ .section > .container,
   .legal-page .page-hero ~ .section > .container,
+  body.lhb-page .page-hero ~ .section > .container,
   .projects-preview .container,
   .about-combined,
   .home-cta-inner {
@@ -205,13 +212,6 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
     border: 0;
     border-radius: 0;
     padding: 0;
-  }
-
-  body.lhb-page .page-hero ~ .section > .container {
-    background: linear-gradient(115deg, #183b2a, #0e241b);
-    border: 1px solid rgba(119, 211, 146, .5);
-    border-radius: var(--radius);
-    padding: 1rem;
   }
 
   body.lhb-page .lhb-launch-panel {
