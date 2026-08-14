@@ -117,6 +117,13 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
 .lhb-bottom-cta-inner > .availability-note { align-self: center; max-width: 24rem; text-align: center; }
 @media (max-width: 900px) { body.lhb-page .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 800px) {
+  html::before {
+    bottom: auto;
+    height: 100lvh;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
   .build-process-layout { grid-template-columns: 1fr; }
   .build-process-art > img { height: 240px; width: 240px; }
   .lhb-bottom-cta-inner { align-items: start; flex-direction: column; }
