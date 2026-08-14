@@ -313,24 +313,6 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
     flex-wrap: nowrap;
   }
 
-  .site-footer .footer-links {
-    column-gap: .75rem;
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
-    justify-content: center;
-    row-gap: 0;
-  }
-
-  .site-footer .footer-links a:nth-child(5) {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .site-footer .footer-links a:nth-child(6) {
-    grid-column: 3;
-    grid-row: 2;
-  }
-
   .site-footer .social-links .social-icon-link {
     min-width: 36px;
   }
