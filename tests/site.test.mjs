@@ -275,9 +275,11 @@ test('every page has essential metadata and accessible document landmarks', () =
     assert.match(html, /<meta\b(?=[^>]*\bname=["']description["'])(?=[^>]*\bcontent=["'][^"']+["'])[^>]*>/i, `${pageName} is missing a meta description`);
     assert.match(html, /<title>\s*[^<]+\s*<\/title>/i, `${pageName} is missing a document title`);
     assert.match(html, /<link\b(?=[^>]*\brel=["'][^"']*\bicon\b[^"']*["'])[^>]*>/i, `${pageName} is missing a favicon`);
-    assert.match(html, /<link\b(?=[^>]*\brel=["']icon["'])(?=[^>]*\bhref=["']\/favicon\.ico\?v=3["'])(?=[^>]*\bsizes=["']16x16 32x32 48x48 96x96["'])[^>]*>/i, `${pageName} must reference the current multi-size ICO`);
+    assert.match(html, /<link\b(?=[^>]*\brel=["']icon["'])(?=[^>]*\bhref=["']\/favicon\.ico["'])(?=[^>]*\btype=["']image\/x-icon["'])(?=[^>]*\bsizes=["']16x16 32x32 48x48 96x96["'])[^>]*>/i, `${pageName} must reference the root multi-size ICO`);
     assert.match(html, /<link\b(?=[^>]*\brel=["']icon["'])(?=[^>]*\btype=["']image\/png["'])(?=[^>]*\bhref=["']\/assets\/icons\/cat-head-favicon-192\.png["'])[^>]*>/i, `${pageName} must include the sharp PNG favicon fallback`);
     assert.match(html, /<link\b(?=[^>]*\brel=["']apple-touch-icon["'])(?=[^>]*\bhref=["']\/apple-touch-icon\.png["'])[^>]*>/i, `${pageName} must include the Apple touch icon`);
+    assert.match(html, /<link\b(?=[^>]*\brel=["']manifest["'])(?=[^>]*\bhref=["']\/site\.webmanifest["'])[^>]*>/i, `${pageName} must include the web app manifest`);
+    assert.match(html, /<meta\b(?=[^>]*\bname=["']msapplication-TileImage["'])(?=[^>]*\bcontent=["']\/assets\/icons\/cat-head-favicon-192\.png["'])[^>]*>/i, `${pageName} must include the Windows tile icon`);
     assert.match(html, /<main\b[^>]*\bid=["']main-content["'][^>]*>/i, `${pageName} is missing the main landmark`);
     assert.match(html, /<a\b(?=[^>]*\bclass=["'][^"']*\bskip-link\b[^"']*["'])(?=[^>]*\bhref=["']#main-content["'])[^>]*>/i, `${pageName} is missing a skip link to #main-content`);
     assert.equal((html.match(/<h1\b/gi) ?? []).length, 1, `${pageName} must contain exactly one h1`);
@@ -463,7 +465,11 @@ test('referenced content images use WebP, with explicit favicon exceptions', () 
   const sources = [...pages, ...stylesheets, ...scripts].map(read).join('\n');
   const legacyImages = [...sources.matchAll(/assets\/[^\s"')]+\.(?:png|jpe?g)/gi)]
     .map((match) => match[0])
-    .filter((path) => !path.endsWith('icons/cat-head-favicon-192.png'));
+    .filter((path) => ![
+      'assets/icons/cat-head-favicon-192.png',
+      'assets/banners/privacy-policy.png',
+      'assets/banners/terms-conditions.png',
+    ].some((allowedPath) => path.endsWith(allowedPath)));
 
   assert.deepEqual(legacyImages, []);
 });

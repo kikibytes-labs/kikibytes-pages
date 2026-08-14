@@ -6,6 +6,7 @@
 .legal-page .page-hero { padding-top: var(--section-space); }
 .legal-page .page-hero .container,
 .error-page .page-hero .container { background: linear-gradient(145deg, rgba(13, 26, 42, .9), rgba(7, 17, 29, .9)); border: 1px solid var(--color-line); padding: clamp(1.25rem, 2.5vw, 2rem); }
+.legal-page .page-hero .container { padding: 0; }
 .legal-page .page-hero-copy,
 .error-page .page-hero-copy { clip: auto; clip-path: none; height: auto; overflow: visible; position: static; white-space: normal; width: auto; }
 .legal-page .page-hero-copy > p:not(.eyebrow),
@@ -54,6 +55,7 @@
 .legal-copy h2 { font-size: var(--legal-heading-size); margin-top: 2.5rem; scroll-margin-top: 6rem; }
 .legal-copy p,
 .legal-copy li { color: var(--color-muted-strong); }
+.legal-copy .legal-updated { color: var(--color-orange); font-weight: 700; margin-bottom: 1.5rem; }
 .legal-summary { background: rgba(41, 184, 255, .06); border: 1px solid rgba(41, 184, 255, .22); border-radius: calc(var(--radius) - 4px); margin: 2rem 0; padding: 1.25rem 1.4rem; }
 .legal-summary h2,
 .legal-toc h2 { margin-top: 0; }
