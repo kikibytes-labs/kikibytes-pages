@@ -3,17 +3,10 @@
 .page-hero-copy { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
 .page-hero-copy p:last-child { color: var(--color-muted-strong); font-size: 1.15rem; max-width: 480px; }
 .page-hero-art img { height: auto; object-fit: contain; width: 100%; }
-.legal-page .page-hero { padding-top: var(--section-space); }
-.legal-page .page-hero .container,
 .error-page .page-hero .container { background: linear-gradient(145deg, rgba(13, 26, 42, .9), rgba(7, 17, 29, .9)); border: 1px solid var(--color-line); padding: clamp(1.25rem, 2.5vw, 2rem); }
-.legal-page .page-hero .container { padding: 0; }
-.legal-page .page-hero-copy,
 .error-page .page-hero-copy { clip: auto; clip-path: none; height: auto; overflow: visible; position: static; white-space: normal; width: auto; }
-.legal-page .page-hero-copy > p:not(.eyebrow),
 .error-page .page-hero-copy > p:not(.eyebrow) { color: var(--color-muted-strong); font-size: 1.15rem; max-width: 560px; }
-.legal-page .page-hero-copy h1,
 .error-page .page-hero-copy h1 { font-size: var(--heading-2-size); margin-bottom: .75rem; }
-.legal-page .page-hero-copy p:last-child { margin-bottom: 0; }
 .error-page main { align-items: center; display: flex; }
 .error-page .page-hero { align-items: center; display: flex; flex: 1; padding-block: var(--section-space); width: 100%; }
 .error-page .page-hero-copy { margin-inline: auto; max-width: 780px; text-align: center; }
@@ -171,7 +164,6 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
     width: 100%;
   }
 
-  .legal-page .page-hero .container,
   .error-page .page-hero .container {
     border-radius: var(--radius);
     width: calc(100% - 2rem);
