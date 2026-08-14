@@ -265,6 +265,11 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
     order: 1;
   }
 
+  .site-footer .footer-grid > :first-child {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
   .site-footer .footer-brand {
     display: grid;
     justify-items: start;
@@ -284,12 +289,18 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
   }
 
   .site-footer .footer-grid > :nth-child(3) {
-    grid-column: 1 / -1;
-    justify-self: center;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
     order: 2;
   }
 
   .site-footer .social-links {
+    gap: 0;
     flex-wrap: nowrap;
+  }
+
+  .site-footer .social-links .social-icon-link {
+    min-width: 36px;
   }
 }
