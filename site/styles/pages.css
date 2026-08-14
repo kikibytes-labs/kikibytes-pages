@@ -159,6 +159,12 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
     padding: 1.25rem;
   }
 
+  .projects-page .project-card-body > div:first-child > p:not(.project-status),
+  .projects-page .project-card-footer .tag-list,
+  .projects-page .project-card-skitch .project-card-footer {
+    display: none;
+  }
+
   .build-process-section {
     padding-top: 1.25rem;
   }
