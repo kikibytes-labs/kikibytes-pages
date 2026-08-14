@@ -76,11 +76,12 @@ body.about-page .value-card h3 { font-size: var(--card-title-size); margin-botto
 body.about-page .value-card p { color: var(--card-copy-color); font-size: var(--card-copy-size); line-height: 1.55; margin-bottom: 0; overflow: visible; }
 @media (max-width: 840px) { body.about-page .values-layout { grid-template-columns: 1fr; } body.about-page .values-layout .value-grid { grid-template-columns: minmax(0, 380px); justify-content: center; } body.about-page .values-layout .about-values-art img { height: 280px; width: 280px; } }
 html { isolation: isolate; }
-html::before { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover no-repeat; content: ""; inset: 0; pointer-events: none; position: fixed; z-index: -1; }
+html::before { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover no-repeat; content: ""; inset: 0; pointer-events: none; position: fixed; z-index: -2; }
 body:not(.lhb-page) { background: transparent; }
 body:not(.lhb-page) main { background: transparent; }
 html:has(body.lhb-page) { background: #0e241b; }
-html:has(body.lhb-page)::before { background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover no-repeat; }
+html:has(body.lhb-page)::after { animation: lhb-background-enter .28s ease both; background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover no-repeat; content: ""; inset: 0; pointer-events: none; position: fixed; transition: opacity .18s ease; z-index: -1; }
+html:has(body.lhb-page.page-is-leaving)::after { animation: none; opacity: 0; }
 body.lhb-page { background: transparent; }
 body.lhb-page main { background: transparent; }
 body.lhb-page .site-header, body.lhb-page .site-footer { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
@@ -90,6 +91,7 @@ body.lhb-page .page-hero ~ .section h2 { text-align: center; }
 body.lhb-page .page-hero ~ .section .prose { max-width: none; text-align: center; }
 body.lhb-page .page-hero ~ .section .prose > * { margin-inline: auto; max-width: 780px; }
 body.lhb-page .page-hero ~ .section > .container { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
+@keyframes lhb-background-enter { from { opacity: 0; } to { opacity: 1; } }
 body.lhb-page .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-inline: auto; max-width: 980px; }
 body.lhb-page .feature-card { background: linear-gradient(145deg, #102b1e, #071910); border-color: rgba(119, 211, 146, .38); padding: 1rem; text-align: center; }
 body.lhb-page .feature-card img { height: 76px; margin: 0 auto .75rem; object-fit: contain; width: 76px; }
@@ -117,7 +119,8 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
 .lhb-bottom-cta-inner > .availability-note { align-self: center; max-width: 24rem; text-align: center; }
 @media (max-width: 900px) { body.lhb-page .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 800px) {
-  html::before {
+  html::before,
+  html::after {
     bottom: auto;
     height: 100lvh;
     transform: translateZ(0);

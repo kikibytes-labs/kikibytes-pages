@@ -76,11 +76,14 @@ Run `npm run check` after any HTML, CSS, JavaScript, asset-path, redirect, heade
 - Preserve stylesheet order: `tokens.css`, `base.css`, `components.css`, then `pages.css`.
 - Reuse design tokens and shared classes before adding page-specific declarations.
 - Use shared composition styles consistently across routes. Page heroes, containers, banners, navigation, and other repeated UI must inherit the common component treatment at desktop and mobile, including typography (font family, size, weight, line height, and color), spacing, borders, radii, backgrounds, and responsive behavior; add a page-specific override only when the design genuinely differs.
+- For a route with a distinct background, keep the shared site background as the base layer and fade the route-specific background in and out as a fixed `html` overlay. Navigation to and from the route must not snap abruptly between backgrounds.
 - Place reusable UI in `components.css`; reserve `pages.css` for composition unique to a route or page family.
 - Prefer page classes and semantic component classes over selectors coupled to asset filenames or text content.
 - Maintain responsive behavior at narrow mobile, tablet, and desktop widths. Avoid fixed dimensions that cause clipping or horizontal page overflow.
 - For pages with custom backgrounds, set the root `html` background to the same or a closely matching page color so mobile elastic overscroll never reveals a white strip; apply this to every new project page as well.
 - Mobile page backgrounds must remain fixed while content scrolls above them and must not be enlarged against the document height; use viewport-appropriate sizing such as `cover` or `100% auto`, and apply the same behavior to every new project page. Use a fixed viewport pseudo-layer anchored to `html` (not `body`) when a custom mobile background is needed, so its bounds remain the viewport rather than the document.
+- Where mobile pages use a seamless background, remove outer section-container backgrounds, borders, radii, and padding consistently while retaining those widgets on desktop unless the design explicitly says otherwise.
+- When compacting project cards for mobile, apply the same treatment to project-listing and featured-project cards: retain artwork, status, title, and any primary action, while hiding descriptive copy and platform badges when requested.
 - Respect `prefers-reduced-motion`. Motion must not be required to understand or operate the site.
 - Do not add inline styles. The production Content Security Policy intentionally limits style sources.
 - Remove obsolete rules when replacing an implementation; do not leave unreachable selectors as a second competing version.
