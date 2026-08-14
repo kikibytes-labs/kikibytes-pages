@@ -75,6 +75,7 @@ Run `npm run check` after any HTML, CSS, JavaScript, asset-path, redirect, heade
 
 - Preserve stylesheet order: `tokens.css`, `base.css`, `components.css`, then `pages.css`.
 - Reuse design tokens and shared classes before adding page-specific declarations.
+- Use shared composition styles consistently across routes. Page heroes, containers, banners, navigation, and other repeated UI must inherit the common component treatment at desktop and mobile, including typography (font family, size, weight, line height, and color), spacing, borders, radii, backgrounds, and responsive behavior; add a page-specific override only when the design genuinely differs.
 - Place reusable UI in `components.css`; reserve `pages.css` for composition unique to a route or page family.
 - Prefer page classes and semantic component classes over selectors coupled to asset filenames or text content.
 - Maintain responsive behavior at narrow mobile, tablet, and desktop widths. Avoid fixed dimensions that cause clipping or horizontal page overflow.
