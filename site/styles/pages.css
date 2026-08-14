@@ -113,14 +113,16 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
 .lhb-bottom-cta-inner > .availability-note { align-self: center; max-width: 24rem; text-align: center; }
 @media (max-width: 900px) { body.lhb-page .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 800px) {
+  html {
+    isolation: isolate;
+  }
+
   body:not(.lhb-page),
   body.lhb-page {
     background: transparent;
-    isolation: isolate;
-    position: relative;
   }
 
-  body::before {
+  html::before {
     background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover no-repeat;
     content: "";
     inset: 0;
@@ -129,7 +131,7 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
     z-index: -1;
   }
 
-  body.lhb-page::before {
+  html:has(body.lhb-page)::before {
     background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover no-repeat;
   }
 
