@@ -313,6 +313,14 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
     flex-wrap: nowrap;
   }
 
+  .site-footer .footer-links a {
+    min-height: 32px;
+  }
+
+  .site-footer .footer-links {
+    row-gap: 0;
+  }
+
   .site-footer .social-links .social-icon-link {
     min-width: 36px;
   }
