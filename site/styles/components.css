@@ -18,7 +18,7 @@
 .section-heading { align-items: end; display: flex; justify-content: space-between; margin-bottom: 2.25rem; }
 .featured-heading { align-items: start; flex-direction: column; gap: 1rem; justify-content: flex-start; margin-bottom: 1.5rem; }
 .featured-heading .section-title-label { align-self: center; }
-.projects-preview-action { display: flex; margin: 1.5rem auto 0; width: fit-content; }
+.projects-preview-action { margin: 2.25rem 0 0; text-align: center; }
 .section-title-label { color: var(--color-ink); font-size: var(--title-size); font-weight: 800; letter-spacing: var(--title-tracking); line-height: var(--title-line-height); text-align: center; text-transform: uppercase; }
 .section-title-label::before { color: var(--color-orange); content: "</>"; font-size: var(--title-icon-size); font-weight: 900; margin-right: .65rem; }
 .section-heading h2 { margin-bottom: 0; }
