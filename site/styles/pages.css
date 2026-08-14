@@ -37,8 +37,8 @@
 .project-card-skitch .project-card-art { background: linear-gradient(135deg, #1f174d, #51348b); }
 .project-card-skitch .project-card-art img { height: 100%; object-fit: cover; width: 100%; }
 .project-card-project .project-card-art { aspect-ratio: 16 / 8; min-height: 0; }.project-card-project .project-card-body { flex: 1; min-height: 0; padding: 1rem; }.project-card-project .project-card-footer { margin-top: .75rem; }
-.project-grid .project-card-project:not(.project-card-skitch) .project-card-body { background: linear-gradient(145deg, #183b2a, #0e241b); }
-.project-grid .project-card-skitch .project-card-body { background: linear-gradient(145deg, #05070b, #020307); }
+.project-grid .project-card-project:not(.project-card-skitch) .project-card-body { background: linear-gradient(145deg, rgba(48, 68, 59, .86), rgba(27, 43, 39, .86)); }
+.project-grid .project-card-skitch .project-card-body { background: linear-gradient(145deg, rgba(43, 47, 55, .86), rgba(24, 28, 35, .86)); }
 .contact-grid { display: grid; gap: 4rem; grid-template-columns: .8fr 1.2fr; }
 .contact-details { color: var(--color-muted-strong); font-size: 1.1rem; }
 .contact-details a { color: var(--color-orange-bright); }.contact-details a:hover { text-decoration: underline; }
@@ -70,7 +70,7 @@ body.about-page .values-layout { align-items: center; display: grid; gap: 2rem; 
 body.about-page .values-layout .about-values-art { display: flex; justify-content: center; }
 body.about-page .values-layout .about-values-art img { height: min(30vw, 360px); object-fit: contain; width: min(30vw, 360px); }
 body.about-page .values-cards-column { min-width: 0; }
-body.about-page .value-card { align-items: center; background: rgba(5, 11, 21, .36); display: flex; flex-direction: column; height: auto; justify-content: flex-start; min-height: 220px; overflow: visible; padding: 1rem 1.25rem; text-align: center; width: 100%; }
+body.about-page .value-card { align-items: center; background: rgba(5, 11, 21, .72); display: flex; flex-direction: column; height: auto; justify-content: flex-start; min-height: 220px; overflow: visible; padding: 1rem 1.25rem; text-align: center; width: 100%; }
 body.about-page .value-card-icon { aspect-ratio: 1; flex: 0 0 76px; height: 76px; margin: 0 auto .6rem; object-fit: contain; width: 76px; }
 body.about-page .value-card h3 { font-size: var(--card-title-size); margin-bottom: .25rem; }
 body.about-page .value-card p { color: var(--card-copy-color); font-size: var(--card-copy-size); line-height: 1.55; margin-bottom: 0; overflow: visible; }
@@ -93,7 +93,7 @@ body.lhb-page .page-hero ~ .section .prose > * { margin-inline: auto; max-width:
 body.lhb-page .page-hero ~ .section > .container { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
 @keyframes lhb-background-enter { from { opacity: 0; } to { opacity: 1; } }
 body.lhb-page .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-inline: auto; max-width: 980px; }
-body.lhb-page .feature-card { background: linear-gradient(145deg, #102b1e, #071910); border-color: rgba(119, 211, 146, .38); padding: 1rem; text-align: center; }
+body.lhb-page .feature-card { background: linear-gradient(145deg, rgba(16, 43, 30, .72), rgba(7, 25, 16, .72)); border-color: rgba(119, 211, 146, .38); padding: 1rem; text-align: center; }
 body.lhb-page .feature-card img { height: 76px; margin: 0 auto .75rem; object-fit: contain; width: 76px; }
 .lhb-screenshots .section-title-label { margin-bottom: .75rem; }
 .lhb-screenshot-grid { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: .6rem; scroll-snap-type: x mandatory; scrollbar-width: thin; }

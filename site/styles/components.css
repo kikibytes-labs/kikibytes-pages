@@ -22,12 +22,12 @@
 .section-title-label { color: var(--color-ink); font-size: var(--title-size); font-weight: 800; letter-spacing: var(--title-tracking); line-height: var(--title-line-height); text-align: center; text-transform: uppercase; }
 .section-title-label::before { color: var(--color-orange); content: "</>"; font-size: var(--title-icon-size); font-weight: 900; margin-right: .65rem; }
 .section-heading h2 { margin-bottom: 0; }
-.project-card { background: linear-gradient(145deg, rgba(15, 32, 52, .96), rgba(7, 17, 29, .96)); border: 1px solid var(--color-line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.project-card { background: linear-gradient(145deg, rgba(31, 39, 49, .9), rgba(17, 25, 35, .9)); border: 1px solid var(--color-line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
 .project-card-featured { display: grid; grid-template-columns: 1.05fr .95fr; margin-inline: auto; max-width: 1120px; }
 .project-card-featured .project-card-art { min-height: 270px; }
 .project-card-featured .project-card-art-link { aspect-ratio: 16 / 10; }
 .project-card-featured .project-card-art-link img { object-position: 40% center; }
-.project-card-featured .project-card-body { background: linear-gradient(145deg, #183b2a, #0e241b); }
+.project-card-featured .project-card-body { background: linear-gradient(145deg, rgba(48, 68, 59, .86), rgba(27, 43, 39, .86)); }
 .project-card-art { align-items: center; display: flex; justify-content: center; min-height: 240px; overflow: hidden; padding: 0; }
 .project-card-art-lhb { background: linear-gradient(135deg, #182214, #49300e 56%, #17110c); }
 .project-card-art-link { display: block; height: 100%; width: 100%; }
@@ -45,7 +45,7 @@
 .what-we-do > .section-title-label { margin-bottom: 1rem; }
 .what-we-do-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(3, 1fr); margin-inline: auto; max-width: 800px; }
 .principle-icon { align-items: center; color: var(--color-orange); display: flex; font-weight: 900; height: 76px; justify-content: center; width: 76px; }
-.mini-card { align-items: center; background: rgba(5, 11, 21, .36); border: 1px solid var(--color-line); border-radius: 12px; display: flex; flex-direction: column; gap: .75rem; height: auto; justify-content: flex-start; justify-self: center; max-width: 230px; min-height: 230px; overflow: visible; padding: 1.25rem; text-align: center; width: 100%; }
+.mini-card { align-items: center; background: rgba(5, 11, 21, .72); border: 1px solid var(--color-line); border-radius: 12px; display: flex; flex-direction: column; gap: .75rem; height: auto; justify-content: flex-start; justify-self: center; max-width: 230px; min-height: 230px; overflow: visible; padding: 1.25rem; text-align: center; width: 100%; }
 .mini-card .principle-icon { flex: 0 0 76px; font-size: 1rem; height: 76px; margin: 0; width: 76px; }
 .mini-card .principle-icon img { height: 100%; object-fit: contain; width: 100%; }
 .mini-card h3 { color: var(--color-ink); font-size: var(--card-title-size); font-weight: 700; line-height: var(--heading-line-height); margin-bottom: .25rem; overflow-wrap: anywhere; }
