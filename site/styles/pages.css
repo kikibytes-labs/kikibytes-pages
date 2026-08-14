@@ -65,6 +65,7 @@
 body.about-page .content-section .prose { max-width: none; }
 body.about-page .content-section .prose > * { margin-inline: auto; max-width: 920px; }
 body.about-page .content-section h2 { text-align: center; }
+body.about-page .content-section .prose > p:not(.section-title-label) { text-align: center; }
 body.about-page .values-layout { align-items: center; display: grid; gap: 2rem; grid-template-columns: minmax(260px, 360px) minmax(0, 1fr); margin-inline: auto; max-width: 1040px; }
 body.about-page .values-layout .about-values-art { display: flex; justify-content: center; }
 body.about-page .values-layout .about-values-art img { height: min(30vw, 360px); object-fit: contain; width: min(30vw, 360px); }
