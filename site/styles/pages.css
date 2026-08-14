@@ -75,10 +75,13 @@ body.about-page .value-card-icon { aspect-ratio: 1; flex: 0 0 76px; height: 76px
 body.about-page .value-card h3 { font-size: var(--card-title-size); margin-bottom: .25rem; }
 body.about-page .value-card p { color: var(--card-copy-color); font-size: var(--card-copy-size); line-height: 1.55; margin-bottom: 0; overflow: visible; }
 @media (max-width: 840px) { body.about-page .values-layout { grid-template-columns: 1fr; } body.about-page .values-layout .value-grid { grid-template-columns: minmax(0, 380px); justify-content: center; } body.about-page .values-layout .about-values-art img { height: 280px; width: 280px; } }
-body:not(.lhb-page) { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover fixed; }
+html { isolation: isolate; }
+html::before { background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover no-repeat; content: ""; inset: 0; pointer-events: none; position: fixed; z-index: -1; }
+body:not(.lhb-page) { background: transparent; }
 body:not(.lhb-page) main { background: transparent; }
 html:has(body.lhb-page) { background: #0e241b; }
-body.lhb-page { background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover fixed; }
+html:has(body.lhb-page)::before { background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover no-repeat; }
+body.lhb-page { background: transparent; }
 body.lhb-page main { background: transparent; }
 body.lhb-page .site-header, body.lhb-page .site-footer { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
 .lhb-hero .container { aspect-ratio: 1827 / 605; background: var(--color-bg) url('../assets/banners/lucky-hall.webp') center / 100% auto no-repeat; }
@@ -114,28 +117,6 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
 .lhb-bottom-cta-inner > .availability-note { align-self: center; max-width: 24rem; text-align: center; }
 @media (max-width: 900px) { body.lhb-page .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 800px) {
-  html {
-    isolation: isolate;
-  }
-
-  body:not(.lhb-page),
-  body.lhb-page {
-    background: transparent;
-  }
-
-  html::before {
-    background: linear-gradient(rgba(5, 11, 21, .76), rgba(5, 11, 21, .76)), url('../assets/backgrounds/site-background.webp') center / cover no-repeat;
-    content: "";
-    inset: 0;
-    pointer-events: none;
-    position: fixed;
-    z-index: -1;
-  }
-
-  html:has(body.lhb-page)::before {
-    background: linear-gradient(rgba(105, 110, 106, .4), rgba(105, 110, 106, .4)), url('../assets/backgrounds/lucky-hall-background.webp') center / cover no-repeat;
-  }
-
   .build-process-layout { grid-template-columns: 1fr; }
   .build-process-art > img { height: 240px; width: 240px; }
   .lhb-bottom-cta-inner { align-items: start; flex-direction: column; }
