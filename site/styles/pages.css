@@ -105,7 +105,9 @@ body.skitch-page .skitch-feature-icon { height: 76px; margin: 0 auto .75rem; obj
 body.skitch-page .lhb-launch-panel { background: linear-gradient(115deg, #171852, #0c123a); border-color: rgba(111, 135, 222, .5); }
 body.skitch-page .lhb-coming-soon, body.skitch-page .availability-note { color: #b7c9ff; }
 body.skitch-page .lhb-screenshot-grid { display: none; }
-body.skitch-page .skitch-screenshots-note { color: var(--color-muted-strong); margin: .5rem 0 0; text-align: center; }
+body.skitch-page .lhb-screenshots .section-title-label,
+body.skitch-page .skitch-screenshots-note { color: var(--color-muted-strong); margin-inline: auto; text-align: center; }
+body.skitch-page .skitch-screenshots-note { margin: .5rem 0 0; }
 .lhb-screenshots .section-title-label { margin-bottom: .75rem; }
 .lhb-screenshot-grid { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: .6rem; scroll-snap-type: x mandatory; scrollbar-width: thin; }
 .lhb-screenshot-grid figure { background: linear-gradient(145deg, #102b1e, #071910); border: 1px solid rgba(119, 211, 146, .38); border-radius: var(--radius); flex: 0 0 min(22rem, 78vw); margin: 0; overflow: hidden; scroll-snap-align: start; }
