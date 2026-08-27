@@ -177,7 +177,6 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
 
   .projects-page .project-card-body > div:first-child > p:not(.project-status),
   .projects-page .project-card-footer .tag-list,
-  .projects-page .project-card-skitch .project-card-footer,
   .projects-preview .project-card-body > div:first-child > p:not(.project-status),
   .projects-preview .project-card-footer .tag-list {
     display: none;
