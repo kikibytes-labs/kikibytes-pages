@@ -25,6 +25,8 @@ if (
 
       lightboxImage.src = image.src;
       lightboxImage.alt = image.alt;
+      lightboxImage.width = image.naturalWidth || Number(image.getAttribute('width'));
+      lightboxImage.height = image.naturalHeight || Number(image.getAttribute('height'));
       lightboxCaption.textContent = link.closest('figure')?.querySelector('figcaption')?.textContent ?? '';
       lightbox.showModal();
     });

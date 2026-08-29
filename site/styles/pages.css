@@ -113,9 +113,12 @@ body.skitch-page .skitch-screenshots-note { margin: .5rem 0 0; }
 .lhb-screenshot-grid img { aspect-ratio: 1846 / 956; height: auto; object-fit: cover; width: 100%; }
 .lhb-screenshot-link { cursor: zoom-in; display: block; }
 .lhb-screenshot-grid figcaption { color: var(--color-ink); font-size: .9rem; font-weight: 700; padding: .7rem .85rem; text-align: center; }
+.lhb-screenshot-grid-mobile { display: none; }
+.lhb-screenshot-grid-mobile figure { flex-basis: min(15rem, 56vw); }
+.lhb-screenshot-grid-mobile img { aspect-ratio: 810 / 1782; }
 .lhb-lightbox { background: #071910; border: 1px solid rgba(119, 211, 146, .55); border-radius: var(--radius); color: var(--color-ink); margin: auto; max-height: 86vh; max-width: none; overflow: auto; padding: 3.25rem clamp(1.25rem, 2.5vw, 2rem) 1.25rem; width: min(var(--container), calc(100% - clamp(2.5rem, 6vw, 6rem))); }
 .lhb-lightbox::backdrop { background: rgba(0, 0, 0, .62); }
-.lhb-lightbox-image { height: auto; max-height: 70vh; object-fit: contain; width: 100%; }
+.lhb-lightbox-image { display: block; height: auto; margin-inline: auto; max-height: 70vh; max-width: 100%; object-fit: contain; width: auto; }
 .lhb-lightbox p { color: var(--color-ink); font-weight: 700; margin: .75rem 0 0; text-align: center; }
 .lhb-lightbox-close { align-items: center; background: transparent; border: 0; color: var(--color-ink); cursor: pointer; display: flex; font-size: 2rem; height: 44px; justify-content: center; line-height: 1; padding: 0; position: absolute; right: .65rem; top: .45rem; width: 44px; }
 .lhb-lightbox-close:hover { color: var(--color-orange-bright); }
@@ -145,6 +148,8 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
   .contact-grid { gap: 2.5rem; grid-template-columns: 1fr; }
   .contact-values-art img { height: 300px; width: 300px; }
   .lhb-launch-panel { flex-direction: column; }
+  .lhb-screenshot-grid-desktop { display: none; }
+  .lhb-screenshot-grid-mobile { display: flex; }
   body.lhb-page .site-nav { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
   body.skitch-page .site-nav { background: linear-gradient(115deg, #171852, #0c123a); border-color: rgba(111, 135, 222, .5); }
 }
@@ -223,18 +228,22 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
   body.lhb-page .page-hero ~ .section > .container,
   .projects-preview .container,
   .about-combined,
-  .home-cta-inner {
-    background: transparent;
-    border: 0;
+  .home-cta-inner,
+  .lhb-launch-panel {
+    border-inline: 0;
     border-radius: 0;
-    padding: 0;
+    margin-inline: 0;
+    max-width: none;
+    padding-inline: 1rem;
+    width: 100%;
   }
 
-  body.lhb-page .lhb-launch-panel {
+  body.lhb-page .lhb-launch.section > .container {
     background: transparent;
     border: 0;
-    border-radius: 0;
-    padding: 0;
+    max-width: none;
+    padding-inline: 0;
+    width: 100%;
   }
 
   .about-preview .section-title-label {
