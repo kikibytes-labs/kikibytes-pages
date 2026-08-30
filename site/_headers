@@ -10,6 +10,12 @@
 /assets/banners/*.webp
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
+/favicon.ico
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
 /styles/*
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
