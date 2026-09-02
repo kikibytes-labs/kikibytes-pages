@@ -19,8 +19,7 @@
 .featured-heading { align-items: start; flex-direction: column; gap: 1rem; justify-content: flex-start; margin-bottom: 1.5rem; }
 .featured-heading .section-title-label { align-self: center; }
 .projects-preview-action { margin: 2.25rem 0 0; text-align: center; }
-.section-title-label { color: var(--color-ink); font-size: var(--title-size); font-weight: 800; letter-spacing: var(--title-tracking); line-height: var(--title-line-height); text-align: center; text-transform: uppercase; }
-.section-title-label::before { color: var(--color-orange); content: "</>"; font-size: var(--title-icon-size); font-weight: 900; margin-right: .65rem; }
+.section-title-label { color: var(--color-orange); font-size: var(--title-size); font-weight: 800; letter-spacing: var(--title-tracking); line-height: var(--title-line-height); text-align: center; text-transform: uppercase; }
 .section-heading h2 { margin-bottom: 0; }
 .project-card { background: linear-gradient(145deg, rgba(31, 39, 49, .9), rgba(17, 25, 35, .9)); border: 1px solid var(--color-line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
 .project-card-featured { display: grid; grid-template-columns: 1.05fr .95fr; margin-inline: auto; max-width: 1120px; }
