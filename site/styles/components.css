@@ -34,6 +34,13 @@
 .project-card-body { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(1.25rem, 2.5vw, 2rem); }
 .project-status { color: var(--color-orange-bright); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .project-card-body > div:first-child > p:last-child { color: var(--color-muted-strong); font-size: 1.05rem; max-width: 35rem; }
+.store-links { align-items: center; display: flex; flex-direction: column; gap: .75rem; }
+.store-badges { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; list-style: none; margin: 0; padding: 0; }
+.store-badge { border-radius: 10px; display: block; transition: transform .2s ease; }
+.store-badge img { display: block; height: 48px; width: auto; }
+a.store-badge:hover { transform: translateY(-2px); }
+.store-badge.is-disabled { cursor: not-allowed; filter: grayscale(1); opacity: .45; }
+.project-card-body > .store-links { align-items: start; margin-top: 1.25rem; }
 .project-card-footer { align-items: end; display: flex; gap: 1rem; justify-content: space-between; margin-top: 2rem; }
 .tag-list { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
 .tag { background: rgba(41, 184, 255, .11); border: 1px solid rgba(41, 184, 255, .3); border-radius: 999px; color: #a8e5ff; font-size: .75rem; font-weight: 700; padding: .38rem .65rem; }

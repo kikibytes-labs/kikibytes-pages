@@ -110,15 +110,12 @@ body.skitch-page .skitch-screenshots-note { margin: .5rem 0 0; }
 .lhb-screenshots .section-title-label { margin-bottom: .75rem; }
 .lhb-screenshot-grid { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: .6rem; scroll-snap-type: x mandatory; scrollbar-width: thin; }
 .lhb-screenshot-grid figure { background: linear-gradient(145deg, #102b1e, #071910); border: 1px solid rgba(119, 211, 146, .38); border-radius: var(--radius); flex: 0 0 min(22rem, 78vw); margin: 0; overflow: hidden; scroll-snap-align: start; }
-.lhb-screenshot-grid img { aspect-ratio: 1846 / 956; height: auto; object-fit: cover; width: 100%; }
+.lhb-screenshot-grid img { aspect-ratio: 1846 / 994; height: auto; object-fit: cover; width: 100%; }
 .lhb-screenshot-link { cursor: zoom-in; display: block; }
 .lhb-screenshot-grid figcaption { color: var(--color-ink); font-size: .9rem; font-weight: 700; padding: .7rem .85rem; text-align: center; }
-.lhb-screenshot-caption-mobile { display: none; }
 @media (max-width: 800px) and (orientation: portrait) {
   .lhb-screenshot-grid figure { flex-basis: min(15rem, 56vw); }
-  .lhb-screenshot-grid img { aspect-ratio: 810 / 1782; }
-  .lhb-screenshot-caption-web { display: none; }
-  .lhb-screenshot-caption-mobile { display: inline; }
+  .lhb-screenshot-grid img { aspect-ratio: 810 / 1440; }
 }
 .lhb-lightbox { background: #071910; border: 1px solid rgba(119, 211, 146, .55); border-radius: var(--radius); color: var(--color-ink); margin: auto; max-height: 86vh; max-width: none; overflow: auto; padding: 3.25rem clamp(1.25rem, 2.5vw, 2rem) 1.25rem; width: min(var(--container), calc(100% - clamp(2.5rem, 6vw, 6rem))); }
 .lhb-lightbox::backdrop { background: rgba(0, 0, 0, .62); }
@@ -149,6 +146,7 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
   .build-process-layout { grid-template-columns: 1fr; }
   .build-process-art > img { height: 240px; width: 240px; }
   .lhb-bottom-cta-inner { align-items: start; flex-direction: column; }
+  .lhb-bottom-cta-inner > .button { align-self: center; }
   .contact-grid { gap: 2.5rem; grid-template-columns: 1fr; }
   .contact-values-art img { height: 300px; width: 300px; }
   .lhb-launch-panel { flex-direction: column; }
