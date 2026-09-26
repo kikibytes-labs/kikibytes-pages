@@ -85,7 +85,7 @@ html:has(body.lhb-page.page-is-leaving)::after { animation: none; opacity: 0; }
 body.lhb-page { background: transparent; }
 body.lhb-page main { background: transparent; }
 body.lhb-page .site-header, body.lhb-page .site-footer { background: linear-gradient(115deg, #183b2a, #0e241b); border-color: rgba(119, 211, 146, .5); }
-.lhb-hero .container { aspect-ratio: 1827 / 605; background: var(--color-bg) url('../assets/banners/lucky-hall.webp') center / 100% auto no-repeat; }
+.lhb-hero .container { aspect-ratio: 1827 / 609; background: var(--color-bg) url('../assets/banners/lucky-hall.webp') center / 100% auto no-repeat; }
 .platform-list { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; margin: 1.25rem 0 0; padding: 0; }
 body.lhb-page .page-hero ~ .section h2 { text-align: center; }
 body.lhb-page .page-hero ~ .section .prose { max-width: none; text-align: center; }
