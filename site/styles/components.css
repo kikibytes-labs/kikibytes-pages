@@ -25,7 +25,6 @@
 .project-card-featured { display: grid; grid-template-columns: 1.05fr .95fr; margin-inline: auto; max-width: 1120px; }
 .project-card-featured .project-card-art { min-height: 270px; }
 .project-card-featured .project-card-art-link { aspect-ratio: 16 / 10; }
-.project-card-featured .project-card-art-link img { object-position: 40% center; }
 .project-card-featured .project-card-body { background: linear-gradient(145deg, rgba(48, 68, 59, .86), rgba(27, 43, 39, .86)); }
 .project-card-art { align-items: center; display: flex; justify-content: center; min-height: 240px; overflow: hidden; padding: 0; }
 .project-card-art-lhb { background: linear-gradient(135deg, #182214, #49300e 56%, #17110c); }
@@ -40,8 +39,11 @@
 .store-badge img { display: block; height: 48px; width: auto; }
 a.store-badge:hover { transform: translateY(-2px); }
 .store-badge.is-disabled { cursor: not-allowed; filter: grayscale(1); opacity: .45; }
-.project-card-body > .store-links { align-items: start; margin-top: 1.25rem; }
+.project-card-body > .store-links { align-items: center; flex-direction: row; flex-wrap: wrap; margin-bottom: auto; margin-top: 0; }
+.project-card-body > .store-links .store-badge img { height: 40px; }
+.project-card-body > .store-links .button { font-size: .85rem; min-height: 40px; padding: .5rem 1.1rem; }
 .project-card-footer { align-items: end; display: flex; gap: 1rem; justify-content: space-between; margin-top: 2rem; }
+.project-card-footer > .text-link { margin-left: auto; }
 .tag-list { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
 .tag { background: rgba(41, 184, 255, .11); border: 1px solid rgba(41, 184, 255, .3); border-radius: 999px; color: #a8e5ff; font-size: .75rem; font-weight: 700; padding: .38rem .65rem; }
 .about-combined { background: linear-gradient(115deg, #0a1422, #08111d); border: 1px solid var(--color-line); border-radius: var(--radius); padding: clamp(1.25rem, 2.5vw, 2rem); }

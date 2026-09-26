@@ -181,9 +181,9 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
   }
 
   .projects-page .project-card-body > div:first-child > p:not(.project-status),
-  .projects-page .project-card-footer .tag-list,
+  .projects-page .project-card-body > .store-links,
   .projects-preview .project-card-body > div:first-child > p:not(.project-status),
-  .projects-preview .project-card-footer .tag-list {
+  .projects-preview .project-card-body > .store-links {
     display: none;
   }
 
@@ -302,10 +302,6 @@ body.lhb-page .lhb-launch > .container { background: transparent; border: 0; pad
 
   .featured-heading .section-title-label {
     width: 100%;
-  }
-
-  .project-card-featured .project-card-art-link img {
-    object-position: 32% center;
   }
 
   .site-footer .footer-grid > :nth-child(2) {
