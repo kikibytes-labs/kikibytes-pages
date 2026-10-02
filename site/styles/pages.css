@@ -16,7 +16,6 @@
 .prose p { margin-bottom: 1.25rem; }
 .value-grid, .feature-grid, .project-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .project-grid { margin-inline: auto; max-width: 1100px; padding: .25rem .5rem .5rem .25rem; }
-.projects-page-title { grid-column: 1 / -1; margin: 0 0 .5rem; }
 .build-process-section > .container { background: transparent; border: 0; padding-bottom: 0; padding-top: 0; }
 .build-process-section .section-title-label { margin-bottom: 1rem; }
 .build-process-section > .container > h2 { margin-bottom: .75rem; text-align: center; }
