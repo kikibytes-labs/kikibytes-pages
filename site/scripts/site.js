@@ -188,7 +188,7 @@ if (contactForm) {
         submitButton.textContent = 'Send message →';
         formStatus.textContent = error?.name === 'AbortError'
           ? 'Sending timed out. Please try again, or email hello@kikibytes.com directly.'
-          : 'We couldn’t send your message. Please try again, or email hello@kikibytes.com directly.';
+          : 'Your message couldn’t be sent. Please try again, or email hello@kikibytes.com directly.';
       } finally {
         window.clearTimeout(requestTimer);
       }
